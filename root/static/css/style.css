@@ -560,3 +560,26 @@ h6,
         margin-top: 20px;
     }
 }
+
+
+
+
+
+
+
+
+.custom-breadcrumb {
+   
+    /* Додайте інші стилі за вашими потребами */
+}
+.custom-breadcrumb-item {
+    display: inline-block;
+    color: white;
+    margin-right: 20px; /* Змініть це значення за потребою */
+    /* Додайте інші стилі за вашими потребами */
+}
+
+.custom-breadcrumb-link {
+    color: white;
+    /* Додайте інші стилі за вашими потребами */
+}

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'comander',
     'home',
     'team',
+    
 
 ]
 
@@ -125,6 +126,9 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+LOGIN_URL = '/accounts/signin'
+LOGIN_REDIRECT_URL = '/home/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
