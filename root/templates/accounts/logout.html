@@ -1,0 +1,36 @@
+{% extends '_layouts/base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <!-- Hero Start -->
+    <div class="container-fluid pt-5 bg-primary hero-header">
+        <div class="container pt-5">
+            <div class="row g-5 pt-5">
+                <div class="col-lg-6 align-self-center text-center text-lg-start mb-lg-5">
+                    <h1 class="display-4 text-white mb-4 animated slideInRight">You! --> <br>Have lost access</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="custom-breadcrumb mb-0" itemscope itemtype="https://schema.org/BreadcrumbList">
+                            <li class="custom-breadcrumb-item">
+                                <a href="{% url 'accounts:signin' %}" class="custom-breadcrumb-link">
+                                    <button class="custom-breadcrumb-button">Turn back</button>
+                                </a>
+                            </li>
+                        </ol>
+                </div>
+                <div class="col-lg-6 align-self-end text-center text-lg-end">
+                    <img class="img-fluid" src="{% static 'img/hero-img.png' %}" alt="" style="max-height: 300px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+    
+        <div class="container mt-3">
+            <h1>Come back! <br>Because only registered users have access to the contact database</h1>
+        </div>
+
+
+
+
+{% endblock content %}
