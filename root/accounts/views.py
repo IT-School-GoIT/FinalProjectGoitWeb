@@ -31,6 +31,4 @@ class RegisterView(View):
         return render(request, self.template_name, context={'form': form})
 
 
-
-
         

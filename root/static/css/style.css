@@ -566,20 +566,33 @@ h6,
 
 
 
+.custom-breadcrumb-button {
+    background-color: transparent;
+    border: 1px solid white; /* Додано рамку */
+    border-radius: 5px; /* Закруглення куточків */
+    cursor: pointer;
+    color: white;
+    font-size: 20px; /* Змініть розмір тексту за потребою */
+    padding: 8px 16px; /* Змініть відступи за потребою */
+}
 
+.custom-breadcrumb-button:hover {
+    text-decoration: underline;
+}
 
 .custom-breadcrumb {
-   
+    opacity: 1;
     /* Додайте інші стилі за вашими потребами */
 }
 .custom-breadcrumb-item {
     display: inline-block;
     color: white;
-    margin-right: 20px; /* Змініть це значення за потребою */
-    /* Додайте інші стилі за вашими потребами */
+    display: inline-block;
+    margin-right: 10px; /* Проміжок між елементами хлібних крихт */
 }
 
 .custom-breadcrumb-link {
+    text-decoration: none;
     color: white;
     /* Додайте інші стилі за вашими потребами */
 }
