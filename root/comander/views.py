@@ -1,6 +1,9 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from django.views import View
 
+
+@login_required
 def index(request):
     return render(request, 'comander/index.html', {
         'title': 'Commands',
@@ -8,6 +11,8 @@ def index(request):
         'app': 'comander'
     })
 
+
+@login_required
 def add(request):
     return render(request, 'comander/add.html', {
         'title': 'add',
@@ -15,6 +20,8 @@ def add(request):
         'app': 'comander'
     })
 
+
+@login_required
 def search_all(request):
     return render(request, 'comander/search_all.html', {
         'title': 'search_all',
@@ -23,6 +30,8 @@ def search_all(request):
     })
 
 
+
+@login_required
 def change(request):
     return render(request, 'comander/change.html', {
         'title': 'change',
@@ -30,6 +39,8 @@ def change(request):
         'app': 'comander'
     })
 
+
+@login_required
 def delete(request):
     return render(request, 'comander/delete.html', {
         'title': 'delete',
@@ -38,6 +49,7 @@ def delete(request):
     })
 
 
+@login_required
 def sorting_files(request):
     return render(request, 'comander/sorting_files.html', {
         'title': 'sorting_files',
@@ -45,6 +57,8 @@ def sorting_files(request):
         'app': 'comander'
     })
 
+
+@login_required
 def birhday_contact(request):
     return render(request, 'comander/birhday_contact.html', {
         'title': 'birhday_contact',
