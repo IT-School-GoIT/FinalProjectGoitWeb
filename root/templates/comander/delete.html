@@ -4,12 +4,31 @@
 {% load static %}
 {% include '_fragments/HeroStart_comand.html' %}
 
-<h1>Add</h1>
-<h1>Search All</h1>
-<h1>Change</h1>
-<h1>Delete</h1>
-<h1>Sorting Files</h1>
-<h1>Birhday Contact</h1>
 
+
+<!-- Navbar Start -->
+{% include '_fragments/command_navbar.html' %}
+<!-- Navbar End -->
+
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-6 mx-auto">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">Delete Contact</h6>
+                <form>
+                    <div class="mb-3">
+                        <label for="formGroupExampleInput" class="form-label">User Name</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Name">
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-sm btn-primary px-5 me-2">Delete</button> <!-- Зменшуємо ширину кнопки -->
+                        <button type="reset" class="btn btn-sm btn-primary px-5">Cancel</button> <!-- Зменшуємо ширину кнопки -->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock content %}

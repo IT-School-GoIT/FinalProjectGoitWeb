@@ -65,3 +65,20 @@ def birhday_contact(request):
         'page': 'birhday_contact',
         'app': 'comander'
     })
+
+@login_required
+def download(request):
+    return render(request, 'comander/download.html', {
+        'title': 'download',
+        'page': 'download',
+        'app': 'comander'
+    })
+
+
+@login_required
+def view_file(request):
+    return render(request, 'comander/view_file.html', {
+        'title': 'view_file',
+        'page': 'view_file',
+        'app': 'comander'
+    })

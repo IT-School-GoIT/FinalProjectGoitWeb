@@ -596,3 +596,21 @@ h6,
     color: white;
     /* Додайте інші стилі за вашими потребами */
 }
+
+
+
+
+/* Стилі для hover та focus ефектів на кнопках */
+.dropdown-menu a.dropdown-item:hover,
+.dropdown-menu a.dropdown-item:focus {
+    background-color:  var(--secondary); /* Змінюємо колір фону при hover та focus */
+}
+
+
+
+
+
+
+
+
+

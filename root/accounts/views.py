@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.views import View
 from django.contrib import messages
 
@@ -29,6 +30,15 @@ class RegisterView(View):
             messages.success(request, f'Вітаємо {username}! Ваш акаунт успішно створено.')
             return redirect(to='accounts:signin')
         return render(request, self.template_name, context={'form': form})
+    
+
+@login_required
+def profile(request):
+    return render(request, 'accounts/profile.html', {
+        'title': 'profile',
+        'page': 'profile',
+        'app': 'accounts'
+    })
 
 
         

@@ -12,8 +12,8 @@ urlpatterns = [
     path('delete', views.delete, name='delete'),
     path('sorting_files', views.sorting_files, name='sorting_files'),
     path('birhday_contact', views.birhday_contact, name='birhday_contact'),
-
-
+    path('download', views.download, name='download'),
+    path('view_file', views.view_file, name='view_file'),
 
 
 
