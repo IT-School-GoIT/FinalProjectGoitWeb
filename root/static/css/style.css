@@ -610,6 +610,18 @@ h6,
 
 
 
+.clickable-row {
+    cursor: pointer;
+}
+
+.clickable-row:hover {
+    background-color: var(--secondary);
+}
+
+.clickable-row:focus {
+    outline: none;
+    background-color: var(--secondary);
+}
 
 
 

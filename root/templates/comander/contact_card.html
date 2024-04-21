@@ -1,11 +1,20 @@
+{% extends '_layouts/base.html' %}
+
+{% block content %}
 {% load static %}
+{% include '_fragments/HeroStart_comand.html' %}
+
+
+
+<!-- Navbar Start -->
+{% include '_fragments/command_navbar.html' %}
+<!-- Navbar End -->
 
 <!-- Table Start -->
 <div class="container-fluid pt-4 px-4">
     <div class="row g-4">
         <div class="col-12">
             <div class="bg-light rounded h-100 p-4">
-                <h6 class="mb-4">ADDRES BOOK MANAGEMENT:</h6>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -30,26 +39,6 @@
                                 <td>03.04.1999</td>
                                 <td>Member</td>
                             </tr>
-                            <!-- Mark's row -->
-                            <tr onclick="redirectToUrl('{% url 'comander:change' %}')" class="clickable-row">
-                                <th scope="row">2</th>
-                                <td>Mark</td>
-                                <td>+3050-123-456</td>
-                                <td>mark@email.com</td>
-                                <td>Ukraine</td>
-                                <td>03.04.1999</td>
-                                <td>Member</td>
-                            </tr>
-                            <!-- Jacob's row -->
-                            <tr onclick="redirectToUrl('{% url 'comander:change' %}')" class="clickable-row">
-                                <th scope="row">3</th>
-                                <td>Jacob</td>
-                                <td>+3050-123-456</td>
-                                <td>jacob@email.com</td>
-                                <td>Ukraine</td>
-                                <td>03.04.1999</td>
-                                <td>Member</td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -64,3 +53,6 @@
         window.location.href = url;
     }
 </script>
+
+
+{% endblock %}

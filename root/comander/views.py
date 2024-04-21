@@ -82,3 +82,13 @@ def view_file(request):
         'page': 'view_file',
         'app': 'comander'
     })
+
+
+
+@login_required
+def contact_card(request):
+    return render(request, 'comander/contact_card.html', {
+        'title': 'contact_card',
+        'page': 'contact_card',
+        'app': 'comander'
+    })

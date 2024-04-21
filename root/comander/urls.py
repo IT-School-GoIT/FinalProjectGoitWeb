@@ -14,6 +14,8 @@ urlpatterns = [
     path('birhday_contact', views.birhday_contact, name='birhday_contact'),
     path('download', views.download, name='download'),
     path('view_file', views.view_file, name='view_file'),
+    path('contact_card', views.contact_card, name='contact_card'),
+    
 
 
 
