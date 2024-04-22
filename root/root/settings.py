@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'comander',
     'home',
     'team',
+    'news',
     
 
 ]

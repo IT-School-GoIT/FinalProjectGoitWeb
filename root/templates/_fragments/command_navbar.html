@@ -2,11 +2,39 @@
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
     <div class="navbar-nav align-items-center ms-auto">
+
         <div class="nav-item dropdown">
-        <!-- Minfin.com.ua nbu informer 100x42 grey-->
-        <div id="minfin-informer-m1Fn-nbu">Завантажуємо <a href="https://minfin.com.ua/ua/currency/" target="_blank">курси валют</a> від minfin.com.ua</a></div><script>var iframe = '<ifra'+'me width="100" height="42" fram'+'eborder="0" src="https://informer.minfin.com.ua/ua/gen/nbu/?color=grey" vspace="0" scrolling="no" hspace="0" allowtransparency="true"style="width:100px;height:42px;ove'+'rflow:hidden;"></iframe>';var cl = 'minfin-informer-m1Fn-nbu';document.getElementById(cl).innerHTML = iframe; </script><noscript><img src="https://informer.minfin.com.ua/gen/img.png" width="1" height="1" alt="minfin.com.ua: курси валют" title="Курс валют" border="0" /></noscript>
-        <!-- Minfin.com.ua nbu informer 100x42 grey-->
-        </div>
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="fa fa-file me-lg-2"></i>
+                <span class="d-none d-lg-inline-flex">News</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                <a href="{% url 'comander:download' %}" class="dropdown-item">
+                    <div class="d-flex align-items-center">
+                        <div class="ms-2">
+                            <h6 class="fw-normal mb-0">F1</h6>
+                        </div>
+                    </div>
+                </a>
+                <hr class="dropdown-divider">
+                <a href="{% url 'comander:view_file' %}" class="dropdown-item">
+                    <div class="d-flex align-items-center">
+                        <div class="ms-2">
+                            <h6 class="fw-normal mb-0">Money</h6>
+                        </div>
+                    </div>
+                </a>
+                <hr class="dropdown-divider">
+                <a href="{% url 'comander:view_file' %}" class="dropdown-item">
+                    <div class="d-flex align-items-center">
+                        <div class="ms-2">
+                            <h6 class="fw-normal mb-0">War</h6>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>   
+
         <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                 <i class="fa fa-file me-lg-2"></i>
