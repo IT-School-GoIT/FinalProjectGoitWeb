@@ -6,16 +6,18 @@
             <!-- Weather widget -->
             <div class="navbar-brand">
                 <a target="_blank" href="https://hotelmix.com.ua/weather/kyiv-18881">
-                    <img src="https://w.bookcdn.com/weather/picture/5_18881_1_29_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=70241&domid=966&anc_id=35493" alt="booked.net" style="padding: 0; margin: 0;">
+                    <img src="https://w.bookcdn.com/weather/picture/5_18881_1_29_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=70241&domid=966&anc_id=35493"
+                         alt="booked.net" style="padding: 0; margin: 0;">
                 </a>
             </div>
             <!-- End of Weather widget -->
-            {% endif %}  
+            {% endif %}
             <a href="{% url 'team:team' %}" class="navbar-brand">
-                <h1 class="text-white m-0">Fox<span class="text-dark">.</span>Web<span class="text-dark">.</span>Assistant</h1>
+                <h1 class="text-white m-0">Fox<span class="text-dark">.</span>Web<span class="text-dark">.</span>Assistant
+                </h1>
             </a>
             <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse"
-                data-bs-target="#navbarCollapse">
+                    data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -23,7 +25,8 @@
                 <div class="navbar-nav ms-auto">
                     <a href="{% url 'home:home' %}" class="nav-item nav-link active">Home</a>
                     <a href="{% url 'team:team' %}" class="nav-item nav-link">Team</a>
-                    <a href="{% url 'news:news' %}" class="nav-item nav-link">News</a>
+                    <a href="{% url 'news:news' %}">News</a>
+
                     {% if user.is_authenticated %}
                     <a href="{% url 'comander:commands' %}" class="nav-item nav-link">Commands</a>
                     <a href="{% url 'accounts:logout' %}" class="nav-item nav-link">Go_out</a>
