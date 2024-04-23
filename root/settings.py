@@ -33,10 +33,10 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = env('DEBUG')
+# DEBUG = True
+DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['final-project-goit-web-antonbabenko.koyeb.app']
 
 
 # Application definition
@@ -58,6 +58,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -148,10 +149,10 @@ STATIC_URL = 'static/'
 #     os.path.join(BASE_DIR, 'static'),
 #     os.path.join(BASE_DIR, 'static/lib'),  # Шлях до вашої папки lib
 # ]
-STATICFILES_DIRS = [BASE_DIR / 'static']
+# STATICFILES_DIRS = [BASE_DIR / 'static']
 # STATIC_ROOT = BASE_DIR / 'static'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
