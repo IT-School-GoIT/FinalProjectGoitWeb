@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>20th Centure Fox - {{ title }}</title>
+    <title>Fox.Web - {{ title }}</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -33,6 +33,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+
 </head>
 
 <body>
@@ -46,8 +47,7 @@
     {% include '_fragments/FooterStart.html' %}
 
 
-    <!-- Back to Top -->
-<!--    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top pt-2"><i class="bi bi-arrow-up"></i></a>-->
+
 
 
     <!-- JavaScript Libraries -->
@@ -75,12 +75,13 @@
 
 
     <!-- Template Javascript -->
+    <script src="{% static 'js/main3.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>
 
 
-    <script src="{% static 'js/main2.js' %}"></script>
-    <script src="{% static 'js/main3.js' %}"></script>
-
+    <!-- <script src="{% static 'js/main2.js' %}"></script> -->
+  
+    
 
 </body>
 
