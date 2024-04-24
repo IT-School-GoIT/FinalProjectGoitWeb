@@ -68,7 +68,9 @@
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <button type="submit" class="btn btn-sm btn-primary px-5 me-2">Save Changes</button> <!-- Зменшуємо ширину кнопки -->
+                        <!-- <button type="submit" class="btn btn-sm btn-primary px-5 me-2">Save Changes</button> Зменшуємо ширину кнопки -->
+                        <a href="{% url 'comander:change_done' %}" class="btn btn-sm btn-primary px-5 me-2">Save Changes</a>
+
                         <button type="reset" class="btn btn-sm btn-primary px-5">Cancel</button> <!-- Зменшуємо ширину кнопки -->
                     </div>
                 </form>

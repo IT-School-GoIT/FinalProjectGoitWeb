@@ -28,7 +28,7 @@
                     <a href="{% url 'home:news' %}" class="nav-item nav-link">News</a>
 
                     {% if user.is_authenticated %}
-                    <a href="{% url 'comander:commands' %}" class="nav-item nav-link">Commands</a>
+                    <a href="{% url 'comander:commands' %}" class="nav-item nav-link">Data Contacts</a>
                     <a href="{% url 'accounts:logout' %}" class="nav-item nav-link">Go_out</a>
                     {% else %}
                     <a href="{% url 'accounts:signup' %}" class="nav-item nav-link">Sign_up</a>

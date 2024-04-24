@@ -15,7 +15,15 @@ urlpatterns = [
     path('download', views.download, name='download'),
     path('view_file', views.view_file, name='view_file'),
     path('contact_card', views.contact_card, name='contact_card'),
+    path('deleted_done', views.deleted_done, name='deleted_done'),
+    path('change_done', views.change_done, name='change_done'),
+    path('add_note', views.add_note, name='add_note'),
+    path('all_notes', views.all_notes, name='all_notes'),
+    path('change_note', views.change_note, name='change_note'),
+    path('change_note_done', views.change_note_done, name='change_note_done'),
     
+
+
 
 
 

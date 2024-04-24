@@ -40,5 +40,13 @@ def profile(request):
         'app': 'accounts'
     })
 
+@login_required
+def profile_settings(request):
+    return render(request, 'accounts/profile_settings.html', {
+        'title': 'profile_settings',
+        'page': 'profile_settings',
+        'app': 'accounts'
+    })
+
 
         

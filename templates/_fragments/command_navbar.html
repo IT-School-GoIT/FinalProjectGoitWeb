@@ -3,6 +3,7 @@
 <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
     <div class="navbar-nav align-items-center ms-auto">
 
+
         <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                 <i class="fa fa-file me-lg-2"></i>
@@ -66,46 +67,51 @@
                 <a href="#" class="dropdown-item text-center">See all message</a>
             </div>
         </div>
+
+
+        <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                <i class="fa fa-file me-lg-2"></i>
+                <span class="d-none d-lg-inline-flex">Notes</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                <a href="{% url 'comander:add_note' %}" class="dropdown-item">
+                    <h6 class="fw-normal mb-0">Add</h6>
+                </a>
+                <hr class="dropdown-divider">
+                <a href="{% url 'comander:all_notes' %}" class="dropdown-item">All Notes</a>
+            </div>
+        </div>
+
+
+
+
         <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                 <i class="fa fa-folder me-lg-2"></i>
-                <span class="d-none d-lg-inline-flex">Command</span>
+                <span class="d-none d-lg-inline-flex">Contacts</span>
             </a>
             <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                 <a href="{% url 'comander:add' %}" class="dropdown-item">
                     <h6 class="fw-normal mb-0">Add</h6>
                 </a>
                 <hr class="dropdown-divider">
-                <a href="{% url 'comander:search_all' %}" class="dropdown-item">
-                    <h6 class="fw-normal mb-0">Search All</h6>
-                </a>
-                <hr class="dropdown-divider">
-                <a href="{% url 'comander:change' %}" class="dropdown-item">
-                    <h6 class="fw-normal mb-0">Change</h6>
-                </a>
-                <hr class="dropdown-divider">
-                <a href="{% url 'comander:delete' %}" class="dropdown-item">
-                    <h6 class="fw-normal mb-0">Delete</h6>
-                </a>
-                <hr class="dropdown-divider">
-                <a href="{% url 'comander:birhday_contact' %}" class="dropdown-item">
-                    <h6 class="fw-normal mb-0">Birhday Contact</h6>
-                </a>
-                <hr class="dropdown-divider">
                 <a href="{% url 'comander:commands' %}" class="dropdown-item">All contacts</a>
             </div>
         </div>
+        
         <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                 {% if user.photo %}
                     <img class="rounded-circle me-lg-2" src="{{ user.photo.url }}" alt="" style="width: 40px; height: 40px;">
                 {% else %}
-                    <img class="rounded-circle me-lg-2" src="{% static 'img/user.jpg' %}" alt="" style="width: 40px; height: 40px;">
+                    <img class="rounded-circle me-lg-2" src="{% static 'img/team-9.jpg' %}" alt="" style="width: 40px; height: 40px;">
                 {% endif %}
                 <span class="d-none d-lg-inline-flex">{{ user.username }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                 <a href="{% url 'accounts:profile' %}" class="dropdown-item">My Profile</a>
+                <a href="{% url 'accounts:profile_settings' %}" class="dropdown-item">Settings</a>
                 <a href="{% url 'accounts:logout' %}" class="dropdown-item">Go Out</a>
             </div>
         </div>
