@@ -1,0 +1,5 @@
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="name" value="{{ category.name }}" required>
+    <button type="submit">Update Category</button>
+</form>

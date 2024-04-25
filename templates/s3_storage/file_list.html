@@ -1,3 +1,14 @@
-{% for file in files %}
-    <p>{{ file.original_filename }} - <a href="{% url 's3_storage:download' file.id %}">Download</a> - <a href="{% url 's3_storage:delete' file.id %}">Delete</a></p>
+{% for category in categories %}
+    <h2>{{ category.name }}</h2>
+    {% for file in files %}
+        {% if file.category == category %}
+            <p>{{ file.original_filename }} - <a href="{% url 's3_storage:download' file.id %}">Download</a> - <a href="{% url 's3_storage:delete' file.id %}">Delete</a></p>
+        {% endif %}
+    {% empty %}
+        <p>No files in this category.</p>
+    {% endfor %}
+    <a href="{% url 's3_storage:edit_category' category.id %}">Edit Category</a> - <a href="{% url 's3_storage:delete_category' category.id %}">Delete Category</a>
+{% empty %}
+    <p>No categories.</p>
 {% endfor %}
+<a href="{% url 's3_storage:create_category' %}">Create Category</a>

@@ -19,7 +19,7 @@ def upload_to_s3(instance, filename):
 
 class File(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='files')
-    category = models.ForeignKey(FileCategory, on_delete=models.SET_NULL, null=True, related_name='files')
+    category = models.ForeignKey(FileCategory, on_delete=models.CASCADE, null=True, related_name='files')
     file = models.FileField(upload_to=upload_to_s3)
     original_filename = models.CharField(max_length=255, blank=True, null=True)
 

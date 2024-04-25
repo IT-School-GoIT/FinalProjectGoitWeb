@@ -20,8 +20,9 @@ def upload_file(request):
 
 @login_required
 def file_list(request):
+    categories = FileCategory.objects.filter(user=request.user)
     files = File.objects.filter(user=request.user)
-    return render(request, 's3_storage/file_list.html', {'files': files})
+    return render(request, 's3_storage/file_list.html', {'categories': categories, 'files': files})
 
 
 @login_required
@@ -38,3 +39,42 @@ def delete_file(request, file_id):
     delete_from_s3(file.file.name)
     file.delete()
     return redirect('s3_storage:list')
+
+
+@login_required
+def create_category(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        category = FileCategory.objects.create(user=request.user, name=name)
+        category.save()
+        return redirect('s3_storage:list')
+    else:
+        return render(request, 's3_storage/create_category.html')
+
+
+@login_required
+def edit_category(request, category_id):
+    category = get_object_or_404(FileCategory, id=category_id, user=request.user)
+    if request.method == 'POST':
+        category.name = request.POST['name']
+        category.save()
+        return redirect('s3_storage:list')
+    else:
+        return render(request, 's3_storage/edit_category.html', {'category': category})
+
+
+@login_required
+def delete_category(request, category_id):
+    category = get_object_or_404(FileCategory, id=category_id, user=request.user)
+    if category.files.exists():
+        return render(request, 's3_storage/category_error.html', {'category': category})
+    else:
+        category.delete()
+        return redirect('s3_storage:list')
+# def delete_category(request, category_id):
+#     category = get_object_or_404(FileCategory, id=category_id, user=request.user)
+#     if category.file_set.exists():
+#         return render(request, 's3_storage/category_error.html', {'category': category})
+#     else:
+#         category.delete()
+#         return redirect('s3_storage:list')
