@@ -8,10 +8,8 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
-<!--    <link href="{% static 'img/favicon.ico' %}" rel="icon">-->
     <link rel="canonical" href="https://www.bootstrap.gallery/">
     <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Ubuntu:wght@500;700&display=swap"
@@ -25,38 +23,25 @@
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
     
 
-    <!-- Animated css -->
-    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
 
-    <!-- Bootstrap font icons css -->
-    <link rel="stylesheet" href="{% static 'fonts/bootstrap/bootstrap-icons.css' %}">
 
-    <!-- Main css -->
+
+    <!-- Main css Tables -->
     <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
 
-    <!-- CSS Libraries -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="{% static 'lib/slick/slick.css' %}" rel="stylesheet">
-    <link href="{% static 'lib/slick/slick-theme.css' %}" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-
-
-    <!-- Scrollbar CSS -->
+    <!-- Data Tables -->
+    <link rel="stylesheet" href="{% static 'vendor/datatables/dataTables.bs5.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/datatables/dataTables.bs5-custom.css' %}">
+      
+    <!-- Scrollbar CSS Tables -->
     <link rel="stylesheet" href="{% static 'vendor/overlay-scroll/OverlayScrollbars.min.css' %}">
 
-    <!-- Data Tables -->
-    <link rel="stylesheet" href="{% static 'vendor/datatables/dataTables.bs5.css' %}" />
-    <link rel="stylesheet" href="{% static 'vendor/datatables/dataTables.bs5-custom.css' %}" />
-    
-    <!-- Date Range CSS -->
-    <link rel="stylesheet" href="{% static 'vendor/daterange/daterange.css' %}">
 
-    <!-- Uploader CSS -->
-    <link rel="stylesheet" href="{% static 'vendor/dropzone/dropzone.min.css' %}" />
+    <!-- Icomoon Font Icons css -->
+    <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+ 
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
 
 
@@ -73,33 +58,15 @@
     {% include '_fragments/FooterStart.html' %}
 
 
-
-
-
     <!-- JavaScript Libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{% static 'lib/wow/wow.min.js' %}"></script>
-    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
-    <script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
-    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
 
 
 
-    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
-    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
-    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
 
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
-    <script src="{% static 'lib/slick/slick.min.js' %}"></script>
 
-
-    <!-- Overlay Scroll JS -->
-    <script src="{% static 'vendor/overlay-scroll/jquery.overlayScrollbars.min.js' %}"></script>
-    <script src="{% static 'vendor/overlay-scroll/custom-scrollbar.js' %}"></script>
 
     <!-- Data Tables -->
     <script src="{% static 'vendor/datatables/dataTables.min.js' %}"></script>
@@ -107,6 +74,22 @@
 
     <!-- Custom Data tables -->
     <script src="{% static 'vendor/datatables/custom/custom-datatables.js' %}"></script>
+
+
+
+    <!-- Apex Charts news-->
+    <script src="{% static 'vendor/apex/apexcharts.min.js' %}"></script>
+    <script src="{% static 'vendor/apex/custom/home/tasks.js' %}"></script>
+    <script src="{% static 'vendor/apex/custom/home/ticketsData.js' %}"></script>
+    <script src="{% static 'vendor/apex/custom/home/avgTimeData.js' %}"></script>
+    <script src="{% static 'vendor/apex/custom/home/tickets.js' %}"></script>
+    <script src="{% static 'vendor/apex/custom/home/calls.js' %}"></script>
+    <script src="{% static 'vendor/apex/custom/home/callsByCountry.js' %}"></script>
+    <script src="{% static 'vendor/apex/custom/home/sparkline.js' %}"></script>
+ 
+    <!-- Custom JS files news-->
+    <script src="{% static 'js/custom.js' %}"></script>
+
 
     <!-- Main Js Required -->
     <script src="{% static 'js/main-datatables.js' %}"></script>
@@ -116,20 +99,14 @@
     <script src="{% static 'vendor/daterange/custom-daterange.js' %}"></script>
     <!-- Dropzone JS -->
     <script src="{% static 'vendor/dropzone/dropzone.min.js' %}"></script>
-    
-    <!-- Required jQuery first, then Bootstrap Bundle JS -->
-    <script src="{% static 'js/moment.js' %}"></script>
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'js/modernizr.js' %}"></script>
 
 
     <!-- Template Javascript -->
 
     <script src="{% static 'js/main.js' %}"></script>
-    <script src="{% static 'js/main3.js' %}"></script>
+    <script src="{% static 'js/main_tables.js' %}"></script>
 
-    <!-- <script src="{% static 'js/main2.js' %}"></script> -->
+    <script src="{% static 'js/main2.js' %}"></script>
   
     
 
