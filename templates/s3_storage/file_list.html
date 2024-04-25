@@ -1,0 +1,3 @@
+{% for file in files %}
+    <p>{{ file.original_filename }} - <a href="{% url 's3_storage:download' file.id %}">Download</a> - <a href="{% url 's3_storage:delete' file.id %}">Delete</a></p>
+{% endfor %}

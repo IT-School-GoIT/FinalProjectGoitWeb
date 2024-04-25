@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'comander',
     'home',
     'team',
+    'storages',
+    's3_storage',
     
 
 ]
@@ -163,5 +165,9 @@ SILENCED_SYSTEM_CHECKS = ['urls.W005']  # Ігнорування повідом�
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_REGION_NAME = 'eu-north-1'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 NEWSAPI_API_KEY = env('NEWSAPI_API_KEY')
