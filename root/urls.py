@@ -26,7 +26,7 @@ urlpatterns = [
     path('comander/', include('comander.urls')),
     path('home/', include('home.urls')),
     path('team/', include('team.urls')),
-
+    path('s3_storage/', include('s3_storage.urls')),
 
 ]
 

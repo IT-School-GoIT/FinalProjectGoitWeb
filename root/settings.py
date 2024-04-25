@@ -24,7 +24,6 @@ env = environ.Env(
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -38,8 +37,10 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 ALLOWED_HOSTS = ['final-project-goit-web-antonbabenko.koyeb.app']
 
+
 # DEBUG = True
-# ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['*']
+
 
 # Application definition
 
@@ -54,8 +55,8 @@ INSTALLED_APPS = [
     'comander',
     'home',
     'team',
-    
-
+    'storages',
+    's3_storage',
 ]
 
 MIDDLEWARE = [
@@ -95,27 +96,11 @@ WSGI_APPLICATION = 'root.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-
-        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # 'NAME': env('NAME'),
-        # 'USER': env('USER_DB'),
-        # 'PASSWORD': env('PASSWORD'),
-        # 'HOST': env('HOST'),
-        # 'PORT': env('PORT_DB'),
-
-
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': env('DB_NAME'),
         'USER': env('DB_USER'),
         'PASSWORD': env('DB_PASSWORD'),
         'HOST': env('DB_HOST'),
         'PORT': env('DB_PORT'),
-
-
-
-
     }
 }
 
@@ -177,3 +162,13 @@ LOGIN_REDIRECT_URL = '/home/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SILENCED_SYSTEM_CHECKS = ['urls.W005']  # Ігнорування повідомлень про неунікальні URL-простори імен
+
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_REGION_NAME = 'eu-north-1'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+NEWSAPI_API_KEY = env('NEWSAPI_API_KEY')
