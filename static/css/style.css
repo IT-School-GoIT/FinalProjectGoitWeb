@@ -634,3 +634,30 @@ h6,
   border: 1px solid;
 } */
 
+
+
+/* Стилі для поля завантаження фото */
+.file-upload {
+    position: relative;
+    overflow: hidden;
+    margin-top: 8px; /* Регулюємо відступ від верхнього поля */
+}
+.file-upload input[type='file'] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+}
+.file-upload .file-select {
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
