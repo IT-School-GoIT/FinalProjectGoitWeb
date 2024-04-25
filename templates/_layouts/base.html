@@ -4,11 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <title>20th Centure Fox - {{ title }}</title>
+    <title>Fox.Web - {{ title }}</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
 <!--    <link href="{% static 'img/favicon.ico' %}" rel="icon">-->
+    <link rel="canonical" href="https://www.bootstrap.gallery/">
     <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,6 +25,14 @@
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
     
 
+    <!-- Animated css -->
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+
+    <!-- Bootstrap font icons css -->
+    <link rel="stylesheet" href="{% static 'fonts/bootstrap/bootstrap-icons.css' %}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'css/main.min.css' %}">
 
     <!-- CSS Libraries -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -33,6 +42,24 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+
+
+    <!-- Scrollbar CSS -->
+    <link rel="stylesheet" href="{% static 'vendor/overlay-scroll/OverlayScrollbars.min.css' %}">
+
+    <!-- Data Tables -->
+    <link rel="stylesheet" href="{% static 'vendor/datatables/dataTables.bs5.css' %}" />
+    <link rel="stylesheet" href="{% static 'vendor/datatables/dataTables.bs5-custom.css' %}" />
+    
+    <!-- Date Range CSS -->
+    <link rel="stylesheet" href="{% static 'vendor/daterange/daterange.css' %}">
+
+    <!-- Uploader CSS -->
+    <link rel="stylesheet" href="{% static 'vendor/dropzone/dropzone.min.css' %}" />
+
+
+
+
 </head>
 
 <body>
@@ -46,8 +73,7 @@
     {% include '_fragments/FooterStart.html' %}
 
 
-    <!-- Back to Top -->
-<!--    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top pt-2"><i class="bi bi-arrow-up"></i></a>-->
+
 
 
     <!-- JavaScript Libraries -->
@@ -72,15 +98,38 @@
     <script src="{% static 'lib/slick/slick.min.js' %}"></script>
 
 
+    <!-- Overlay Scroll JS -->
+    <script src="{% static 'vendor/overlay-scroll/jquery.overlayScrollbars.min.js' %}"></script>
+    <script src="{% static 'vendor/overlay-scroll/custom-scrollbar.js' %}"></script>
+
+    <!-- Data Tables -->
+    <script src="{% static 'vendor/datatables/dataTables.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables/dataTables.bootstrap.min.js' %}"></script>
+
+    <!-- Custom Data tables -->
+    <script src="{% static 'vendor/datatables/custom/custom-datatables.js' %}"></script>
+
+    <!-- Main Js Required -->
+    <script src="{% static 'js/main-datatables.js' %}"></script>
+
+    <!-- Date Range JS -->
+    <script src="{% static 'vendor/daterange/daterange.js' %}"></script>
+    <script src="{% static 'vendor/daterange/custom-daterange.js' %}"></script>
+    <!-- Dropzone JS -->
+    <script src="{% static 'vendor/dropzone/dropzone.min.js' %}"></script>
+    
+
+
 
 
     <!-- Template Javascript -->
+
     <script src="{% static 'js/main.js' %}"></script>
-
-
-    <script src="{% static 'js/main2.js' %}"></script>
     <script src="{% static 'js/main3.js' %}"></script>
 
+    <!-- <script src="{% static 'js/main2.js' %}"></script> -->
+  
+    
 
 </body>
 

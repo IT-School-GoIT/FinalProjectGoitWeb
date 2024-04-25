@@ -4,31 +4,32 @@
 {% load static %}
 
 
+<!-- Hero Start -->
+<div class="container-fluid pt-5 bg-primary hero-header">
+    <div class="container pt-5">
+        <div class="row g-5 pt-5">
+            <div class="col-lg-6 align-self-center text-center text-lg-start mb-lg-5">
+                <h1 class="display-4 text-white mb-4 animated slideInRight">Delete command executed</h1>
+                <nav aria-label="breadcrumb">
+                        <li class="custom-breadcrumb-item me-3 mb-3">
+                            <a href="{% url 'comander:commands' %}" class="btn btn-outline-light py-sm-2 px-sm-4 rounded-pill custom-breadcrumb-link">Data Contacts</a>
+                        </li>                  
+                </nav>
+            </div>
+            <div class="col-lg-6 align-self-end text-center text-lg-end">
+                <img class="img-fluid" src="{% static 'img/feature.png' %}" alt="" style="max-height: 300px;">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Hero End -->
 
 
 <!-- Navbar Start -->
 {% include '_fragments/command_navbar.html' %}
 <!-- Navbar End -->
 
-<div class="container-fluid pt-4 px-4">
-    <div class="row g-4">
-        <div class="col-sm-12 col-xl-6 mx-auto">
-            <div class="bg-light rounded h-100 p-4">
-                <h6 class="mb-4">Delete Contact</h6>
-                <form>
-                    <div class="mb-3">
-                        <label for="formGroupExampleInput" class="form-label">User Name</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Name">
-                    </div>
+{% include '_fragments/command_deleted_done.html' %}
 
-                    <div class="d-flex justify-content-between">
-                        <button type="submit" class="btn btn-sm btn-primary px-5 me-2">Delete</button> <!-- Зменшуємо ширину кнопки -->
-                        <button type="reset" class="btn btn-sm btn-primary px-5">Cancel</button> <!-- Зменшуємо ширину кнопки -->
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
 {% endblock content %}

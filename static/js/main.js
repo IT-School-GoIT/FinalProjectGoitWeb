@@ -59,7 +59,5 @@
             '<i class="bi bi-chevron-left"></i>',
             '<i class="bi bi-chevron-right"></i>'
         ]
-    });
-    
+    });    
 })(jQuery);
-

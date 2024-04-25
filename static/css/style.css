@@ -624,4 +624,13 @@ h6,
 }
 
 
+.btn-unstyled:hover,
+.btn-unstyled:focus {
+    border-color: var(--primary);
+}
+
+/* .btn-unstyled:hover i,
+.btn-unstyled:focus i {
+  border: 1px solid;
+} */
 
