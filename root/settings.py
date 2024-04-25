@@ -35,8 +35,8 @@ SECRET_KEY = env('SECRET_KEY')
 # DEBUG = True
 DEBUG = env('DEBUG')
 
-# ALLOWED_HOSTS = ['final-project-goit-web-antonbabenko.koyeb.app']
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['final-project-goit-web-antonbabenko.koyeb.app']
+# ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -53,8 +53,6 @@ INSTALLED_APPS = [
     'team',
     'storages',
     's3_storage',
-    
-
 ]
 
 MIDDLEWARE = [
