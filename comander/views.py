@@ -143,3 +143,54 @@ def change_note_done(request):
         'page': 'change_note_done',
         'app': 'comander'
     })
+
+@login_required
+def files(request):
+    return render(request, 'comander/files.html', {
+        'title': 'files',
+        'page': 'files',
+        'app': 'comander'
+    })
+
+@login_required
+def file_upload_done(request):
+    return render(request, 'comander/download_done.html', {
+        'title': 'file_upload_done',
+        'page': 'file_upload_done',
+        'app': 'comander'
+    })
+
+@login_required
+def change_file(request):
+    return render(request, 'comander/change_file.html', {
+        'title': 'change_file',
+        'page': 'change_file',
+        'app': 'comander'
+    })
+
+
+
+@login_required
+def change_file_done(request):
+    return render(request, 'comander/change_file_done.html', {
+        'title': 'change_file_done',
+        'page': 'change_file_done',
+        'app': 'comander'
+    })
+
+@login_required
+def deleted_note(request):
+    return render(request, 'comander/deleted_note.html', {
+        'title': 'deleted_note',
+        'page': 'deleted_note',
+        'app': 'comander'
+    })
+
+
+@login_required
+def deleted_file_done(request):
+    return render(request, 'comander/deleted_file_done.html', {
+        'title': 'deleted_file_done',
+        'page': 'deleted_file_done',
+        'app': 'comander'
+    })
