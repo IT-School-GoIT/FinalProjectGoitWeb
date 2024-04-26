@@ -35,8 +35,8 @@ SECRET_KEY = env('SECRET_KEY')
 
 
 DEBUG = env('DEBUG')
-ALLOWED_HOSTS = ['final-project-goit-web-antonbabenko.koyeb.app']
-
+ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['final-project-goit-web-antonbabenko.koyeb.app']
 
 # DEBUG = True
 # ALLOWED_HOSTS = ['*']
@@ -90,7 +90,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'root.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -98,7 +97,6 @@ DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
-
 
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': env('DB_NAME'),
@@ -108,7 +106,6 @@ DATABASES = {
         'PORT': env('DB_PORT'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -128,7 +125,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -139,7 +135,6 @@ TIME_ZONE = 'Europe/Kiev'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -166,7 +161,8 @@ LOGIN_REDIRECT_URL = '/home/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SILENCED_SYSTEM_CHECKS = ['urls.W005']  # Ігнорування повідомлень про неунікальні URL-простори імен
+SILENCED_SYSTEM_CHECKS = [
+    'urls.W005']  # Ігнорування повідомлень про неунікальні URL-простори імен
 
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
