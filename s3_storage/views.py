@@ -22,7 +22,16 @@ def upload_file(request):
 def file_list(request):
     categories = FileCategory.objects.filter(user=request.user)
     files = File.objects.filter(user=request.user)
-    return render(request, 's3_storage/file_list.html', {'categories': categories, 'files': files})
+    # return render(request, 's3_storage/file_list.html', {'categories': categories, 'files': files})
+    # return render(request, '_fragments/command_all_files.html', {'categories': categories, 'files': files})
+    return render(request, 'comander/files.html', {
+        'categories': categories,
+        'files': files,
+        'title': 'files',
+        'page': 'files',
+        # 'app': 'comander'
+        'app': 's3_storage'
+    })
 
 
 @login_required
