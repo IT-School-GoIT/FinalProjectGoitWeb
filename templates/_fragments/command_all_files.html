@@ -36,16 +36,25 @@
                     <td>1991/04/25</td>
                     <td>
                       <div class="d-flex justify-content-between align-items-center">
+
+                        <a href="{% url 's3_storage:download' file.id %}" class="btn btn-icon btn-sm btn-unstyled"
+                           data-bs-toggle="tooltip"
+                           data-bs-placement="top" data-bs-custom-class="custom-tooltip-primary" data-bs-title="Upload">
+                          <i class="bi bi-download text-success"></i>
+                        </a>
+
                         <a href="{% url 'comander:change_file' %}" class="btn btn-icon btn-sm btn-unstyled"
                            data-bs-toggle="tooltip"
                            data-bs-placement="top" data-bs-custom-class="custom-tooltip-primary" data-bs-title="Edit">
                           <i class="bi bi-pencil text-success"></i>
                         </a>
-                        <a href="{% url 'comander:deleted_file_done' %}" class="btn btn-icon btn-sm btn-unstyled"
+
+                        <a href="{% url 's3_storage:delete' file.id %}" class="btn btn-icon btn-sm btn-unstyled"
                            data-bs-toggle="tooltip"
                            data-bs-placement="top" data-bs-custom-class="custom-tooltip-success" data-bs-title="Deleted">
                           <i class="bi bi-trash text-danger"></i>
                         </a>
+
                       </div>
                     </td>
                   </tr>
@@ -78,7 +87,7 @@
 <script>
     document.getElementById('addButton').addEventListener('click', function () {
         // Тут ви можете задати URL для сторінки додавання контакту
-        var addUrl = '{% url "comander:download" %}';
+        var addUrl = '{% url "s3_storage:upload" %}';
         // Перенаправлення на сторінку додавання контакту
         window.location.href = addUrl;
     });

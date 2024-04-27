@@ -16,7 +16,8 @@ def upload_file(request):
         return redirect('s3_storage:list')
     else:
         categories = FileCategory.objects.filter(user=request.user)
-        return render(request, 's3_storage/upload.html', {'categories': categories})
+        # return render(request, 's3_storage/upload.html', {'categories': categories})
+        return render(request, 'comander/upload.html', {'categories': categories})
 
 @login_required
 def file_list(request):
