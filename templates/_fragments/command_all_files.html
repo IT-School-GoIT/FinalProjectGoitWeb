@@ -12,7 +12,13 @@
       <div class="card">
         <div class="card-header">
           <div class="card-title">File List</div>
-          <button id="addButton" class="btn btn-sm nav-link" style="width: 150px;">Add File</button>
+
+          <div class="d-flex">
+            <button id="addButton" class="btn btn-sm nav-link ms-2" style="width: 150px;">Add File</button>
+            <button id="addCategory" class="btn btn-sm nav-link ms-2" style="width: 150px;">Add Category</button>
+            <button id="editCategory" class="btn btn-sm nav-link ms-2" style="width: 150px;">Edit Category</button>
+          </div>
+
         </div>
 
         <div class="card-body">
@@ -21,7 +27,8 @@
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Expansion</th>
+                  <th>Category</th>
+                  <th>Description</th>
                   <th>Date</th>
                   <th>Actions</th>
                 </tr>
@@ -32,8 +39,9 @@
                 {% for file in files %}
                   <tr>
                     <td>{{ file.original_filename }}</td>
-                    <td>category.name</td>
-                    <td>1991/04/25</td>
+                    <td>{{ file.category.name }}</td>
+                    <td>{{ file.description|default_if_none:"-" }}</td>
+                    <td>{{ file.upload_date|date:"d-m-Y H:i" }}</td>
                     <td>
                       <div class="d-flex justify-content-between align-items-center">
 
@@ -43,13 +51,13 @@
                           <i class="bi bi-download text-success"></i>
                         </a>
 
-                        <a href="{% url 'comander:change_file' %}" class="btn btn-icon btn-sm btn-unstyled"
+                        <a href="{% url 's3_storage:edit_file' file.id %}" class="btn btn-icon btn-sm btn-unstyled"
                            data-bs-toggle="tooltip"
                            data-bs-placement="top" data-bs-custom-class="custom-tooltip-primary" data-bs-title="Edit">
                           <i class="bi bi-pencil text-success"></i>
                         </a>
 
-                        <a href="{% url 's3_storage:delete' file.id %}" class="btn btn-icon btn-sm btn-unstyled"
+                        <a href="{% url 's3_storage:delete' file.id %}" class="btn btn-icon btn-sm btn-unstyled btn-delete"
                            data-bs-toggle="tooltip"
                            data-bs-placement="top" data-bs-custom-class="custom-tooltip-success" data-bs-title="Deleted">
                           <i class="bi bi-trash text-danger"></i>
@@ -73,6 +81,30 @@
 </div>
 <!-- Card end -->
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+// Button "Deleted"
+document.querySelectorAll('.btn-delete').forEach(function(button) {
+    button.addEventListener('click', function(event) {
+        event.preventDefault();
+        var url = this.getAttribute('href');
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = url;
+            }
+        });
+    });
+});
+</script>
 
 <script>
     document.getElementById('editButton').addEventListener('click', function () {
@@ -85,19 +117,42 @@
 
 
 <script>
+    // Button "Add File"
     document.getElementById('addButton').addEventListener('click', function () {
         // Тут ви можете задати URL для сторінки додавання контакту
         var addUrl = '{% url "s3_storage:upload" %}';
         // Перенаправлення на сторінку додавання контакту
         window.location.href = addUrl;
     });
-
     // Додавання ефекту ховеру
     document.getElementById('addButton').addEventListener('mouseenter', function () {
         this.style.backgroundColor = 'lightblue';
     });
-
     document.getElementById('addButton').addEventListener('mouseleave', function () {
         this.style.backgroundColor = ''; // Повертаємо колір фону до звичайного
+    });
+
+    // Button "Add Category"
+    document.getElementById('addCategory').addEventListener('click', function () {
+        var addCategory = '{% url "s3_storage:create_category" %}';
+        window.location.href = addCategory;
+    });
+    document.getElementById('addCategory').addEventListener('mouseenter', function () {
+        this.style.backgroundColor = 'lightblue';
+    });
+    document.getElementById('addCategory').addEventListener('mouseleave', function () {
+        this.style.backgroundColor = '';
+    });
+
+    // Button "Edit Category"
+    document.getElementById('editCategory').addEventListener('click', function () {
+        var editCategory = '{% url "s3_storage:category_list" %}';
+        window.location.href = editCategory;
+    });
+    document.getElementById('editCategory').addEventListener('mouseenter', function () {
+        this.style.backgroundColor = 'lightblue';
+    });
+    document.getElementById('editCategory').addEventListener('mouseleave', function () {
+        this.style.backgroundColor = '';
     });
 </script>
