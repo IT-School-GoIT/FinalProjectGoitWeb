@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Note Detail{% endblock title %}
+
+{% block content %}
+    <style>
+        .description-text {
+            word-wrap: break-word;
+        }
+    </style>
+
+    <h1>Подробиці нотатки</h1>
+    <p><strong>Назва:</strong> {{ note.name }}</p>
+    <p><strong>Опис:</strong></p>
+    <p class="description-text">{{ note.description }}</p>
+    <p><strong>Статус:</strong> {% if note.done %}Готово{% else %}В процесі{% endif %}</p>
+
+    <p><strong>Теги:</strong>
+        {% for tag in note.tags.all %}
+            <span>{{ tag.name }}</span>
+        {% endfor %}
+    </p>
+
+    <p><strong>Створено:</strong> {{ note.created|date:'d-m-Y H:i:s' }}</p>
+
+    <div class="row">
+        <div class="col-md-6">
+            <a href="{% url 'notes:note_edit' note.id %}" class="btn btn-primary">Змінити нотатку</a>
+            <br>
+            <a href="{% url 'notes:note_list' %}" class="btn btn-secondary mt-3">Повернутися к списку нотаток</a>
+        </div>
+    </div>
+{% endblock content %}

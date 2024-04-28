@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Підтвердження видалення нотатки{% endblock title %}
+
+{% block content %}
+    <h1>Ви впевнені, що хочете видалити цю нотатку?</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" value="Так, видалити" class="btn btn-danger">
+    </form>
+
+    <a href="{% url 'notes:note_list' %}" class="btn btn-secondary mt-3">Відмінити</a>
+{% endblock content %}

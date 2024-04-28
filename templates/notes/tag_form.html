@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if tag.id %}
+        Редагувати тег
+    {% else %}
+        Створити новий тег
+    {% endif %}
+{% endblock title %}
+
+{% block content %}
+    <h1>
+        {% if tag.id %}
+            Редагувати тег
+        {% else %}
+            Створити новий тег
+        {% endif %}
+    </h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post" action="">
+                {% csrf_token %}
+                <div class="form-group row">
+                    <label for="id_name" class="col-sm-3 col-form-label">Назва:</label>
+                    <div class="col-sm-9">
+                        {{ form.name }}
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Зберегти</button>
+            </form>
+        </div>
+    </div>
+
+    <a href="{% url 'notes:tag_list' %}" class="btn btn-secondary mt-3">Скасувати</a>
+{% endblock content %}
