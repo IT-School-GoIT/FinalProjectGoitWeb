@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {% if note.id %}
+        Редагувати нотатку
+    {% else %}
+        Створити нову нотатку
+    {% endif %}
+{% endblock title %}
+
+{% block content %}
+    <h1>
+        {% if note.id %}
+            Редагувати нотатку
+        {% else %}
+            Створити нову нотатку
+        {% endif %}
+    </h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group row">
+                    <label for="id_name" class="col-sm-3 col-form-label">Назва:</label>
+                    <div class="col-sm-9">
+                        {{ form.name }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="id_description" class="col-sm-3 col-form-label">Опис:</label>
+                    <div class="col-sm-9">
+                        {{ form.description }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="id_tags" class="col-sm-3 col-form-label">Тег:</label>
+                    <div class="col-sm-9">
+                        <label>
+                            <select name="tags" multiple>
+                                {% for tag in user_tags %}
+                                    <option value="{{ tag.id }}">{{ tag.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Зберегти</button>
+            </form>
+        </div>
+    </div>
+
+    <a href="{% url 'notes:note_list' %}" class="btn btn-secondary mt-3">Скасувати</a>
+{% endblock content %}

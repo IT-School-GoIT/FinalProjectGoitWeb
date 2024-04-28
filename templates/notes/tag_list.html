@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Tag List{% endblock title %}
+
+{% block content %}
+    <h2>Список тегів</h2>
+
+    <!-- Кнопка для створення нового тегу -->
+    <a href="{% url 'notes:tag_create' %}" class="btn btn-primary mb-3">Створити новий тег</a>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Назва тегу</th>
+            <th>Дії</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for tag in tags %}
+            <tr>
+                <td><span style="color: rgb(0, 0, 0);">{{ tag.name }}</span></td>
+                <td>
+                    <!-- Кнопка для редагування тегу -->
+                    <a href="{% url 'notes:tag_edit' pk=tag.pk %}" class="btn btn-primary btn-sm">Змінити</a>
+
+                    <!-- Кнопка для видалення тегу -->
+                    <form method="post" action="{% url 'notes:tag_delete' pk=tag.pk %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm ml-2">Видалити</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Кнопка для повернення до списку нотаток -->
+    <a href="{% url 'notes:note_list' %}" class="btn btn-secondary">Повернутися к списку нотаток</a>
+{% endblock %}
