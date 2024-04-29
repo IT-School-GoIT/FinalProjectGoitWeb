@@ -3,16 +3,13 @@
 <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
     <div class="navbar-nav align-items-center ms-auto">
 
-        <div class="nav-item dropdown">
-            <a href="#" class="nav-link">Sorting Files</a>
-        </div>
 
         <div class="nav-item dropdown">
             <a href="{% url 's3_storage:list' %}" class="nav-link">Storage Overview</a>
         </div>
 
         <div class="nav-item dropdown">
-            <a href="{% url 'comander:all_notes' %}" class="nav-link">All Notes</a>
+            <a href="{% url 'notes:note_list' %}" class="nav-link">All Note</a>
         </div>
 
         <div class="nav-item dropdown">

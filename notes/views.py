@@ -64,6 +64,7 @@ class NoteDetailView(LoginRequiredMixin, DetailView):
 class NoteCreateView(LoginRequiredMixin, CreateView):
     model = Note
     template_name = "notes/note_form.html"
+    # template_name = "_fragments/command_add_note.html"
     form_class = NoteForm
 
     def form_valid(self, form):

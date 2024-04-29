@@ -8,7 +8,28 @@
 
             <!-- Row start -->
         <div class="row gx-3">
-            <div class="col-sm-12 col-12">                
+            <div class="col-sm-12 col-12">
+                
+                    <!-- Пошук -->
+    <form method="GET" action="{% url 'notes:note_list' %}">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="noteQueryInput" class="form-label">Пошук за назвою нотатки:</label>
+                    <input type="text" class="form-control" id="noteQueryInput" name="note_query"
+                           placeholder="Введіть назву нотатки..." value="{{ search_form.note_query.value }}">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="tagQueryInput" class="form-label">Пошук за тегом:</label>
+                    <input type="text" class="form-control" id="tagQueryInput" name="tag_query"
+                           placeholder="Введіть назву тега..." value="{{ search_form.tag_query.value }}">
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Знайти</button>
+    </form>
 
                 <!-- Card start -->
                 <div class="card">
@@ -21,103 +42,46 @@
                         <table id="highlightRowColumn" class="table custom-table">
                             <thead>
                                 <tr>
-                                    <th>#tag</th>
-                                    <th>Note</th>
-                                    <th>Date</th>
-                                    <th>Actions</th>
+                                    <th>Статус</th>
+                                    <th>Назва</th>
+                                    <th>Теги</th>
+                                    <th>Створено</th>
+                                    <th>Дії</th>
                                 </tr>
-                            </thead>
-                            <tbody>
-
-                                <tr>
-                                    <td>Dvcxvxc ger</td>
-                                    <td>fsefijsvcdsgogz ig jiofsjgiojig fgfdg  r  rgtr g g</td>
-                                    <td>2011/04/25</td>
-                                    <td>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <a href="{% url 'comander:change_note' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                            data-bs-placement="top" data-bs-custom-class="custom-tooltip-primary" data-bs-title="Edit">
-                                            <i class="bi bi-pencil text-success"></i>
-                                            </a>
-                                            <a href="{% url 'comander:deleted_note' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                            data-bs-placement="top" data-bs-custom-class="custom-tooltip-success" data-bs-title="Deleted">
-                                            <i class="bi bi-trash text-danger"></i>
-                                            </a>
-                                        </div>
-                                    </td>                           
-                                <tr>
-                                    
-                                    <td>Qweiger</td>
-                                    <td>fseeqweqwe  dsv svcklgjldsf wg w gsg s gsgewtwefijsog ig jiofsjgiojig fgfdg  r  rgtr g g</td>
-                                    <td>2011/04/25</td>
-                                    <td>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <a href="{% url 'comander:change_note' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                        data-bs-placement="top" data-bs-custom-class="custom-tooltip-primary" data-bs-title="Edit">
-                                        <i class="bi bi-pencil text-success"></i>
-                                        </a>
-                                        <a href="{% url 'comander:deleted_note' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                        data-bs-placement="top" data-bs-custom-class="custom-tooltip-success" data-bs-title="Deleted">
-                                        <i class="bi bi-trash text-danger"></i>
-                                        </a>
-                                    </div>
-                                </td>   
-                                </tr>
-                                
-                                <tr>
-                                    <td>Acvcvfgr</td>
-                                    <td>fsefijsog ig jiofsjgiojig fgfdg  r  rgtr g g</td>
-                                    <td>2011/04/25</td>
-                                    <td>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <a href="{% url 'comander:change_note' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                            data-bs-placement="top" data-bs-custom-class="custom-tooltip-primary" data-bs-title="Edit">
-                                            <i class="bi bi-pencil text-success"></i>
-                                            </a>
-                                            <a href="{% url 'comander:deleted_note' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                            data-bs-placement="top" data-bs-custom-class="custom-tooltip-success" data-bs-title="Deleted">
-                                            <i class="bi bi-trash text-danger"></i>
-                                            </a>
-                                        </div>
-                                    </td>                           
-                                </tr>
-
-                                <tr>
-                                    <td>GSSSAsdiger</td>
-                                    <td>fsadasf afsefqt4etijsog ig jiofsjgiojig fgfdg  r  rgtr g g</td>
-                                    <td>2011/04/25</td>
-                                    <td>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <a href="{% url 'comander:change_note' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                            data-bs-placement="top" data-bs-custom-class="custom-tooltip-primary" data-bs-title="Edit">
-                                            <i class="bi bi-pencil text-success"></i>
-                                            </a>
-                                            <a href="{% url 'comander:deleted_note' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                            data-bs-placement="top" data-bs-custom-class="custom-tooltip-success" data-bs-title="Deleted">
-                                            <i class="bi bi-trash text-danger"></i>
-                                            </a>
-                                        </div>
-                                    </td>                         
-                                </tr>
-
-                                <tr>
-                                    <td>ADSfdfAiger</td>
-                                    <td>fsefijsfsgdfg s eroktgepro optkg pdfogk ;lffagosaogp kseropgerospgtdfsdfog ig jiofsjgiojig fgf dgf <br>dg fsafgf gf gs ffd  r  rgtr g g</td>
-                                    <td>2021/04/25</td>
-                                    <td>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <a href="{% url 'comander:change_note' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                            data-bs-placement="top" data-bs-custom-class="custom-tooltip-primary" data-bs-title="Edit">
-                                            <i class="bi bi-pencil text-success"></i>
-                                            </a>
-                                            <a href="{% url 'comander:deleted_note' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                            data-bs-placement="top" data-bs-custom-class="custom-tooltip-success" data-bs-title="Deleted">
-                                            <i class="bi bi-trash text-danger"></i>
-                                            </a>
-                                        </div>
-                                    </td>                           
-                                </tr>                            
-                              
+                                </thead>
+                                <tbody>
+                                {% for note in notes %}
+                                    <tr>
+                                        <td>
+                                            <form method="post" action="{% url 'notes:toggle_done' note.id %}">
+                                                {% csrf_token %}
+                                                <input type="checkbox" name="done" {% if note.done %}checked{% endif %}
+                                                    onchange="this.form.submit()">
+                                                <input type="hidden" name="current_done" value="{{ note.done }}">
+                                            </form>
+                                        </td>
+                                        <td><a href="{% url 'notes:note_detail' note.id %}">{{ note.name }}</a></td>
+                                        <td>
+                                            {% for tag in note.tags.all %}
+                                                <span>{{ tag.name }}</span>
+                                            {% endfor %}
+                                        </td>
+                                        <!-- Форматування дати та часу -->
+                                        <td>{{ note.created|date:"d-m-Y H:i" }}</td>
+                                        <td>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <a href="{% url 'notes:note_edit' note.id %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" data-bs-custom-class="custom-tooltip-primary" data-bs-title="Edit">
+                                                <i class="bi bi-pencil text-success"></i>
+                                                </a>
+                                                <a href="{% url 'notes:note_delete' note.id %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" data-bs-custom-class="custom-tooltip-success" data-bs-title="Deleted">
+                                                <i class="bi bi-trash text-danger"></i>
+                                                </a>
+                                            </div>
+                                        </td>                           
+                                    <tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                       </div>

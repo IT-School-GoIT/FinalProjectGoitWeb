@@ -1,5 +1,5 @@
 from django.db import models
-from django_project import settings
+from django.conf import settings
 from django.contrib.auth import get_user_model
 
 class Tag(models.Model):
