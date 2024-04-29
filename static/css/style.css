@@ -661,3 +661,15 @@ h6,
     font-size: 16px;
     cursor: pointer;
 }
+
+
+.company-logo {
+    width: 100px; /* Задайте потрібний розмір логотипу */
+    height: auto; /* Щоб зберегти пропорції */
+}
+
+@media (max-width: 576px) {
+    .responsive-heading {
+        font-size: 24px !important;; /* або будь-який інший розмір, який вам потрібен на малих екранах */
+    }
+}
