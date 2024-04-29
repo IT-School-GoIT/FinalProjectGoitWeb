@@ -31,4 +31,10 @@ def news(request):
         'app': 'home'
     })
 
+def project_topic(request):
+    return render(request, 'home/project_topic.html', {
+        'title': 'Тема проєкту',
+        'page': 'project_topic',
+        'app': 'home'
+    })
 

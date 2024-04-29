@@ -1,11 +1,11 @@
 {% load static %}
-<div class="container-fluid pt-5 bg-primary hero-header  mb-4 py-3">
+<div class="container-fluid pt-5 bg-primary hero-header mb-4 py-3">
     <div class="container pt-5">
         <div class="row g-5 pt-5">
             <div class="col-lg-6 align-self-center text-center text-lg-start mb-lg-5">
-                <h1 class="display-4 text-white mb-4 animated slideInRight">Вітаємо вас з <span class="text-dark">Assistant</span> – вашим особистим помічником від <br>20th<span class="text-dark">.</span>Century<span class="text-dark">.</span>Fox!</h1>
+                <h1 class="display-4 text-white mb-4 animated slideInRight responsive-heading">Вітаємо вас з <span class="text-dark">Assistant</span> – вашим особистим помічником від <br>Fox<span class="text-dark">.</span>Web<span class="text-dark">.</span></h1>
                 {% if user.is_authenticated %}
-                <a href="{% url 'comander:commands' %}" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInRight">Commands</a>
+                <a href="{% url 'comander:commands' %}" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInRight">Database</a>
                 {% else %}
                 <a href="{% url 'accounts:signin' %}" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInRight">Login</a><br>
                 <p></p>
@@ -13,8 +13,9 @@
                 {% endif %}                
             </div>
             <div class="col-lg-6 align-self-end text-center text-lg-end">
-                <img class="img-fluid" src="{% static 'img/hero-img.png' %}" alt="">
+                <img class="img-fluid" src="{% static 'img/hero2-img.png' %}" alt="">
             </div>
         </div>
     </div>
 </div>
+
