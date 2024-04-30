@@ -1,0 +1,86 @@
+{% load static %}
+
+
+
+
+
+<div class="container-fluid py-5">
+    <h2 class="mb-4 text-center responsive-heading">Функціонал додатку</h2>
+    <div class="container">
+
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6 wow fadeIn text-center" data-wow-delay="0.1s">
+                <div class="case-item position-relative overflow-hidden rounded mb-2">
+                    <!-- Додамо атрибут data-fancybox для відкриття зображення у FancyBox -->
+                    <a href="{% static 'img/comand/contact.jpg' %}" data-fancybox>
+                        <img class="img-fluid" src="{% static 'img/comand/contact.jpg' %}" alt="Contact Image">
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                <h4 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Сервіс контактів</h4>
+                <p class="mb-3 my_p">Для виконання завдання щодо книги контактів було реалізовано систему збереження інформації про контакти, включаючи імена, адреси, номери телефонів, електронні адреси та дні народження. Користувач може додавати, редагувати та видаляти записи про контакти. Також реалізовано функціонал пошуку контактів, який дозволяє знаходити контакти за іменем або номером телефону.</p>
+            </div>
+        </div>
+
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                <h4 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Сервіс нотатків та тегів</h4>
+                <p class="mb-3 my_p" >
+                    Система нотаток дозволяє користувачам зберігати та організовувати текстову інформацію за різними темами та ключовими словами. Кожен запис може бути позначений тегами, спрощуючи подальший пошук та навігацію. Крім того, користувачі можуть швидко знаходити потрібну інформацію за допомогою функції пошуку та сортувати нотатки для зручного доступу.</p>
+            </div>
+            <div class="col-lg-6 wow fadeIn text-center" data-wow-delay="0.1s">
+                <div class="case-item position-relative overflow-hidden rounded mb-2">
+                    <!-- Додамо атрибут data-fancybox для відкриття зображення у FancyBox -->
+                    <a href="{% static 'img/comand/notes.jpg' %}" data-fancybox>
+                        <img class="img-fluid" src="{% static 'img/comand/notes.jpg' %}" alt="Contact Image">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6 wow fadeIn text-center" data-wow-delay="0.1s">
+                <div class="case-item position-relative overflow-hidden rounded mb-2">
+                    <!-- Додамо атрибут data-fancybox для відкриття зображення у FancyBox -->
+                    <a href="{% static 'img/comand/file.jpg' %}" data-fancybox>
+                        <img class="img-fluid" src="{% static 'img/comand/file.jpg' %}" alt="Contact Image">
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                <h4 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Сервіс файлів</h4>
+                <p class="mb-3 my_p" >Для управління файлами було використано хмарний сервіс Amazon S3, який забезпечує зберігання файлів в безпечному та масштабованому середовищі. Користувачі можуть завантажувати файли на сервер та отримувати до них доступ через web-інтерфейс. Файли розподіляються за категоріями, такими як зображення, документи та відео, що спрощує навігацію та пошук необхідних матеріалів.</p>
+            </div>
+        </div>
+        
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                <h4 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Сервіс новин</h4>
+                <p class="mb-3 my_p" >Наш сервіс новин надає коротке зведення найважливіших подій за день у вибраній області інтересу. Використовуючи різноманітні джерела інформації, ми збираємо заголовки новин, курси валют, результати спортивних подій та інші актуальні дані. Користувач може отримати швидкий огляд ключових подій за день, що дозволяє бути в курсі останніх подій без необхідності переглядати багато різних джерел.</p>
+            </div>
+            <div class="col-lg-6 wow fadeIn text-center" data-wow-delay="0.1s">
+                <div class="case-item position-relative overflow-hidden rounded mb-2">
+                    <!-- Додамо атрибут data-fancybox для відкриття зображення у FancyBox -->
+                    <a href="{% static 'img/comand/news1.png' %}" data-fancybox>
+                        <img class="img-fluid" src="{% static 'img/comand/news1.png' %}" alt="Contact Image">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- Підключення скрипту FancyBox -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
