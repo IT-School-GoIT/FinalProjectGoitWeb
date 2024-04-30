@@ -35,11 +35,11 @@ SECRET_KEY = env('SECRET_KEY')
 
 
 DEBUG = env('DEBUG')
-ALLOWED_HOSTS = ['final-project-goit-web-antonbabenko.koyeb.app']
+# ALLOWED_HOSTS = ['final-project-goit-web-antonbabenko.koyeb.app']
 
 
 # DEBUG = True
-# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -107,7 +107,6 @@ DATABASES = {
         'HOST': env('DB_HOST'),
         'PORT': env('DB_PORT'),
     }
-    
 }
 
 

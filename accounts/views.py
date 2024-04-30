@@ -23,7 +23,7 @@ class RegisterView(View):
         return render(request, self.template_name, context={
             'form': self.form_class,
             'title': 'Registration',
-            })
+        })
 
     def post(self, request):
         form = self.form_class(request.POST)
@@ -33,7 +33,7 @@ class RegisterView(View):
             messages.success(request, f'Вітаємо {username}! Ваш акаунт успішно створено.')
             return redirect(to='accounts:signin')
         return render(request, self.template_name, context={'form': form})
-    
+
 
 @login_required
 def profile(request):
@@ -59,5 +59,3 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
     success_url = reverse_lazy('accounts:password_reset_done')
     success_message = "An email with instructions to reset your password has been sent to %(email)s."
     subject_template_name = 'accounts/password_reset_subject.txt'
-
-        
