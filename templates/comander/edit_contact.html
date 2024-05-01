@@ -1,0 +1,7 @@
+
+
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="name" value="{{ contact.name }}" required>
+    <button type="submit">Edit Contact</button>
+</form>

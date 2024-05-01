@@ -8,14 +8,14 @@
 
             <!-- Row start -->
         <div class="row gx-3">
-            <div class="col-sm-12 col-12">                
-              
+            <div class="col-sm-12 col-12">
+
                 <!-- Card start -->
                 <div class="card">
                     <div class="card-header">
                       <div class="card-title">Data Contacts</div>
                       <button id="addButton" class="btn btn-sm nav-link" style="width: 150px;">Add contact</button>
-                    </div>                    
+                    </div>
                     <div class="card-body">
                       <div class="table-responsive">
                         <table id="highlightRowColumn" class="table custom-table">
@@ -31,218 +31,28 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
-                                <td>Aiger Nixon</td>
-                                <td>+34523456346</td>
-                                <td>Edinb@urg.h</td>
-                                <td>UK</td>
-                                <td>2011/04/25</td>
-                                <td>qwsadaceqw</td>
+                           {% for contact in contacts %}
+                          <tr>
+                                <td>{{ contact.name }}</td>
+                                <td>{{ contact.phone_number }}</td>
+                                <td>{{ contact.email }}</td>
+                                <td>{{ contact.address }}</td>
+                                <td>{{ contact.birthday | date:"d.m.Y" }}</td>
+                                <td>{{ contact.note }}</td>
                                 <td>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <a href="{% url 'comander:change' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
+                                    <a href="{% url 'contacts:edit_contact' contact.id %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
                                     data-bs-placement="top" data-bs-custom-class="custom-tooltip-primary" data-bs-title="Edit">
                                     <i class="bi bi-pencil text-success"></i>
                                     </a>
-                                    <a href="{% url 'comander:deleted_done' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
+                                    <a href="{% url 'contacts:delete_contact' contact.id %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
                                     data-bs-placement="top" data-bs-custom-class="custom-tooltip-success" data-bs-title="Deleted">
                                     <i class="bi bi-trash text-danger"></i>
                                     </a>
                                 </div>
-                              </td>                           
-                            <tr>
-                              <td>Garrett Winters</td>
-                              <td>21123441341</td>
-                              <td>TokQ@yo</td>
-                              <td>USA</td>
-                              <td>2011/07/25</td>
-                              <td>qweqw</td>
-                              <td>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <a href="{% url 'comander:change' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" data-bs-custom-class="custom-tooltip-primary" data-bs-title="Edit">
-                                    <i class="bi bi-pencil text-success"></i>
-                                    </a>
-                                    <a href="{% url 'comander:deleted_done' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" data-bs-custom-class="custom-tooltip-success" data-bs-title="Deleted">
-                                    <i class="bi bi-trash text-danger"></i>
-                                    </a>
-                                </div>
-                              </td>   
-                            </tr>
-                            
-                            <tr>
-                              <td>Ashton Cox</td>
-                              <td>34523456346</td>
-                              <td>Edinb@urgh</td>
-                              <td>UK</td>
-                              <td>2011/04/25</td>
-                              <td>qweqw</td>
-                              <td>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <a href="{% url 'comander:change' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" data-bs-custom-class="custom-tooltip-primary" data-bs-title="Edit">
-                                    <i class="bi bi-pencil text-success"></i>
-                                    </a>
-                                    <a href="{% url 'comander:deleted_done' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" data-bs-custom-class="custom-tooltip-success" data-bs-title="Deleted">
-                                    <i class="bi bi-trash text-danger"></i>
-                                    </a>
-                                </div>
-                                </td>                           
-                            </tr>
-                            <tr>
-                              <td>Cedric Kelly</td>
-                              <td>34523456346</td>
-                              <td>Edinb@urgh</td>
-                              <td>UK</td>
-                              <td>2011/04/25</td>
-                              <td>qweqw</td>
-                              <td>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <a href="{% url 'comander:change' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" data-bs-custom-class="custom-tooltip-primary" data-bs-title="Edit">
-                                    <i class="bi bi-pencil text-success"></i>
-                                    </a>
-                                    <a href="{% url 'comander:deleted_done' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" data-bs-custom-class="custom-tooltip-success" data-bs-title="Deleted">
-                                    <i class="bi bi-trash text-danger"></i>
-                                    </a>
-                                  </div>                              </td>                           
-                            </tr>
-                            <tr>
-                              <td>Airi Satou</td>
-                              <td>31212356346</td>
-                              <td>Edinb@urgh</td>
-                              <td>UK</td>
-                              <td>2011/04/25</td>
-                              <td>qweqw</td>
-                              <td>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <a href="{% url 'comander:change' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" data-bs-custom-class="custom-tooltip-primary" data-bs-title="Edit">
-                                    <i class="bi bi-pencil text-success"></i>
-                                    </a>
-                                    <a href="{% url 'comander:deleted_done' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" data-bs-custom-class="custom-tooltip-success" data-bs-title="Deleted">
-                                    <i class="bi bi-trash text-danger"></i>
-                                    </a>
-                                  </div>                              </td>                           
-                            </tr>
-                            <tr>
-                              <td>Brielle Williamson</td>
-                              <td>34523456346</td>
-                              <td>Edinb@urgh</td>
-                              <td>UK</td>
-                              <td>2011/04/25</td>
-                              <td>qweqw</td>
-                              <td>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <a href="{% url 'comander:change' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" data-bs-custom-class="custom-tooltip-primary" data-bs-title="Edit">
-                                    <i class="bi bi-pencil text-success"></i>
-                                    </a>
-                                    <a href="{% url 'comander:deleted_done' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" data-bs-custom-class="custom-tooltip-success" data-bs-title="Deleted">
-                                    <i class="bi bi-trash text-danger"></i>
-                                    </a>
-                                  </div>                              </td>                           
-                            </tr>
-                            <tr>
-                              <td>Herrod Chandler</td>
-                              <td>34523456346</td>
-                              <td>Edinb@urgh</td>
-                              <td>UK</td>
-                              <td>2011/04/25</td>
-                              <td>qweqw</td>
-                              <td>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <a href="{% url 'comander:change' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" data-bs-custom-class="custom-tooltip-primary" data-bs-title="Edit">
-                                    <i class="bi bi-pencil text-success"></i>
-                                    </a>
-                                    <a href="{% url 'comander:deleted_done' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" data-bs-custom-class="custom-tooltip-success" data-bs-title="Deleted">
-                                    <i class="bi bi-trash text-danger"></i>
-                                    </a>
-                                  </div>                              </td>                           
-                            </tr>
-                            <tr>
-                              <td>Rhona Davidson</td>
-                              <td>34523456346</td>
-                              <td>Edinb@urgh</td>
-                              <td>UK</td>
-                              <td>2011/04/25</td>
-                              <td>qweqw</td>
-                              <td>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <a href="{% url 'comander:change' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" data-bs-custom-class="custom-tooltip-primary" data-bs-title="Edit">
-                                    <i class="bi bi-pencil text-success"></i>
-                                    </a>
-                                    <a href="{% url 'comander:deleted_done' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" data-bs-custom-class="custom-tooltip-success" data-bs-title="Deleted">
-                                    <i class="bi bi-trash text-danger"></i>
-                                    </a>
-                                  </div>                              </td>                           
-                            </tr>
-                            <tr>
-                              <td>Colleen Hurst</td>
-                              <td>34523456346</td>
-                              <td>E2223dinb@urgh</td>
-                              <td>UK</td>
-                              <td>2011/04/25</td>
-                              <td>qweqw</td>
-                              <td>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <a href="{% url 'comander:change' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" data-bs-custom-class="custom-tooltip-primary" data-bs-title="Edit">
-                                    <i class="bi bi-pencil text-success"></i>
-                                    </a>
-                                    <a href="{% url 'comander:deleted_done' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" data-bs-custom-class="custom-tooltip-success" data-bs-title="Deleted">
-                                    <i class="bi bi-trash text-danger"></i>
-                                    </a>
-                                  </div>                              </td>                           
-                            </tr>
-                            <tr>
-                              <td>Sonya Frost</td>
-                              <td>34523456346</td>
-                              <td>Edinb@urgh</td>
-                              <td>UK</td>
-                              <td>2011/04/25</td>
-                              <td>qweqw</td>
-                              <td>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <a href="{% url 'comander:change' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" data-bs-custom-class="custom-tooltip-primary" data-bs-title="Edit">
-                                    <i class="bi bi-pencil text-success"></i>
-                                    </a>
-                                    <a href="{% url 'comander:deleted_done' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" data-bs-custom-class="custom-tooltip-success" data-bs-title="Deleted">
-                                    <i class="bi bi-trash text-danger"></i>
-                                    </a>
-                                  </div>                              </td>
-                              <tr>
-                                <td>Sonya Frost</td>
-                                <td>34523456346</td>
-                                <td>Edinb@urgh</td>
-                                <td>UK</td>
-                                <td>2011/04/25</td>
-                                <td>qweqw</td>
-                                <td>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <a href="{% url 'comander:change' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                        data-bs-placement="top" data-bs-custom-class="custom-tooltip-primary" data-bs-title="Edit">
-                                        <i class="bi bi-pencil text-success"></i>
-                                        </a>
-                                        <a href="{% url 'comander:deleted_done' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                        data-bs-placement="top" data-bs-custom-class="custom-tooltip-success" data-bs-title="Deleted">
-                                        <i class="bi bi-trash text-danger"></i>
-                                        </a>
-                                      </div>                                </td>                           
-                             
-                            </tr>
+                              </td>
+                             </tr>
+                           {% endfor %}
                           </tbody>
                         </table>
                       </div>
@@ -255,12 +65,12 @@
 
 
 
-    </div> 
+    </div>
 
     <script>
         document.getElementById('editButton').addEventListener('click', function() {
           // Тут ви можете задати URL для сторінки редагування
-          var editUrl = 'edit_page.html';
+          var editUrl = '{% url "contacts:contact_list"%}';
           // Перенаправлення на сторінку редагування
           window.location.href = editUrl;
         });
@@ -269,7 +79,7 @@
     <script>
       document.getElementById('addButton').addEventListener('click', function() {
         // Тут ви можете задати URL для сторінки додавання контакту
-        var addUrl = '{% url "comander:add" %}';
+        var addUrl = '{% url "contacts:create" %}';
         // Перенаправлення на сторінку додавання контакту
         window.location.href = addUrl;
       });
