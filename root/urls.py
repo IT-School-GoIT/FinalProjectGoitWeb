@@ -30,6 +30,8 @@ urlpatterns = [
     path('s3_storage/', include('s3_storage.urls')),
     path('contacts/', include('contacts.urls')),
     path('notes/', include('notes.urls')),
+    path('parsing/', include("parsing.urls")),
+
 ]
 
 if settings.DEBUG:
