@@ -28,6 +28,7 @@ urlpatterns = [
     path('team/', include('team.urls')),
     path('s3_storage/', include('s3_storage.urls')),
     path('notes/', include('notes.urls')),
+    path('parsing/', include("parsing.urls")),
 
 ]
 
