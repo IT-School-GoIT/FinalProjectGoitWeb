@@ -44,6 +44,11 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # Вбудований backend Django
+    'allauth.account.auth_backends.AuthenticationBackend',  # Backend django-allauth
+]
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -51,7 +56,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # 'accounts',
     'comander',
     'home',
     'team',
@@ -69,6 +77,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'root.urls'
@@ -168,7 +177,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SILENCED_SYSTEM_CHECKS = ['urls.W005']  # Ігнорування повідомлень про неунікальні URL-простори імен
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'     # Для продакшн
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Тільки для розробки
 EMAIL_HOST = env('EMAIL_HOST')
 EMAIL_PORT = env('EMAIL_PORT')
 EMAIL_STARTTLS = False
@@ -177,6 +187,8 @@ EMAIL_USE_TLS = False
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
@@ -187,3 +199,5 @@ AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 NEWSAPI_API_KEY = env('NEWSAPI_API_KEY')
+
+
