@@ -38,7 +38,7 @@
                     <div class="mb-3">
                         <div class="d-flex justify-content-between">
                             <label class="form-label" for="pwd">Password</label>
-                            <a href="{% url "accounts:password_reset" %}" id="pwd" class="btn-link ml-auto">Forgot
+                            <a href="{% url 'accounts:password_reset' %}" id="pwd" class="btn-link ml-auto">Forgot
                                 Password?</a>
                         </div>
                         {{ form.password }}
@@ -65,5 +65,18 @@
         </div>
     </div>
 
+<style>
+/* Золотий колір при фокусі */
+input:focus {
+    border-color: yellow !important;
+    
+}
 
+
+
+
+
+
+
+</style>
 {% endblock %}
