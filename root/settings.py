@@ -38,8 +38,8 @@ SECRET_KEY = env('SECRET_KEY')
 
 DEBUG = env('DEBUG')
 # DEBUG = True
-ALLOWED_HOSTS = []
-# ALLOWED_HOSTS = ['final-project-goit-web-antonbabenko.koyeb.app']
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['final-project-goit-web-antonbabenko.koyeb.app']
 
 # DEBUG = True
 # ALLOWED_HOSTS = ['*']
@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'storages',
     's3_storage',
     'contacts',
+    'notes',
 ]
 
 MIDDLEWARE = [
@@ -109,6 +110,7 @@ DATABASES = {
         'HOST': env('DB_HOST'),
         'PORT': env('DB_PORT'),
     }
+    
 }
 
 # Password validation
@@ -167,6 +169,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SILENCED_SYSTEM_CHECKS = [
     'urls.W005']  # Ігнорування повідомлень про неунікальні URL-простори імен
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_STARTTLS = False
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')

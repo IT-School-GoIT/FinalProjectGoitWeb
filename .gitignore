@@ -14,7 +14,7 @@ develop-eggs/
 downloads/
 eggs/
 .eggs/
-lib/
+
 lib64/
 parts/
 sdist/
@@ -162,11 +162,11 @@ htmlcov
 postgres-data
 test.db
 docs
-__pycache__/
-__init__/
-__init__.py
+# __pycache__/
+# __init__/
+# __init__.py
 *.rar
 *.zip
-migrations/
+# migrations/
 
 
