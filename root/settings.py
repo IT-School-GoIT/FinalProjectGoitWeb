@@ -34,9 +34,12 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-DEBUG = env('DEBUG')
-ALLOWED_HOSTS = ['final-project-goit-web-antonbabenko.koyeb.app']
 
+
+DEBUG = env('DEBUG')
+# DEBUG = True
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['final-project-goit-web-antonbabenko.koyeb.app']
 
 # DEBUG = True
 # ALLOWED_HOSTS = ['*']
@@ -57,6 +60,7 @@ INSTALLED_APPS = [
     'team',
     'storages',
     's3_storage',
+    'contacts',
     'notes',
 ]
 
@@ -91,7 +95,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'root.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -109,7 +112,6 @@ DATABASES = {
     }
     
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -129,7 +131,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -140,7 +141,6 @@ TIME_ZONE = 'Europe/Kiev'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -167,7 +167,8 @@ LOGIN_REDIRECT_URL = '/home/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SILENCED_SYSTEM_CHECKS = ['urls.W005']  # Ігнорування повідомлень про неунікальні URL-простори імен
+SILENCED_SYSTEM_CHECKS = [
+    'urls.W005']  # Ігнорування повідомлень про неунікальні URL-простори імен
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = env('EMAIL_HOST')

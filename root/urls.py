@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from contacts import views as contacts_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,10 +28,11 @@ urlpatterns = [
     path('home/', include('home.urls')),
     path('team/', include('team.urls')),
     path('s3_storage/', include('s3_storage.urls')),
+    path('contacts/', include('contacts.urls')),
     path('notes/', include('notes.urls')),
-
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.STATIC_URL,
+                          document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

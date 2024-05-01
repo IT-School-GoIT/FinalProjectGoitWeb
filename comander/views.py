@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.views import View
+
+from contacts.forms import ContactForm
 
 
 @login_required
@@ -28,7 +30,6 @@ def search_all(request):
         'page': 'search_all',
         'app': 'comander'
     })
-
 
 
 @login_required
@@ -66,6 +67,7 @@ def birhday_contact(request):
         'app': 'comander'
     })
 
+
 @login_required
 def download(request):
     return render(request, 'comander/download.html', {
@@ -84,7 +86,6 @@ def view_file(request):
     })
 
 
-
 @login_required
 def contact_card(request):
     return render(request, 'comander/contact_card.html', {
@@ -92,6 +93,7 @@ def contact_card(request):
         'page': 'contact_card',
         'app': 'comander'
     })
+
 
 @login_required
 def deleted_done(request):
@@ -110,6 +112,7 @@ def change_done(request):
         'app': 'comander'
     })
 
+
 @login_required
 def add_note(request):
     return render(request, 'comander/add_note.html', {
@@ -117,6 +120,7 @@ def add_note(request):
         'page': 'add_note',
         'app': 'comander'
     })
+
 
 @login_required
 def all_notes(request):
@@ -144,6 +148,7 @@ def change_note_done(request):
         'app': 'comander'
     })
 
+
 @login_required
 def files(request):
     return render(request, 'comander/files.html', {
@@ -152,6 +157,7 @@ def files(request):
         'app': 'comander'
     })
 
+
 @login_required
 def file_upload_done(request):
     return render(request, 'comander/download_done.html', {
@@ -159,6 +165,7 @@ def file_upload_done(request):
         'page': 'file_upload_done',
         'app': 'comander'
     })
+
 
 @login_required
 def change_file(request):
@@ -169,7 +176,6 @@ def change_file(request):
     })
 
 
-
 @login_required
 def change_file_done(request):
     return render(request, 'comander/change_file_done.html', {
@@ -177,6 +183,7 @@ def change_file_done(request):
         'page': 'change_file_done',
         'app': 'comander'
     })
+
 
 @login_required
 def deleted_note(request):
