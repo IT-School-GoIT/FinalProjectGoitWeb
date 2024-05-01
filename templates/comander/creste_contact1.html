@@ -1,0 +1,28 @@
+{% extends '_layouts/base.html' %}
+
+{% block content %}
+{% load static %}
+
+
+<!-- Navbar Start -->
+{% include '_fragments/command_navbar.html' %}
+<!-- Navbar End -->
+
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-6 mx-auto">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">Add Contact</h6>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-sm btn-primary px-5 me-2">Save</button>
+                        <button type="reset" class="btn btn-sm btn-primary px-5">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
