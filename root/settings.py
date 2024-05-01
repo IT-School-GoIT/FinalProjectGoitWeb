@@ -35,23 +35,12 @@ SECRET_KEY = env('SECRET_KEY')
 
 
 
-# DEBUG = env('DEBUG')
-# ALLOWED_HOSTS = ['final-project-goit-web-antonbabenko.koyeb.app']
-
-
-# DEBUG = True
-# ALLOWED_HOSTS = ['*']
-
-
-
 DEBUG = env('DEBUG')
-# DEBUG = True
-# ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['final-project-goit-web-antonbabenko.koyeb.app']
 
+
 # DEBUG = True
 # ALLOWED_HOSTS = ['*']
-
 
 
 # Application definition
@@ -120,8 +109,7 @@ DATABASES = {
         'PASSWORD': env('DB_PASSWORD'),
         'HOST': env('DB_HOST'),
         'PORT': env('DB_PORT'),
-    }
-    
+    }    
 }
 
 # Password validation

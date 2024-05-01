@@ -1,31 +1,13 @@
 {% load static %}
 
 
-    <!-- Content wrapper scroll start -->
-
-
-    <!-- Content wrapper start -->
-    <div class="content-wrapper">
-
-            <!-- Row start -->
-        <div class="row gx-3">
-            <div class="col-sm-12 col-12">
-
-                <!-- Card start -->
-                <div class="card">
-<!-- Content wrapper scroll start -->
-
-
 <!-- Content wrapper start -->
 <div class="content-wrapper">
-
     <!-- Row start -->
     <div class="row gx-3">
-        <div class="col-sm-12 col-12">                
-
+        <div class="col-sm-12 col-12">            
             <!-- Card start -->
             <div class="card">
-
                 <div class="card-header">
                     <div class="card-title">Data Contacts</div>
                     <div class="d-flex justify-content-end align-items-center">
@@ -35,93 +17,58 @@
                     </div>
                 </div>
                     <div class="card-body">
-                      <div class="table-responsive">
-                        <table id="highlightRowColumn" class="table custom-table">
-                          <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                                <th>Address</th>
-                                <th>Birthday</th>
-                                <th>Notes</th>
-                                <th>Actions</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                           {% for contact in contacts %}
-                          <tr>
-                                <td>{{ contact.name }}</td>
-                                <td>{{ contact.phone_number }}</td>
-                                <td>{{ contact.email }}</td>
-                                <td>{{ contact.address }}</td>
-                                <td>{{ contact.birthday | date:"d.m.Y" }}</td>
-                                <td>{{ contact.note }}</td>
-                                <td>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <a href="{% url 'contacts:edit_contact' contact.id %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" data-bs-custom-class="custom-tooltip-primary" data-bs-title="Edit">
-                                    <i class="bi bi-pencil text-success"></i>
-                                    </a>
-                                    <a href="{% url 'contacts:delete_contact' contact.id %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" data-bs-custom-class="custom-tooltip-success" data-bs-title="Deleted">
-                                    <i class="bi bi-trash text-danger"></i>
-                                    </a>
-                                </div>
-                              </td>
-                             </tr>
-                           {% endfor %}
-                          </tbody>
-                </div>                    
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table id="highlightRowColumn" class="table custom-table">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Phone</th>
-                                    <th>Email</th>
-                                    <th>Address</th>
-                                    <th>Birthday</th>
-                                    <th>Notes</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Aiger Nixon</td>
-                                    <td>+34523456346</td>
-                                    <td>Edinb@urg.h</td>
-                                    <td>UK</td>
-                                    <td>2011/04/25</td>
-                                    <td>qwsadaceqw</td>
-                                    <td>
+                        <div class="table-responsive">
+                            <table id="highlightRowColumn" class="table custom-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Phone</th>
+                                        <th>Email</th>
+                                        <th>Address</th>
+                                        <th>Birthday</th>
+                                        <th>Notes</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for contact in contacts %}
+                                    <tr>
+                                        <td>{{ contact.name }}</td>
+                                        <td>{{ contact.phone_number }}</td>
+                                        <td>{{ contact.email }}</td>
+                                        <td>{{ contact.address }}</td>
+                                        <td>{{ contact.birthday | date:"d.m.Y" }}</td>
+                                        <td>{{ contact.note }}</td>
+                                        <td>
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <a href="{% url 'comander:change' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" data-bs-custom-class="custom-tooltip-primary" data-bs-title="Edit">
-                                                <i class="bi bi-pencil text-success"></i>
+                                            <a href="{% url 'contacts:edit_contact' contact.id %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
+                                            data-bs-placement="top" data-bs-custom-class="custom-tooltip-primary" data-bs-title="Edit">
+                                            <i class="bi bi-pencil text-success"></i>
                                             </a>
-                                            <a href="{% url 'comander:deleted_done' %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
-                                                data-bs-placement="top" data-bs-custom-class="custom-tooltip-success" data-bs-title="Deleted">
-                                                <i class="bi bi-trash text-danger"></i>
+                                            <a href="{% url 'contacts:delete_contact' contact.id %}" class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip"
+                                            data-bs-placement="top" data-bs-custom-class="custom-tooltip-success" data-bs-title="Deleted">
+                                            <i class="bi bi-trash text-danger"></i>
                                             </a>
                                         </div>
-                                    </td>                           
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                                    </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div> 
+                    </div> 
                 </div>
             </div>
         </div>
     </div>
-    <!-- Card end -->
 </div>
+
+
 
 <script>
     document.getElementById('editButton').addEventListener('click', function() {
         // Тут ви можете задати URL для сторінки редагування
-        var editUrl = 'edit_page.html';
+        var editUrl = 'comander/edit_contact';
         // Перенаправлення на сторінку редагування
         window.location.href = editUrl;
     });
@@ -130,7 +77,7 @@
 <script>
     document.getElementById('addButton').addEventListener('click', function() {
         // Тут ви можете задати URL для сторінки додавання контакту
-        var addUrl = '{% url "comander:add" %}';
+        var addUrl = '{% url "contacts:create"%}';
         // Перенаправлення на сторінку додавання контакту
         window.location.href = addUrl;
     });
@@ -143,17 +90,19 @@
     document.getElementById('addButton').addEventListener('mouseleave', function() {
         this.style.backgroundColor = ''; // Повертаємо колір фону до звичайного
     });
+</script>
 
-  </div>
-    <script>
-        document.getElementById('editButton').addEventListener('click', function() {
-          // Тут ви можете задати URL для сторінки редагування
-          var editUrl = '{% url "contacts:contact_list"%}';
-          // Перенаправлення на сторінку редагування
-          window.location.href = editUrl;
-        });
-  
-    </script>
+
+<script>
+    document.getElementById('editButton').addEventListener('click', function() {
+        // Тут ви можете задати URL для сторінки редагування
+        var editUrl = '{% url "contacts:contact_list"%}';
+        // Перенаправлення на сторінку редагування
+        window.location.href = editUrl;
+    });
+</script>
+
+<script>    
     document.getElementById('searchButton').addEventListener('click', function() {
         // Тут ви можете задати URL для сторінки додавання контакту
 
@@ -170,29 +119,31 @@
       document.getElementById('addButton').addEventListener('mouseleave', function() {
           this.style.backgroundColor = ''; // Повертаємо колір фону до звичайного
       });
-    </script>
+</script>
 
-    <script>
-        document.getElementById('searchButton').addEventListener('click', function() {
-            // Отримуємо значення введене в поле пошуку
-            var daysUntilBirthday = document.getElementById('searchInput').value;
-            // Формуємо URL з отриманим значенням
-            var addUrl = '{% url "contacts:contacts_with_birthday" %}?days_until_birthday=' + daysUntilBirthday;
-            // Перенаправлення на сторінку з введеним значенням
-            window.location.href = addUrl;
-        });
+<script>
+    document.getElementById('searchButton').addEventListener('click', function() {
+        // Отримуємо значення введене в поле пошуку
+        var daysUntilBirthday = document.getElementById('searchInput').value;
+        // Формуємо URL з отриманим значенням
+        var addUrl = '{% url "contacts:contacts_with_birthday" %}?days_until_birthday=' + daysUntilBirthday;
+        // Перенаправлення на сторінку з введеним значенням
+        window.location.href = addUrl;
+    });
 
-        // Додавання ефекту ховеру
-        document.getElementById('searchButton').addEventListener('mouseenter', function() {
-            this.style.backgroundColor = 'lightblue';
-        });
+    // Додавання ефекту ховеру
+    document.getElementById('searchButton').addEventListener('mouseenter', function() {
+        this.style.backgroundColor = 'lightblue';
+    });
 
-        document.getElementById('searchButton').addEventListener('mouseleave', function() {
-            this.style.backgroundColor = ''; // Повертаємо колір фону до звичайного
-        });
-    </script>
+    document.getElementById('searchButton').addEventListener('mouseleave', function() {
+        this.style.backgroundColor = ''; // Повертаємо колір фону до звичайного
+    });
 
+    
 
+    document.getElementById('searchButton').addEventListener('click', function() {
+        // Тут ви можете задати URL для сторінки додавання контакту
         var addUrl = '#';
         // Перенаправлення на сторінку додавання контакту
         window.location.href = addUrl;
@@ -208,6 +159,10 @@
     });
 
 </script>
+
+
+
+
 <script>
     // Пошук
     document.getElementById('searchButton').addEventListener('click', function() {

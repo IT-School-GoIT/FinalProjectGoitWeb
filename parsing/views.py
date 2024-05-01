@@ -13,7 +13,8 @@ def list_news(request):
     sport = News.objects.filter(category='Sport')
     tourism = News.objects.filter(category='Tourism')
     science = News.objects.filter(category='Science')
-    return render(request, '_fragments/news.html', {
+    # return render(request, '_fragments/news.html', {
+    return render(request, 'home/news.html', {
         'other': other,
         'politika': politika,
         'cars': cars,
@@ -43,6 +44,6 @@ def add_news(request):
     save_news_to_database(sport)
     save_news_to_database(tourism)
     save_news_to_database(science)
-    return render(request, '_fragments/test.html',{'sport_article_href_1': "Hello"})
+    return render(request, '_fragments/news.html', {'sport_article_href_1': "Hello"})
 
 
