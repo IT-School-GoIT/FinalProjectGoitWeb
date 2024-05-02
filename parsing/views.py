@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 
 from .models import News
 from .news import save_news_to_database, politika_news, other_news, auto_news, health_news, economy_news, clear_database, sport_news, tourism_news, science_and_it_news
