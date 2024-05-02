@@ -44,6 +44,6 @@ def add_news(request):
     save_news_to_database(sport)
     save_news_to_database(tourism)
     save_news_to_database(science)
-    return render(request, '_fragments/news.html', {'sport_article_href_1': "Hello"})
+    return redirect('news')
 
 
