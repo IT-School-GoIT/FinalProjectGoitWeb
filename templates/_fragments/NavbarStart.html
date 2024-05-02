@@ -28,11 +28,14 @@
                     <a href="{% url 'home:news' %}" class="nav-item nav-link">News</a>
 
                     {% if user.is_authenticated %}
-                    <a href="{% url 'comander:commands' %}" class="nav-item nav-link">Data Contacts</a>
-                    <a href="{% url 'accounts:logout' %}" class="nav-item nav-link">Go_out</a>
+                        <a href="{% url 'comander:commands' %}" class="nav-item nav-link">Data Contacts</a>
+{#                        <a href="{% url 'accounts:logout' %}" class="nav-item nav-link">Go_out</a>#}
+                        <a href="{% url 'account_logout' %}" class="nav-item nav-link">Logout</a>
                     {% else %}
-                    <a href="{% url 'accounts:signup' %}" class="nav-item nav-link">Sign_up</a>
-                    <a href="{% url 'accounts:signin' %}" class="nav-item nav-link">Sign_in</a>
+{#                    <a href="{% url 'accounts:signup' %}" class="nav-item nav-link">Sign_up</a>#}
+                        <a href="{% url 'account_signup' %}" class="nav-item nav-link">SignUp</a>
+{#                        <a href="{% url 'accounts:signin' %}" class="nav-item nav-link">Sign_in</a>#}
+                        <a href="{% url 'account_login' %}" class="nav-item nav-link">Login</a>
                     {% endif %}
                 </div>
             </div>
