@@ -1,25 +1,8 @@
 {% extends '_layouts/base.html' %}
 
 {% load static %}
-{% load i18n %}
-{% load allauth account socialaccount %}
-{#{% load allauth account %}#}
-{% load widget_tweaks %}
 
 {% block content %}
-
-  <style>
-      .btn-google {
-          color: #545454;
-          background-color: #ffffff;
-          box-shadow: 0 1px 2px 1px #ddd;
-      }
-
-      .btn-google:hover {
-          color: #111;
-          background-color: #fefefe;
-      }
-  </style>
 
   <!-- Hero Start -->
   <div class="container-fluid pt-5 bg-primary hero-header">
@@ -46,32 +29,36 @@
         <div class="login-welcome">
           Welcome back, <br/>Please login to your Fox.Web admin account.
         </div>
-        <form method="post" action="{% url 'account_login' %}">
+        <form method="post">
           {% csrf_token %}
           <div class="mb-3">
-            <label class="form-label" for="{{ form.login.id_for_label }}">Username</label>
-            {{ form.login.errors }}
-            {{ form.login|add_class:"form-control" }}
+            <label class="form-label" for="uname">Username</label>
+            {{ form.username }}
           </div>
           <div class="mb-3">
             <div class="d-flex justify-content-between">
-              <label class="form-label" for="{{ form.password.id_for_label }}">Password</label>
+              <label class="form-label" for="pwd">Password</label>
               <a href="{% url "account_reset_password" %}" id="pwd" class="btn-link ml-auto">Forgot
                 Password?</a>
             </div>
-            {{ form.password.errors }}
-            {{ form.password|add_class:"form-control" }}
+            {{ form.password }}
           </div>
           <div class="login-form-actions">
             <button type="submit" class="btn"> <span class="icon"> <i class="bi bi-arrow-right-circle"></i>
                         </span>
               Login
             </button>
-            <!-- Кнопка авторизації через Google -->
-            <a href="{% provider_login_url 'google' %}" class="btn btn-google">
-              <i class="bi bi-google"></i> Login with Google
-            </a>
-
+          </div>
+          <div class="login-form-actions">
+            <button type="submit" class="btn"><img src="{% static 'images/google.svg' %}" class="login-icon"
+                                                   alt="Login with Google">
+              Login with Google
+            </button>
+            <button type="submit" class="btn"><img src="{% static 'images/facebook.svg' %}"
+                                                   class="login-icon"
+                                                   alt="Login with Facebook">
+              Login with Facebook
+            </button>
           </div>
           <div class="login-form-footer">
             <div class="additional-link">
@@ -82,5 +69,6 @@
       </div>
     </div>
   </div>
+
 
 {% endblock %}
