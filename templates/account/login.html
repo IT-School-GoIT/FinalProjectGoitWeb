@@ -8,19 +8,6 @@
 
 {% block content %}
 
-  <style>
-      .btn-google {
-          color: #545454;
-          background-color: #ffffff;
-          box-shadow: 0 1px 2px 1px #ddd;
-      }
-
-      .btn-google:hover {
-          color: #111;
-          background-color: #fefefe;
-      }
-  </style>
-
   <!-- Hero Start -->
   <div class="container-fluid pt-5 bg-primary hero-header">
     <div class="container pt-5">
@@ -39,13 +26,17 @@
 
   <div class="login-container">
     <div class="login-box">
+
       <div class="login-form">
-        <a href="{% url 'home:home' %}" class="login-logo">
-          <img src="{% static 'img/favicon.png' %}" alt="Admin Templates"/>
+
+        <a href="{% url 'home:home' %}" class="login-logo d-flex justify-content-center">
+          <img src="{% static 'img/favicon.png' %}" alt="Admin Templates" style="display: block;"/>
         </a>
-        <div class="login-welcome">
-          Welcome back, <br/>Please login to your Fox.Web admin account.
+
+        <div class="login-welcome text-center">
+          Welcome back, <br/>Please login to your Fox.Web account
         </div>
+
         <form method="post" action="{% url 'account_login' %}">
           {% csrf_token %}
           <div class="mb-3">
@@ -62,18 +53,20 @@
             {{ form.password.errors }}
             {{ form.password|add_class:"form-control" }}
           </div>
-          <div class="login-form-actions">
-            <button type="submit" class="btn"> <span class="icon"> <i class="bi bi-arrow-right-circle"></i>
-                        </span>
-              Login
+
+          <div class="login-form-actions d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary" style="height: 50px; line-height: 50px;">
+              <span class="icon"> <i class="bi bi-arrow-right-circle"></i></span>
+              <span class="text-dark">Login</span>
             </button>
-            <!-- Кнопка авторизації через Google -->
-            <a href="{% provider_login_url 'google' %}" class="btn btn-google">
+          </div>
+          <div class="login-form-actions d-flex justify-content-center">
+            <a href="{% provider_login_url 'google' %}" class="btn btn-google" style="height: 50px; line-height: 50px;">
               <i class="bi bi-google"></i> Login with Google
             </a>
-
           </div>
-          <div class="login-form-footer">
+
+          <div class="login-form-footer text-center">
             <div class="additional-link">
               Don't have an account? <a href="{% url 'account_signup' %}"> Signup</a>
             </div>
