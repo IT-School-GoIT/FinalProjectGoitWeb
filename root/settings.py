@@ -156,7 +156,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-LOGIN_URL = '/accounts/signin'
+LOGIN_URL = '/accounts/login'
 LOGIN_REDIRECT_URL = '/home/'               # Перенаправлення після входу
 ACCOUNT_LOGOUT_REDIRECT_URL = '/home/'      # Перенаправлення після виходу
 
