@@ -1,36 +1,84 @@
-{% extends "account/base_entrance.html" %}
-{% load allauth i18n %}
-{% block head_title %}
-    {% trans "Signup" %}
-{% endblock head_title %}
+{% extends '_layouts/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load allauth account socialaccount %}
+{% load widget_tweaks %}
+
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign Up" %}
-    {% endelement %}
-    {% setvar link %}
-        <a href="{{ login_url }}">
-        {% endsetvar %}
-        {% setvar end_link %}
+
+  <!-- Hero Start -->
+  <div class="container-fluid pt-5 bg-primary hero-header">
+    <div class="container pt-5">
+      <div class="row g-5 pt-5">
+        <div class="col-lg-6 align-self-center text-center text-lg-start mb-lg-5">
+          <h1 class="display-4 text-white mb-4 animated slideInRight">Access to the contact database</h1>
+          <nav aria-label="breadcrumb"></nav>
+        </div>
+        <div class="col-lg-6 align-self-end text-center text-lg-end">
+          <img class="img-fluid" src="{% static 'img/hero-img.png' %}" alt="" style="max-height: 300px;">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Hero End -->
+
+  <div class="login-container">
+    <div class="login-box">
+      <div class="login-form">
+        <a href="{% url 'home:home' %}" class="login-logo d-flex justify-content-center">
+          <img src="{% static 'img/favicon.png' %}" alt="Admin Templates" style="display: block;"/>
         </a>
-    {% endsetvar %}
-    <p>{% blocktranslate %}Already have an account? Then please {{ link }}sign in{{ end_link }}.{% endblocktranslate %}</p>
-    {% if not SOCIALACCOUNT_ONLY %}
-        {% url 'account_signup' as action_url %}
-        {% element form form=form method="post" action=action_url tags="entrance,signup" %}
-            {% slot body %}
-                {% csrf_token %}
-                {% element fields form=form unlabeled=True %}
-                {% endelement %}
-                {{ redirect_field }}
-            {% endslot %}
-            {% slot actions %}
-                {% element button tags="prominent,signup" type="submit" %}
-                    {% trans "Sign Up" %}
-                {% endelement %}
-            {% endslot %}
-        {% endelement %}
-    {% endif %}
-    {% if SOCIALACCOUNT_ENABLED %}
-        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-    {% endif %}
+
+        <div class="login-welcome text-center">
+          {% trans "Sign Up" %}
+        </div>
+
+        {% if not SOCIALACCOUNT_ONLY %}
+          {% url 'account_signup' as action_url %}
+          <form method="post" action="{{ action_url }}">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label class="form-label" for="{{ form.username.id_for_label }}">Username</label>
+              {{ form.username.errors }}
+              {{ form.username|add_class:"form-control" }}
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="{{ form.email.id_for_label }}">Email</label>
+              {{ form.email.errors }}
+              {{ form.email|add_class:"form-control" }}
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="{{ form.password1.id_for_label }}">Password</label>
+              {{ form.password1.errors }}
+              {{ form.password1|add_class:"form-control" }}
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="{{ form.password2.id_for_label }}">Password (again)</label>
+              {{ form.password2.errors }}
+              {{ form.password2|add_class:"form-control" }}
+            </div>
+            <div class="login-form-actions d-flex justify-content-center">
+              <button type="submit" class="btn btn-primary" style="height: 50px; line-height: 50px;">
+                <span class="icon"> <i class="bi bi-arrow-right-circle"></i></span>
+                <span class="text-dark">{% trans "Sign Up" %}</span>
+              </button>
+            </div>
+            {% if SOCIALACCOUNT_ENABLED %}
+              <div class="login-form-actions d-flex justify-content-center">
+                <a href="{% provider_login_url 'google' %}" class="btn btn-google" style="height: 50px; line-height: 50px;">
+                  <i class="bi bi-google"></i> {% trans "Sign Up with Google" %}
+                </a>
+              </div>
+            {% endif %}
+            <div class="login-form-footer text-center">
+              <div class="additional-link">
+                {% trans "Already have an account?" %} <a href="{% url 'account_login' %}">{% trans "Sign in" %}</a>
+              </div>
+            </div>
+          </form>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
 {% endblock content %}
