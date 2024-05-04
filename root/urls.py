@@ -23,7 +23,8 @@ from contacts import views as contacts_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
-    path('accounts/', include('accounts.urls')),
+    # path('accounts/', include('accounts.urls')),
+    path('accounts/', include('allauth.urls')),
     path('comander/', include('comander.urls')),
     path('home/', include('home.urls')),
     path('team/', include('team.urls')),
