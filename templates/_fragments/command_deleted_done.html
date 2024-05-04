@@ -19,12 +19,12 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Tiger Nixon</td>
-                                <td>34523456346</td>
-                                <td>Edinb@urgh</td>
-                                <td>UK</td>
-                                <td>2011/04/25</td>
-                                <td>qweqw</td>
+                                <td>{{ contact.name }}</td>
+                                <td>{{ contact.phone_number }}</td>
+                                <td>{{ contact.email }}</td>
+                                <td>{{ contact.address }}</td>
+                                <td>{{ contact.birthday | date:"d.m.Y" }}</td>
+                                <td>{{ contact.note }}</td>
                             </tr>
                         </tbody>
                     </table>

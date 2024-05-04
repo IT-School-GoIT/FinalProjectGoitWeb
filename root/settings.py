@@ -14,10 +14,11 @@ import environ
 import os
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env = environ.Env()
+env = environ.Env(DEBUG=(bool, False))
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
@@ -30,8 +31,8 @@ SECRET_KEY = env('SECRET_KEY')
 
 DEBUG = env('DEBUG')
 
-# ALLOWED_HOSTS = ['final-project-goit-web-antonbabenko.koyeb.app']
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['final-project-goit-web-antonbabenko.koyeb.app']
+# ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -57,7 +58,10 @@ INSTALLED_APPS = [
     'team',
     'storages',
     's3_storage',
+    'contacts',
     'notes',
+    'parsing',
+
 ]
 
 MIDDLEWARE = [
@@ -92,7 +96,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'root.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -106,7 +109,6 @@ DATABASES = {
         'PORT': env('DB_PORT'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -126,7 +128,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -137,7 +138,6 @@ TIME_ZONE = 'Europe/Kiev'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -157,11 +157,8 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 LOGIN_URL = '/accounts/login'
-# LOGIN_REDIRECT_URL = '/home/'               # Перенаправлення після входу
-# ACCOUNT_LOGOUT_REDIRECT_URL = '/home/'      # Перенаправлення після виходу
-LOGIN_REDIRECT_URL = '/'               # Перенаправлення після входу
-ACCOUNT_LOGOUT_REDIRECT_URL = '/'      # Перенаправлення після виходу
-
+LOGIN_REDIRECT_URL = '/home/'               # Перенаправлення після входу
+ACCOUNT_LOGOUT_REDIRECT_URL = '/home/'      # Перенаправлення після виходу
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

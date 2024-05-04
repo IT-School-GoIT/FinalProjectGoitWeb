@@ -1,9 +1,443 @@
-{% extends '_layouts/base.html' %}
+{% extends '_layouts/base_news.html' %}
 
 {% block content %}
 {% load static %}  
 
-    {% include '_fragments/news.html' %}
+<div class="container-fluid sticky-top" style="background-color: var(--primary);">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark p-0">
+            {% if user.is_authenticated %}
+            <!-- Weather widget -->
+            <div class="navbar-brand">
+                <a target="_blank" href="https://hotelmix.com.ua/weather/kyiv-18881">
+                    <img src="https://w.bookcdn.com/weather/picture/5_18881_1_29_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=70241&domid=966&anc_id=35493"
+                         alt="booked.net" style="padding: 0; margin: 0;">
+                </a>
+            </div>
+            <!-- End of Weather widget -->
+            {% endif %}
+            <a href="{% url 'home:home' %}" class="navbar-brand">
+                <h1 class="text-white m-0 responsive-heading">Fox<span class="text-dark">.</span>Web<span class="text-dark">.</span>Assistant
+                </h1>
+            </a>
+            <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+
+                <div class="navbar-nav ms-auto">
+                    <a href="{% url 'home:home' %}" class="nav-item nav-link active">Home</a>
+                    <a href="{% url 'team:team' %}" class="nav-item nav-link">Team</a>
+                    <a href="{% url 'home:exchange_rate' %}" class="nav-item nav-link" style="white-space: nowrap;" >Exchange rate</a>
+                    <a href="/parsing/news/" class="nav-item  nav-link" >News</a>
+                    {% if user.is_authenticated %}
+                    <a href="/parsing/add_news/" class="nav-item  nav-link" style="white-space: nowrap;" >Update News</a>
+                    {% endif %}
+
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'contacts:contact_list' %}" class="nav-item nav-link" style="white-space: nowrap;">Data Contacts</a>
+                    <a href="{% url 'accounts:logout' %}" class="nav-item nav-link">Go_out</a>
+                    {% else %}
+                    <a href="{% url 'accounts:signup' %}" class="nav-item nav-link">Sign_up</a>
+                    <a href="{% url 'accounts:signin' %}" class="nav-item nav-link">Sign_in</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+
+
+
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet"> 
+
+<!-- CSS Libraries -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+<link href="{% static 'lib/slick/slick.css' %}" rel="stylesheet">
+<link href="{% static 'lib/slick/slick-theme.css' %}" rel="stylesheet">
+
+<!-- Template Stylesheet -->
+<link href="{% static 'css/style_news.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Top News Start-->
+<div class="top-news">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6 tn-left">
+                <div class="row tn-slider">
+                    {% for element in other %}
+                    {% if forloop.first %}
+                    <div class="col-md-6">
+                        <div class="tn-img" style="width: 540px; height: 350px;">
+                            <img src="{{ element.photo_link }}" style="width: 100%; height: 100%; object-fit: cover;" />
+                            <div class="tn-title">
+                                <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% for element in politika %}
+                    {% if forloop.first %}
+                    <div class="col-md-6">
+                        <div class="tn-img" style="width: 540px; height: 350px;">
+                            <img src="{{ element.photo_link }}" style="width: 100%; height: 100%; object-fit: cover;" />
+                            <div class="tn-title">
+                                <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% for element in cars %}
+                    {% if forloop.first %}
+                    <div class="col-md-6">
+                        <div class="tn-img" style="width: 540px; height: 350px;">
+                            <img src="{{ element.photo_link }}" style="width: 100%; height: 100%; object-fit: cover;" />
+                            <div class="tn-title">
+                                <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% for element in health %}
+                    {% if forloop.first %}
+                    <div class="col-md-6">
+                        <div class="tn-img" style="width: 540px; height: 350px;">
+                            <img src="{{ element.photo_link }}" style="width: 100%; height: 100%; object-fit: cover;" />
+                            <div class="tn-title">
+                                <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="col-md-6 tn-left">
+                <div class="row tn-slider">
+                    {% for element in economy %}
+                    {% if forloop.first %}
+                    <div class="col-md-6">
+                        <div class="tn-img" style="width: 540px; height: 350px;">
+                            <img src="{{ element.photo_link }}" style="width: 100%; height: 100%; object-fit: cover;" />
+                            <div class="tn-title">
+                                <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% for element in sport %}
+                    {% if forloop.first %}
+                    <div class="col-md-6">
+                        <div class="tn-img" style="width: 540px; height: 350px;">
+                            <img src="{{ element.photo_link }}" style="width: 100%; height: 100%; object-fit: cover;" />
+                            <div class="tn-title">
+                                <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% for element in tourism %}
+                    {% if forloop.first %}
+                    <div class="col-md-6">
+                        <div class="tn-img" style="width: 540px; height: 350px;">
+                            <img src="{{ element.photo_link }}" style="width: 100%; height: 100%; object-fit: cover;" />
+                            <div class="tn-title">
+                                <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% for element in science %}
+                    {% if forloop.first %}
+                    <div class="col-md-6">
+                        <div class="tn-img" style="width: 540px; height: 350px;">
+                            <img src="{{ element.photo_link }}" style="width: 100%; height: 100%; object-fit: cover;" />
+                            <div class="tn-title">
+                                <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="col-md-6 tn-right">
+                <div class="row">
+                    {% for element in other %}
+                    {% if forloop.first %}
+                    <div class="col-md-6">
+                        <div class="tn-img" style="width: 270px; height: 170px;">
+                            <img src="{{ element.photo_link }}" style="width: 100%; height: 100%; object-fit: cover;" />
+                            <div class="tn-title">
+                                <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% for element in politika %}
+                    {% if forloop.first %}
+                    <div class="col-md-6">
+                        <div class="tn-img" style="width: 270px; height: 170px;">
+                            <img src="{{ element.photo_link }}" style="width: 100%; height: 100%; object-fit: cover;" />
+                            <div class="tn-title">
+                                <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% for element in cars %}
+                    {% if forloop.first %}
+                    <div class="col-md-6">
+                        <div class="tn-img" style="width: 270px; height: 170px;">
+                            <img src="{{ element.photo_link }}" style="width: 100%; height: 100%; object-fit: cover;" />
+                            <div class="tn-title">
+                                <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% for element in health %}
+                    {% if forloop.first %}
+                    <div class="col-md-6">
+                        <div class="tn-img" style="width: 270px; height: 170px;">
+                            <img src="{{ element.photo_link }}" style="width: 100%; height: 100%; object-fit: cover;" />
+                            <div class="tn-title">
+                                <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="col-md-6 tn-right">
+                <div class="row">
+                    {% for element in economy %}
+                    {% if forloop.first %}
+                    <div class="col-md-6">
+                        <div class="tn-img" style="width: 270px; height: 170px;">
+                            <img src="{{ element.photo_link }}" style="width: 100%; height: 100%; object-fit: cover;" />
+                            <div class="tn-title">
+                                <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% for element in sport %}
+                    {% if forloop.first %}
+                    <div class="col-md-6">
+                        <div class="tn-img" style="width: 270px; height: 170px;">
+                            <img src="{{ element.photo_link }}" style="width: 100%; height: 100%; object-fit: cover;" />
+                            <div class="tn-title">
+                                <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% for element in tourism %}
+                    {% if forloop.first %}
+                    <div class="col-md-6">
+                        <div class="tn-img" style="width: 270px; height: 170px;">
+                            <img src="{{ element.photo_link }}" style="width: 100%; height: 100%; object-fit: cover;" />
+                            <div class="tn-title">
+                                <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% for element in science %}
+                    {% if forloop.first %}
+                    <div class="col-md-6">
+                        <div class="tn-img" style="width: 270px; height: 170px;">
+                            <img src="{{ element.photo_link }}" style="width: 100%; height: 100%; object-fit: cover;" />
+                            <div class="tn-title">
+                                <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Top News End-->
+
+
+<!-- Category News Start-->
+<div class="cat-news">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Рiзне</h2>
+                <div class="row cn-slider">
+                    {% for element in other %}
+                    <div class="col-md-6">
+                        <div class="cn-img">
+                            <img src="{{ element.photo_link }}" />
+                            <div class="cn-title">
+                                <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2>Полiтика</h2>
+                <div class="row cn-slider">
+                    {% for element in politika %}
+                    <div class="col-md-6">
+                        <div class="cn-img">
+                            <img src="{{ element.photo_link }}" />
+                            <div class="cn-title">
+                                <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2>Авто</h2>
+                <div class="row cn-slider">
+                    {% for element in cars %}
+                    <div class="col-md-6">
+                        <div class="cn-img">
+                            <img src="{{ element.photo_link }}" />
+                            <div class="cn-title">
+                                <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2>Здоров'я</h2>
+                <div class="row cn-slider">
+                    {% for element in health %}
+                    <div class="col-md-6">
+                        <div class="cn-img">
+                            <img src="{{ element.photo_link }}" />
+                            <div class="cn-title">
+                                <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2>Економiка</h2>
+                <div class="row cn-slider">
+                    {% for element in economy %}
+                    <div class="col-md-6">
+                        <div class="cn-img">
+                            <img src="{{ element.photo_link }}" />
+                            <div class="cn-title">
+                                <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2>Спорт</h2>
+                <div class="row cn-slider">
+                    {% for element in sport %}
+                    <div class="col-md-6">
+                        <div class="cn-img">
+                            <img src="{{ element.photo_link }}" />
+                            <div class="cn-title">
+                                <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2>Туризм</h2>
+                <div class="row cn-slider">
+                    {% for element in tourism %}
+                    <div class="col-md-6">
+                        <div class="cn-img">
+                            <img src="{{ element.photo_link }}" />
+                            <div class="cn-title">
+                                <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2>Наука та Iт</h2>
+                <div class="row cn-slider">
+                    {% for element in science %}
+                    <div class="col-md-6">
+                        <div class="cn-img">
+                            <img src="{{ element.photo_link }}" />
+                            <div class="cn-title">
+                                <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Category News End-->
+
+
+
+
+<!-- JavaScript Libraries -->
+<script src="{% static 'lib/jquery-3.4.1.min.js' %}"></script>
+
+<script src="{% static 'lib/easing/easing.min.js' %}"></script>
+<script src="{% static 'lib/slick/slick.min.js' %}"></script>
+
+<!-- Template Javascript -->
+<script src="{% static 'js/main_news.js' %}"></script>
+
+
   
 
 {% endblock content %}

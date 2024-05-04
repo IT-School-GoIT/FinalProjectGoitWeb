@@ -634,3 +634,76 @@ h6,
   border: 1px solid;
 } */
 
+
+
+/* Стилі для поля завантаження фото */
+.file-upload {
+    position: relative;
+    overflow: hidden;
+    margin-top: 8px; /* Регулюємо відступ від верхнього поля */
+}
+.file-upload input[type='file'] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+}
+.file-upload .file-select {
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+.company-logo {
+    width: 100px; /* Задайте потрібний розмір логотипу */
+    height: auto; /* Щоб зберегти пропорції */
+}
+
+@media (max-width: 576px) {
+    .responsive-heading {
+        font-size: 24px !important;; /* або будь-який інший розмір, який вам потрібен на малих екранах */
+    }
+}
+
+
+@media (max-width: 768px) {
+    .my_p {
+        font-size: 1em; /* Зменште або змініть значення, як вам потрібно */
+    }
+}
+
+@media (min-width: 992px) {
+    .my_p {
+        font-size: 1.2em; /* Змініть або встановіть потрібний розмір */
+    }
+}
+
+
+
+.cn-img {
+    width: 255px; /* Set the desired width */
+    height: 200px; /* Set the desired height */
+    /* Add other styles as needed */
+}
+
+.cn-img img {
+    width: 100%; /* Ensure the image fills the container */
+    height: 100%; /* Ensure the image fills the container */
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
+}
+
+.cn-title {
+    /* Add styles for the title */
+}
+
+
+

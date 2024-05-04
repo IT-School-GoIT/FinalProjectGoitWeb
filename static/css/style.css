@@ -673,3 +673,37 @@ h6,
         font-size: 24px !important;; /* або будь-який інший розмір, який вам потрібен на малих екранах */
     }
 }
+
+
+@media (max-width: 768px) {
+    .my_p {
+        font-size: 1em; /* Зменште або змініть значення, як вам потрібно */
+    }
+}
+
+@media (min-width: 992px) {
+    .my_p {
+        font-size: 1.2em; /* Змініть або встановіть потрібний розмір */
+    }
+}
+
+
+
+.cn-img {
+    width: 255px; /* Set the desired width */
+    height: 200px; /* Set the desired height */
+    /* Add other styles as needed */
+}
+
+.cn-img img {
+    width: 100%; /* Ensure the image fills the container */
+    height: 100%; /* Ensure the image fills the container */
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
+}
+
+.cn-title {
+    /* Add styles for the title */
+}
+
+
+

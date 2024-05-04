@@ -13,7 +13,7 @@
                     <nav aria-label="breadcrumb">
                 </div>
                 <div class="col-lg-6 align-self-end text-center text-lg-end">
-                    <img class="img-fluid" src="{% static 'img/hero-img.png' %}" alt="" style="max-height: 300px;">
+                    <img class="img-fluid" src="{% static 'img/hero2-img.png' %}" alt="" style="max-height: 300px;">
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
                     <div class="mb-3">
                         <div class="d-flex justify-content-between">
                             <label class="form-label" for="pwd">Password</label>
-                            <a href="{% url "accounts:password_reset" %}" id="pwd" class="btn-link ml-auto">Forgot
+                            <a href="{% url 'accounts:password_reset' %}" id="pwd" class="btn-link ml-auto">Forgot
                                 Password?</a>
                         </div>
                         {{ form.password }}
@@ -54,11 +54,6 @@
                                                                alt="Login with Google">
                             Login with Google
                         </button>
-                        <button type="submit" class="btn"><img src="{% static 'images/facebook.svg' %}"
-                                                               class="login-icon"
-                                                               alt="Login with Facebook">
-                            Login with Facebook
-                        </button>
                     </div>
                     <div class="login-form-footer">
                         <div class="additional-link">
@@ -70,5 +65,18 @@
         </div>
     </div>
 
+<style>
+/* Золотий колір при фокусі */
+input:focus {
+    border-color: yellow !important;
+    
+}
 
+
+
+
+
+
+
+</style>
 {% endblock %}

@@ -38,3 +38,10 @@ def project_topic(request):
         'app': 'home'
     })
 
+
+def exchange_rate(request):
+    return render(request, 'home/exchange_rate.html', {
+        'title': 'Курс валют',
+        'page': 'exchange_rate',
+        'app': 'home'
+    })
