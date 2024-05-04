@@ -1,0 +1,49 @@
+{% extends '_layouts/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load allauth account socialaccount %}
+{% load widget_tweaks %}
+
+{% block content %}
+  <div class="login-container">
+    <div class="login-box">
+      <div class="login-form">
+        <a href="{% url 'home:home' %}" class="login-logo d-flex justify-content-center">
+          <img src="{% static 'img/favicon.png' %}" alt="Admin Templates" style="display: block;"/>
+        </a>
+
+        <div class="login-welcome text-center">
+          {% trans "Confirm Email Address" %}
+        </div>
+
+        {% if confirmation %}
+          {% user_display confirmation.email_address.user as user_display %}
+          {% if can_confirm %}
+            <p>
+              {% blocktrans with confirmation.email_address.email as email %}Please confirm that
+                <a href="mailto:{{ email }}">{{ email }}</a> is an email address for user {{ user_display }}
+                .{% endblocktrans %}
+            </p>
+            <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-primary" style="height: 50px; line-height: 50px;">
+                <span style="color: black;">{% trans 'Confirm' %}</span>
+              </button>
+            </form>
+          {% else %}
+            <p>
+              {% blocktrans %}Unable to confirm {{ email }} because it is already confirmed by a different
+                account.{% endblocktrans %}
+            </p>
+          {% endif %}
+        {% else %}
+          {% url 'account_email' as email_url %}
+          <p>
+            {% blocktrans %}This email confirmation link expired or is invalid. Please
+              <a href="{{ email_url }}">issue a new email confirmation request</a>.{% endblocktrans %}
+          </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

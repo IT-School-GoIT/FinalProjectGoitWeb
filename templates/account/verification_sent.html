@@ -1,0 +1,28 @@
+{% extends '_layouts/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load allauth account socialaccount %}
+
+{% block content %}
+
+{#  {% include "_layouts/_hero.html" %}#}
+
+  <div class="login-container">
+    <div class="login-box">
+      <div class="login-form">
+        <a href="{% url 'home:home' %}" class="login-logo d-flex justify-content-center">
+          <img src="{% static 'img/favicon.png' %}" alt="Admin Templates" style="display: block;"/>
+        </a>
+
+        <div class="login-welcome text-center">
+          {% trans "Verify Your Email Address" %}
+        </div>
+
+        <p class="text-center">
+          {% blocktrans %}We have sent an email to you for verification. Follow the link provided to finalize the signup process. If you do not see the verification email in your main inbox, check your spam folder. Please contact us if you do not receive the verification email within a few minutes.{% endblocktrans %}
+        </p>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}

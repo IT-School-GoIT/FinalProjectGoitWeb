@@ -1,0 +1,60 @@
+{% extends "_layouts/base.html" %}
+{% load static %}
+{% load i18n %}
+{% load allauth account socialaccount %}
+{% load widget_tweaks %}
+
+{% block content %}
+  <div class="login-container">
+    <div class="login-box">
+      <div class="login-form">
+        <a href="{% url 'home:home' %}" class="login-logo d-flex justify-content-center">
+          <img src="{% static 'img/favicon.png' %}" alt="Admin Templates" style="display: block;"/>
+        </a>
+
+        <div class="login-welcome text-center">
+          {% trans "Sign Out" %}
+        </div>
+
+        <p class="text-center">{% trans 'Are you sure you want to sign out?' %}</p>
+
+        <form method="post" action="{% url 'account_logout' %}">
+          {% csrf_token %}
+          {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+          {% endif %}
+          <div class="login-form-actions d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary" style="height: 50px; line-height: 50px; color: black;">
+              {% trans 'Sign Out' %}
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{#{% extends "account/base_manage.html" %}#}
+{#{% load allauth i18n %}#}
+{#{% block head_title %}#}
+{#    {% trans "Sign Out" %}#}
+{#{% endblock head_title %}#}
+{#{% block content %}#}
+{#    {% element h1 %}#}
+{#        {% trans "Sign Out" %}#}
+{#    {% endelement %}#}
+{#    <p>{% trans 'Are you sure you want to sign out?' %}</p>#}
+{#    {% url 'account_logout' as action_url %}#}
+{#    {% element form method="post" action=action_url no_visible_fields=True %}#}
+{#        {% slot body %}#}
+{#            {% csrf_token %}#}
+{#            {{ redirect_field }}#}
+{#        {% endslot %}#}
+{#        {% slot actions %}#}
+{#            {% element button type="submit" %}#}
+{#                {% trans 'Sign Out' %}#}
+{#            {% endelement %}#}
+{#        {% endslot %}#}
+{#    {% endelement %}#}
+{#{% endblock content %}#}

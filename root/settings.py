@@ -11,20 +11,16 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 import environ
-
 import os
-
 from pathlib import Path
 
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False)
-)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env = environ.Env(DEBUG=(bool, False))
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -33,13 +29,9 @@ SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-
-
 DEBUG = env('DEBUG')
+
 ALLOWED_HOSTS = ['final-project-goit-web-antonbabenko.koyeb.app']
-
-
-# DEBUG = True
 # ALLOWED_HOSTS = ['*']
 
 
@@ -52,7 +44,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts',
+
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'widget_tweaks',
+
+    # 'accounts',
     'comander',
     'home',
     'team',
@@ -73,6 +73,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'root.urls'
@@ -100,16 +101,13 @@ WSGI_APPLICATION = 'root.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': BASE_DIR / 'db.sqlite3',
-
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': env('DB_NAME'),
         'USER': env('DB_USER'),
         'PASSWORD': env('DB_PASSWORD'),
         'HOST': env('DB_HOST'),
         'PORT': env('DB_PORT'),
-    }    
+    }
 }
 
 # Password validation
@@ -158,18 +156,19 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-LOGIN_URL = '/accounts/signin'
-LOGIN_REDIRECT_URL = '/home/'
+LOGIN_URL = '/accounts/login'
+LOGIN_REDIRECT_URL = '/home/'               # Перенаправлення після входу
+ACCOUNT_LOGOUT_REDIRECT_URL = '/home/'      # Перенаправлення після виходу
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SILENCED_SYSTEM_CHECKS = [
-    'urls.W005']  # Ігнорування повідомлень про неунікальні URL-простори імен
+SILENCED_SYSTEM_CHECKS = ['urls.W005']  # Ігнорування повідомлень про неунікальні URL-простори імен
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'     # Для продакшн
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # Тільки для розробки
 EMAIL_HOST = env('EMAIL_HOST')
 EMAIL_PORT = env('EMAIL_PORT')
 EMAIL_STARTTLS = False
@@ -188,3 +187,35 @@ AWS_DEFAULT_ACL = None
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 NEWSAPI_API_KEY = env('NEWSAPI_API_KEY')
+
+#########
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
+
+###############
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'APP': {
+            'client_id': env('GOOGLE_CLIENT_ID'),
+            'secret': env('GOOGLE_CLIENT_SECRET'),
+        }
+    }
+}
+

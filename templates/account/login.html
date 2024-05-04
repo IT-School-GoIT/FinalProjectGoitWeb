@@ -1,0 +1,65 @@
+{% extends '_layouts/base.html' %}
+
+{% load static %}
+{% load i18n %}
+{% load allauth account socialaccount %}
+{#{% load allauth account %}#}
+{% load widget_tweaks %}
+
+{% block content %}
+
+{#  {% include "_layouts/_hero.html" %}#}
+
+  <div class="login-container">
+    <div class="login-box">
+
+      <div class="login-form">
+
+        <a href="{% url 'home:home' %}" class="login-logo d-flex justify-content-center">
+          <img src="{% static 'img/favicon.png' %}" alt="Admin Templates" style="display: block;"/>
+        </a>
+
+        <div class="login-welcome text-center">
+          Welcome back, <br/>Please login to your Fox.Web account
+        </div>
+
+        <form method="post" action="{% url 'account_login' %}">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label class="form-label" for="{{ form.login.id_for_label }}">Username</label>
+            {{ form.login.errors }}
+            {{ form.login|add_class:"form-control" }}
+          </div>
+          <div class="mb-3">
+            <div class="d-flex justify-content-between">
+              <label class="form-label" for="{{ form.password.id_for_label }}">Password</label>
+              <a href="{% url "account_reset_password" %}" id="pwd" class="btn-link ml-auto">Forgot
+                Password?</a>
+            </div>
+            {{ form.password.errors }}
+            {{ form.password|add_class:"form-control" }}
+          </div>
+
+          <div class="login-form-actions d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary" style="height: 50px; line-height: 50px;">
+              <span class="icon"> <i class="bi bi-arrow-right-circle"></i></span>
+              <span class="text-dark">Login</span>
+            </button>
+          </div>
+          <div class="login-form-actions d-flex justify-content-center">
+            <a href="{% provider_login_url 'google' %}" class="btn btn-google" style="height: 50px; line-height: 50px;">
+              <i class="bi bi-google"></i> Login with Google
+            </a>
+          </div>
+
+          <div class="login-form-footer text-center">
+            <div class="additional-link">
+              Don't have an account? <a href="{% url 'account_signup' %}"> Signup</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
