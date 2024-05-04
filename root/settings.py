@@ -157,8 +157,11 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 LOGIN_URL = '/accounts/login'
-LOGIN_REDIRECT_URL = '/home/'               # Перенаправлення після входу
-ACCOUNT_LOGOUT_REDIRECT_URL = '/home/'      # Перенаправлення після виходу
+# LOGIN_REDIRECT_URL = '/home/'               # Перенаправлення після входу
+# ACCOUNT_LOGOUT_REDIRECT_URL = '/home/'      # Перенаправлення після виходу
+LOGIN_REDIRECT_URL = '/'               # Перенаправлення після входу
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'      # Перенаправлення після виходу
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
