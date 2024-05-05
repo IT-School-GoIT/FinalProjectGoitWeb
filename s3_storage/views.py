@@ -1,7 +1,7 @@
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.http import require_POST, require_http_methods
+from django.views.decorators.http import require_http_methods
 
 from .models import File, FileCategory
 from .utils import delete_from_s3
@@ -13,6 +13,13 @@ from .custom_http_responses import HttpResponseConflict
 def upload_file(request):
     if request.method == 'POST':
         file = request.FILES['file']
+        max_size = 10 * 1024 * 1024  # 10 MB in bytes
+        if file.size > max_size:    # Check if the file size does not exceed 10 MB
+            return render(request, 's3_storage/file_upload.html', {
+                'categories': FileCategory.objects.filter(user=request.user),
+                'error_message': 'File size exceeds the maximum allowed size of 10 MB.'
+            })
+
         category_id = request.POST['category']
         category = FileCategory.objects.get(id=category_id)
         description = request.POST['description']
@@ -27,13 +34,14 @@ def upload_file(request):
         return redirect('s3_storage:list')
     else:
         categories = FileCategory.objects.filter(user=request.user)
-        return render(request, 'comander/upload.html', {'categories': categories})
+        return render(request, 's3_storage/file_upload.html', {'categories': categories})
+
 
 @login_required
 def file_list(request):
     categories = FileCategory.objects.filter(user=request.user)
     files = File.objects.filter(user=request.user)
-    return render(request, 'comander/files.html', {
+    return render(request, 's3_storage/file_list.html', {
         'categories': categories,
         'files': files,
         'title': 'files',
@@ -60,7 +68,7 @@ def edit_file(request, file_id):
             return redirect('s3_storage:list')
     else:
         form = FileForm(instance=file)
-    return render(request, 's3_storage/edit_file.html', {'form': form})
+    return render(request, 's3_storage/file_edit.html', {'form': form})
 
 
 @login_required
@@ -79,13 +87,13 @@ def create_category(request):
         category.save()
         return redirect('s3_storage:category_list')
     else:
-        return render(request, 's3_storage/add_category.html')
+        return render(request, 's3_storage/category_create.html')
 
 
 @login_required
 def category_list(request):
     categories = FileCategory.objects.filter(user=request.user)
-    return render(request, 's3_storage/all_categories.html', {'categories': categories})
+    return render(request, 's3_storage/category_list.html', {'categories': categories})
 
 
 @login_required
@@ -96,7 +104,7 @@ def edit_category(request, category_id):
         category.save()
         return redirect('s3_storage:category_list')
     else:
-        return render(request, 's3_storage/edit_category.html', {'category': category})
+        return render(request, 's3_storage/category_edit.html', {'category': category})
 
 
 @login_required

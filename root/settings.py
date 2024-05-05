@@ -31,8 +31,8 @@ SECRET_KEY = env('SECRET_KEY')
 
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['final-project-goit-web-antonbabenko.koyeb.app']
-# ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['final-project-goit-web-antonbabenko.koyeb.app']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
