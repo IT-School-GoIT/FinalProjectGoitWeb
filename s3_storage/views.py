@@ -1,8 +1,7 @@
-from django.contrib import messages
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.http import require_POST, require_http_methods
+from django.views.decorators.http import require_http_methods
 
 from .models import File, FileCategory
 from .utils import delete_from_s3
@@ -14,9 +13,12 @@ from .custom_http_responses import HttpResponseConflict
 def upload_file(request):
     if request.method == 'POST':
         file = request.FILES['file']
-        # if file.size > 1 * 1024 * 1024:  # Check if the file size does not exceed 10 MB
-        #     messages.error(request, 'File size exceeds 10 MB.')
-        #     return redirect('s3_storage:list')
+        max_size = 10 * 1024 * 1024  # 10 MB in bytes
+        if file.size > max_size:    # Check if the file size does not exceed 10 MB
+            return render(request, 's3_storage/file_upload.html', {
+                'categories': FileCategory.objects.filter(user=request.user),
+                'error_message': 'File size exceeds the maximum allowed size of 10 MB.'
+            })
 
         category_id = request.POST['category']
         category = FileCategory.objects.get(id=category_id)
@@ -33,6 +35,7 @@ def upload_file(request):
     else:
         categories = FileCategory.objects.filter(user=request.user)
         return render(request, 's3_storage/file_upload.html', {'categories': categories})
+
 
 @login_required
 def file_list(request):
