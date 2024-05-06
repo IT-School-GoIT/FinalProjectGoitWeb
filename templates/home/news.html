@@ -31,13 +31,10 @@
                     <a href="{% url 'team:team' %}" class="nav-item nav-link">Team</a>
                     <a href="{% url 'home:exchange_rate' %}" class="nav-item nav-link" style="white-space: nowrap;" >Exchange rate</a>
                     <a href="/parsing/news/" class="nav-item  nav-link" >News</a>
-                    {% if user.is_authenticated %}
-                    <a href="/parsing/add_news/" class="nav-item  nav-link" style="white-space: nowrap;" >Update News</a>
-                    {% endif %}
 
                     {% if user.is_authenticated %}
                     <a href="{% url 'contacts:contact_list' %}" class="nav-item nav-link" style="white-space: nowrap;">Data Contacts</a>
-                    <a href="{% url 'accounts:logout' %}" class="nav-item nav-link">Go_out</a>
+                    <a href="#" class="nav-item nav-link">Go_out</a>
                     {% else %}
                     <a href="{% url 'accounts:signup' %}" class="nav-item nav-link">Sign_up</a>
                     <a href="{% url 'accounts:signin' %}" class="nav-item nav-link">Sign_in</a>
@@ -66,6 +63,12 @@
 </head>
 
 <body>
+
+{% if user.is_authenticated %}
+<div class="navigation-button">
+    <a href="/parsing/add_news/" class="btn btn-primary">Update News</a>
+</div>
+{% endif %}
 
 <!-- Top News Start-->
 <div class="top-news">
@@ -301,7 +304,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h2>Рiзне</h2>
+                <h2>Various</h2>
                 <div class="row cn-slider">
                     {% for element in other %}
                     <div class="col-md-6">
@@ -316,7 +319,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <h2>Полiтика</h2>
+                <h2>Politics</h2>
                 <div class="row cn-slider">
                     {% for element in politika %}
                     <div class="col-md-6">
@@ -331,7 +334,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <h2>Авто</h2>
+                <h2>Auto</h2>
                 <div class="row cn-slider">
                     {% for element in cars %}
                     <div class="col-md-6">
@@ -346,7 +349,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <h2>Здоров'я</h2>
+                <h2>Health</h2>
                 <div class="row cn-slider">
                     {% for element in health %}
                     <div class="col-md-6">
@@ -361,7 +364,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <h2>Економiка</h2>
+                <h2>Economy</h2>
                 <div class="row cn-slider">
                     {% for element in economy %}
                     <div class="col-md-6">
@@ -376,7 +379,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <h2>Спорт</h2>
+                <h2>Sport</h2>
                 <div class="row cn-slider">
                     {% for element in sport %}
                     <div class="col-md-6">
@@ -391,7 +394,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <h2>Туризм</h2>
+                <h2>Tourism</h2>
                 <div class="row cn-slider">
                     {% for element in tourism %}
                     <div class="col-md-6">
@@ -406,7 +409,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <h2>Наука та Iт</h2>
+                <h2>Science and IT</h2>
                 <div class="row cn-slider">
                     {% for element in science %}
                     <div class="col-md-6">
@@ -424,6 +427,7 @@
     </div>
 </div>
 <!-- Category News End-->
+
 
 
 

@@ -1,4 +1,10 @@
 {% load static %}
+{% if user.is_authenticated %}
+<div class="navigation-button">
+    <a href="/parsing/add_news/" class="btn btn-primary">Update exchange rate</a>
+</div>
+{% endif %}
+
     <div class="container-xxl py-5">
         <div class="container py-5">
             <div class="row g-5">
