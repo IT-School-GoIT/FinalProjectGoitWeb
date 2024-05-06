@@ -4,7 +4,7 @@
 
 ##  Варіант_2 для завантаження тестового варіанту
 - [Архів](https://github.com/IT-School-GoIT/FinalProjectGoitWeb/archive/refs/heads/main.zip)
-  or
+або
 - [Clone](https://github.com/IT-School-GoIT/FinalProjectGoitWeb.git) 
 - docker-compose up
 
