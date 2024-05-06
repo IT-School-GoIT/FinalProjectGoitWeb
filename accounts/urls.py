@@ -13,8 +13,10 @@ urlpatterns = [
     #      LoginView.as_view(template_name='accounts/login.html', form_class=LoginForm, redirect_authenticated_user=True),
     #      name='signin'),
     # path('logout/', LogoutView.as_view(template_name='accounts/logout.html'), name='logout'),
+
     # path('profile/', views.profile, name='profile'),
     # path('profile_settings/', views.profile_settings, name='profile_settings'),
+
     # path('reset-password/', views.ResetPasswordView.as_view(), name='password_reset'),
     # path('reset-password/done/', PasswordResetDoneView.as_view(template_name='accounts/password_reset_done.html'),
     #      name='password_reset_done'),

@@ -37,7 +37,7 @@ from .forms import RegisterForm
 #
 # @login_required
 # def profile(request):
-#     return render(request, 'accounts/profile.html', {
+#     return render(request, 'accounts/profile_s.html', {
 #         'title': 'profile',
 #         'page': 'profile',
 #         'app': 'accounts'

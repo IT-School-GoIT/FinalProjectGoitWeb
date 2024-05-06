@@ -116,3 +116,20 @@ def delete_category(request, category_id):
     else:
         category.delete()
         return JsonResponse({'message': 'Category has been deleted.'}, status=200)
+
+
+@login_required
+def profile(request):
+    return render(request, 's3_storage/profile.html', {
+        'title': 'profile',
+        'page': 'profile',
+        'app': 'accounts'
+    })
+
+@login_required
+def profile_settings(request):
+    return render(request, 's3_storage/profile_settings.html', {
+        'title': 'profile_settings',
+        'page': 'profile_settings',
+        'app': 'accounts'
+    })
