@@ -1,4 +1,4 @@
-1. для завантаження 
+1. для завантаження тестового варіанту
 docker pull antonbabenko1983/finalprojectgoitweb:web
 
 2. виконайте команду запуску
