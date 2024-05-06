@@ -14,4 +14,5 @@ urlpatterns = [
     path('delete_contact/<int:contact_id>/', views.delete_contact, name='delete_contact'),
     path('contacts_with_birthday/', views.get_contacts_with_birthday_in, name='contacts_with_birthday'),
 
+
 ]

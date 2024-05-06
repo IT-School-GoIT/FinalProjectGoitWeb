@@ -29,11 +29,11 @@ SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = env('DEBUG')
-ALLOWED_HOSTS = ['final-project-goit-web-antonbabenko.koyeb.app']
+# DEBUG = env('DEBUG')
+# ALLOWED_HOSTS = ['final-project-goit-web-antonbabenko.koyeb.app']
 
-# ALLOWED_HOSTS = ['*']
-# DEBUG = True
+ALLOWED_HOSTS = []
+DEBUG = True
 
 # Application definition
 
