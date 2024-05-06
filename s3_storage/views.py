@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -5,7 +6,7 @@ from django.views.decorators.http import require_http_methods
 
 from .models import File, FileCategory
 from .utils import delete_from_s3
-from .forms import FileForm
+from .forms import FileForm, ProfileForm
 from .custom_http_responses import HttpResponseConflict
 
 
@@ -123,13 +124,27 @@ def profile(request):
     return render(request, 's3_storage/profile.html', {
         'title': 'profile',
         'page': 'profile',
-        'app': 'accounts'
+        'app': 'profile'
     })
+
 
 @login_required
 def profile_settings(request):
-    return render(request, 's3_storage/profile_settings.html', {
-        'title': 'profile_settings',
-        'page': 'profile_settings',
-        'app': 'accounts'
-    })
+    # return render(request, 's3_storage/profile_settings.html', {
+    #     'title': 'profile_settings',
+    #     'page': 'profile_settings',
+    #     'app': 'profile'
+    # })
+
+    # @login_required
+    # def profile(request):
+    if request.method == 'POST':
+        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if profile_form.is_valid():
+            profile_form.save()
+            messages.success(request, 'Your profile is updated successfully')
+            # return redirect(to='users:profile')
+            return redirect(to='s3_storage:profile_settings')
+
+    profile_form = ProfileForm(instance=request.user.profile)
+    return render(request, 's3_storage/profile_settings.html', {'profile_form': profile_form})
