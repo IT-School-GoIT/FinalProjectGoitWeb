@@ -32,6 +32,7 @@ urlpatterns = [
     path('contacts/', include('contacts.urls')),
     path('notes/', include('notes.urls')),
     path('parsing/', include("parsing.urls")),
+    path('exchange/', include("exchange.urls")),
 
 ]
 

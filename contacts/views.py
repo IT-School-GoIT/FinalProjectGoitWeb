@@ -49,26 +49,33 @@ def edit_contact(request, contact_id):
 @login_required
 def delete_contact(request, contact_id):
     contact = get_object_or_404(Contact, id=contact_id, user=request.user)
-    contact.delete()
-    return redirect('contacts:contact_list')
+    if request.method == 'POST':
+        contact.delete()
+        return redirect('contacts:contact_list')
+    return render(request, 'comander/delete_contact.html', {'contact': contact})
 
 
 @login_required
 def search_contacts(request):
     query = request.GET.get('q')
     contacts = Contact.objects.filter(name__icontains=query)
-    return render(request, 'comander/search_all.html',
-                  {'contacts': contacts, 'query': query})
+    return render(request, 'comander/search_all.html', {'contacts': contacts, 'query': query})
 
 
 @login_required
 def get_contacts_with_birthday_in(request):
-    days_until_birthday = int(request.GET.get('days_until_birthday', 0))
+    days_until_birthday_str = request.GET.get('days_until_birthday', '0')
+    try:
+        days_until_birthday = int(days_until_birthday_str)
+        if days_until_birthday <= 0:
+            raise ValueError("Days until birthday must be a positive integer")
+    except (ValueError, TypeError):
+        return render(request, 'comander/search_error_contact.html')
+
     current_date = timezone.now().date()
     target_date = current_date + timedelta(days=days_until_birthday)
 
-    contacts_with_birthday = Contact.objects.filter(
-        Q(birthday__day=target_date.day) & Q(birthday__month=target_date.month)
-    )
+    contacts_with_birthday = Contact.objects.filter(Q(birthday__day=target_date.day) & Q(birthday__month=target_date.month))
 
-    return render(request, 'comander/contacts.html', {'contacts': contacts_with_birthday})
+    return render(request, 'comander/contacts.html',{'contacts': contacts_with_birthday})
+

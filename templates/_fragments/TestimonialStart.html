@@ -1,48 +1,44 @@
 {% load static %}
-{% if user.is_authenticated %}
-<div class="navigation-button">
-    <a href="/parsing/add_news/" class="btn btn-primary">Update exchange rate</a>
-</div>
-{% endif %}
-
     <div class="container-xxl py-5">
         <div class="container py-5">
             <div class="row g-5">
+                {% for el in privat %}
                 <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
-                    <h1 class="mb-4">Name of bank #1</h1>
-                    <a class="btn btn-primary rounded-pill px-4" href="">Read More</a>
+                    <h1 class="mb-4">{{ el.bank_name }}</h1>
+                    <a class="btn btn-primary rounded-pill px-4" href="{{ el.url_link }}">Read More</a>
                 </div>
                 <div class="col-lg-7 wow fadeIn" data-wow-delay="0.5s">
                     <div class="owl-carousel testimonial-carousel border-start border-primary">
+
 
                         <div class="testimonial-item ps-5">
                             <i class="fa fa-2x text-primary mb-3">USD</i>
                             <div>
                                 <p class="fs-4">
                                     <span>Купівля: </span>
-                                    <span>вартість</span>
+                                    <span>{{ el.buy_usd }}</span>
                                 </p>
                             </div>
                             <div>
                                 <p class="fs-4">
                                     <span>Продаж: </span>
-                                    <span>вартість</span>
+                                    <span>{{ el.sell_usd }}</span>
                                 </p>
                             </div>
                         </div>
-                    
+
                         <div class="testimonial-item ps-5">
                             <i class="fa fa-2x text-primary mb-3">EUR</i>
                             <div>
                                 <p class="fs-4">
                                     <span>Купівля: </span>
-                                    <span>вартість</span>
+                                    <span>{{ el.buy_eur }}</span>
                                 </p>
                             </div>
                             <div>
                                 <p class="fs-4">
                                     <span>Продаж: </span>
-                                    <span>вартість</span>
+                                    <span>{{ el.sell_eur }}</span>
                                 </p>
                             </div>
                         </div>
@@ -52,25 +48,27 @@
                             <div>
                                 <p class="fs-4">
                                     <span>Купівля: </span>
-                                    <span>вартість</span>
+                                    <span>{{ el.pln_buy }}</span>
                                 </p>
                             </div>
                             <div>
                                 <p class="fs-4">
                                     <span>Продаж: </span>
-                                    <span>вартість</span>
+                                    <span>{{ el.pln_sell }}</span>
                                 </p>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
+                {% endfor %}
             </div>
 
             <div class="row g-5">
+                {% for el in pumb %}
                 <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
-                    <h1 class="mb-4">Name of bank #2</h1>
-                    <a class="btn btn-primary rounded-pill px-4" href="">Read More</a>
+                    <h1 class="mb-4">{{ el.bank_name }}</h1>
+                    <a class="btn btn-primary rounded-pill px-4" href="{{ el.url_link }}">Read More</a>
                 </div>
                 <div class="col-lg-7 wow fadeIn" data-wow-delay="0.5s">
                     <div class="owl-carousel testimonial-carousel border-start border-primary">
@@ -80,29 +78,29 @@
                             <div>
                                 <p class="fs-4">
                                     <span>Купівля: </span>
-                                    <span>вартість</span>
+                                    <span>{{ el.buy_usd }}</span>
                                 </p>
                             </div>
                             <div>
                                 <p class="fs-4">
                                     <span>Продаж: </span>
-                                    <span>вартість</span>
+                                    <span>{{ el.sell_usd }}</span>
                                 </p>
                             </div>
                         </div>
-                    
+
                         <div class="testimonial-item ps-5">
                             <i class="fa fa-2x text-primary mb-3">EUR</i>
                             <div>
                                 <p class="fs-4">
                                     <span>Купівля: </span>
-                                    <span>вартість</span>
+                                    <span>{{ el.buy_eur }}</span>
                                 </p>
                             </div>
                             <div>
                                 <p class="fs-4">
                                     <span>Продаж: </span>
-                                    <span>вартість</span>
+                                    <span>{{ el.sell_eur }}</span>
                                 </p>
                             </div>
                         </div>
@@ -112,25 +110,27 @@
                             <div>
                                 <p class="fs-4">
                                     <span>Купівля: </span>
-                                    <span>вартість</span>
+                                    <span>{{ el.pln_buy }}</span>
                                 </p>
                             </div>
                             <div>
                                 <p class="fs-4">
                                     <span>Продаж: </span>
-                                    <span>вартість</span>
+                                    <span>{{ el.pln_sell }}</span>
                                 </p>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
+                {% endfor %}
             </div>
 
             <div class="row g-5">
+                {% for el in minfin %}
                 <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
-                    <h1 class="mb-4">Name of bank #3</h1>
-                    <a class="btn btn-primary rounded-pill px-4" href="">Read More</a>
+                    <h1 class="mb-4">{{ el.bank_name }}</h1>
+                    <a class="btn btn-primary rounded-pill px-4" href="{{ el.url_link }}">Read More</a>
                 </div>
                 <div class="col-lg-7 wow fadeIn" data-wow-delay="0.5s">
                     <div class="owl-carousel testimonial-carousel border-start border-primary">
@@ -140,29 +140,29 @@
                             <div>
                                 <p class="fs-4">
                                     <span>Купівля: </span>
-                                    <span>вартість</span>
+                                    <span>{{ el.buy_usd }}</span>
                                 </p>
                             </div>
                             <div>
                                 <p class="fs-4">
                                     <span>Продаж: </span>
-                                    <span>вартість</span>
+                                    <span>{{ el.sell_usd }}</span>
                                 </p>
                             </div>
                         </div>
-                    
+
                         <div class="testimonial-item ps-5">
                             <i class="fa fa-2x text-primary mb-3">EUR</i>
                             <div>
                                 <p class="fs-4">
                                     <span>Купівля: </span>
-                                    <span>вартість</span>
+                                    <span>{{ el.buy_eur }}</span>
                                 </p>
                             </div>
                             <div>
                                 <p class="fs-4">
                                     <span>Продаж: </span>
-                                    <span>вартість</span>
+                                    <span>{{ el.sell_eur }}</span>
                                 </p>
                             </div>
                         </div>
@@ -172,25 +172,27 @@
                             <div>
                                 <p class="fs-4">
                                     <span>Купівля: </span>
-                                    <span>вартість</span>
+                                    <span>{{ el.pln_buy }}</span>
                                 </p>
                             </div>
                             <div>
                                 <p class="fs-4">
                                     <span>Продаж: </span>
-                                    <span>вартість</span>
+                                    <span>{{ el.pln_sell }}</span>
                                 </p>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
+                {% endfor %}
             </div>
 
             <div class="row g-5">
+                {% for el in finance %}
                 <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
-                    <h1 class="mb-4">Name of bank #4</h1>
-                    <a class="btn btn-primary rounded-pill px-4" href="">Read More</a>
+                    <h1 class="mb-4">{{ el.bank_name }}</h1>
+                    <a class="btn btn-primary rounded-pill px-4" href="{{ el.url_link }}">Read More</a>
                 </div>
                 <div class="col-lg-7 wow fadeIn" data-wow-delay="0.5s">
                     <div class="owl-carousel testimonial-carousel border-start border-primary">
@@ -200,29 +202,29 @@
                             <div>
                                 <p class="fs-4">
                                     <span>Купівля: </span>
-                                    <span>вартість</span>
+                                    <span>{{ el.buy_usd }}</span>
                                 </p>
                             </div>
                             <div>
                                 <p class="fs-4">
                                     <span>Продаж: </span>
-                                    <span>вартість</span>
+                                    <span>{{ el.sell_usd }}</span>
                                 </p>
                             </div>
                         </div>
-                    
+
                         <div class="testimonial-item ps-5">
                             <i class="fa fa-2x text-primary mb-3">EUR</i>
                             <div>
                                 <p class="fs-4">
                                     <span>Купівля: </span>
-                                    <span>вартість</span>
+                                    <span>{{ el.buy_eur }}</span>
                                 </p>
                             </div>
                             <div>
                                 <p class="fs-4">
                                     <span>Продаж: </span>
-                                    <span>вартість</span>
+                                    <span>{{ el.sell_eur }}</span>
                                 </p>
                             </div>
                         </div>
@@ -232,19 +234,20 @@
                             <div>
                                 <p class="fs-4">
                                     <span>Купівля: </span>
-                                    <span>вартість</span>
+                                    <span>{{ el.pln_buy }}</span>
                                 </p>
                             </div>
                             <div>
                                 <p class="fs-4">
                                     <span>Продаж: </span>
-                                    <span>вартість</span>
+                                    <span>{{ el.pln_sell }}</span>
                                 </p>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
     </div>
