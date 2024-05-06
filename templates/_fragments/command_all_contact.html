@@ -64,7 +64,6 @@
 </div>
 
 
-
 <script>
     document.getElementById('editButton').addEventListener('click', function() {
         // Тут ви можете задати URL для сторінки редагування
@@ -92,35 +91,6 @@
     });
 </script>
 
-
-<script>
-    document.getElementById('editButton').addEventListener('click', function() {
-        // Тут ви можете задати URL для сторінки редагування
-        var editUrl = '{% url "contacts:contact_list"%}';
-        // Перенаправлення на сторінку редагування
-        window.location.href = editUrl;
-    });
-</script>
-
-<script>    
-    document.getElementById('searchButton').addEventListener('click', function() {
-        // Тут ви можете задати URL для сторінки додавання контакту
-
-        var addUrl = '{% url "contacts:create" %}';
-        // Перенаправлення на сторінку додавання контакту
-        window.location.href = addUrl;
-      });
-
-      // Додавання ефекту ховеру
-      document.getElementById('addButton').addEventListener('mouseenter', function() {
-          this.style.backgroundColor = 'lightblue';
-      });
-
-      document.getElementById('addButton').addEventListener('mouseleave', function() {
-          this.style.backgroundColor = ''; // Повертаємо колір фону до звичайного
-      });
-</script>
-
 <script>
     document.getElementById('searchButton').addEventListener('click', function() {
         // Отримуємо значення введене в поле пошуку
@@ -140,28 +110,7 @@
         this.style.backgroundColor = ''; // Повертаємо колір фону до звичайного
     });
 
-    
-
-    document.getElementById('searchButton').addEventListener('click', function() {
-        // Тут ви можете задати URL для сторінки додавання контакту
-        var addUrl = '#';
-        // Перенаправлення на сторінку додавання контакту
-        window.location.href = addUrl;
-    });
-
-    // Додавання ефекту ховеру
-    document.getElementById('searchButton').addEventListener('mouseenter', function() {
-        this.style.backgroundColor = 'lightblue';
-    });
-
-    document.getElementById('searchButton').addEventListener('mouseleave', function() {
-        this.style.backgroundColor = ''; // Повертаємо колір фону до звичайного
-    });
-
 </script>
-
-
-
 
 <script>
     // Пошук
