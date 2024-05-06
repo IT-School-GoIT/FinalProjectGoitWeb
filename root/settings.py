@@ -29,11 +29,11 @@ SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = env('DEBUG')                                                      # Для продакшн
-ALLOWED_HOSTS = ['final-project-goit-web-antonbabenko.koyeb.app']         # Для продакшн
+# DEBUG = env('DEBUG')                                                      # Для продакшн
+# ALLOWED_HOSTS = ['final-project-goit-web-antonbabenko.koyeb.app']         # Для продакшн
 
-# ALLOWED_HOSTS = ['*']     # Тільки для розробки
-# DEBUG = True              # Тільки для розробки
+ALLOWED_HOSTS = ['*']     # Тільки для розробки
+DEBUG = True              # Тільки для розробки
 
 # Application definition
 
@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'contacts',
     'notes',
     'parsing',
+    'exchange',
 
 ]
 
