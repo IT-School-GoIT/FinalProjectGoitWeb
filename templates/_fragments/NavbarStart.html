@@ -25,7 +25,7 @@
                 <div class="navbar-nav ms-auto">
                     <a href="{% url 'home:home' %}" class="nav-item nav-link active">Home</a>
                     <a href="{% url 'team:team' %}" class="nav-item nav-link">Team</a>
-                    <a href="{% url 'home:exchange_rate' %}" class="nav-item nav-link" style="white-space: nowrap;" >Exchange rate</a>
+                    <a href="/exchange/currency/" class="nav-item nav-link" style="white-space: nowrap;" >Exchange rate</a>
                     <a href="/parsing/news/" class="nav-item nav-link">News</a>
 
           {% if user.is_authenticated %}
