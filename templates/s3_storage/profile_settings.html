@@ -26,9 +26,11 @@
                 <div class="col-sm-6 col-12">
                   <div class="d-flex flex-row">
                     {% if profile_form.instance.avatar.url %}
-                        <img class="img-fluid change-img-avatar" src="{{ profile_form.instance.avatar.url }}" alt="" style="width: 150px; height: 150px;">
-                      {% else %}
-                        <img class="img-fluid change-img-avatar" src="{% static 'img/default_avatar.png' %}" alt="" style="width: 150px; height: 150px;">
+                      <img class="img-fluid change-img-avatar" src="{{ profile_form.instance.avatar.url }}" alt=""
+                           style="width: 150px; height: 150px;">
+                    {% else %}
+                      <img class="img-fluid change-img-avatar" src="{% static 'img/default_avatar.png' %}" alt=""
+                           style="width: 150px; height: 150px;">
                     {% endif %}
                     <div id="dropzone-sm" class="mb-4 dropzone-dark">
 

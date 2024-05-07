@@ -1,45 +1,40 @@
 {% load static %}
+
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
-    <div class="navbar-nav align-items-center ms-auto">
+  <div class="navbar-nav align-items-center ms-auto">
 
 
-        <div class="nav-item dropdown">
-            <a href="{% url 's3_storage:list' %}" class="nav-link">Storage Overview</a>
-        </div>
-
-        <div class="nav-item dropdown">
-            <a href="{% url 'notes:note_list' %}" class="nav-link">All Note</a>
-        </div>
-
-        <div class="nav-item dropdown">
-            <a href="{% url 'contacts:contact_list' %}" class="nav-link">All Contacts</a>
-        </div>        
-        
-        <div class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-{#                {% if user.photo %}#}
-{#                    <img class="rounded-circle me-lg-2" src="{{ user.photo.url }}" alt="" style="width: 40px; height: 40px;">#}
-{#                  <img src="{{ profile_form.instance.avatar.url }}" class="img-fluid change-img-avatar" alt="Avatar">#}
-{#                {% else %}#}
-{#                    <img class="rounded-circle me-lg-2" src="{% static 'img/team-9.jpg' %}" alt="" style="width: 40px; height: 40px;">#}
-{#              <img class="rounded-circle me-lg-2" src="{{ profile_form.instance.avatar.url }}" alt="" style="width: 40px; height: 40px;">#}
-{#                  <img src="{{ profile_form.instance.avatar.url }}" class="img-fluid change-img-avatar" alt="Avatar" style="width: 40px; height: 40px;">#}
-{#                {% endif %}#}
-                    {% if profile_form.instance.avatar.url %}
-                        <img class="rounded-circle me-lg-2" src="{{ profile_form.instance.avatar.url }}" alt="" style="width: 40px; height: 40px;">
-                      {% else %}
-                        <img class="rounded-circle me-lg-2" src="{% static 'img/default_avatar.png' %}" alt="" style="width: 40px; height: 40px;">
-                    {% endif %}
-
-                <span class="d-none d-lg-inline-flex">{{ user.username }}</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                <a href="{% url 's3_storage:profile' %}" class="dropdown-item">My Profile</a>
-                <a href="{% url 's3_storage:profile_settings' %}" class="dropdown-item">Settings</a>
-                <a href="{% url 'account_logout' %}" class="dropdown-item">Go Out</a>
-            </div>
-        </div>
+    <div class="nav-item dropdown">
+      <a href="{% url 's3_storage:list' %}" class="nav-link">Storage Overview</a>
     </div>
+
+    <div class="nav-item dropdown">
+      <a href="{% url 'notes:note_list' %}" class="nav-link">All Note</a>
+    </div>
+
+    <div class="nav-item dropdown">
+      <a href="{% url 'contacts:contact_list' %}" class="nav-link">All Contacts</a>
+    </div>
+
+    <div class="nav-item dropdown">
+      <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+        {% if profile_form.instance.avatar.url %}
+          <img class="rounded-circle me-lg-2" src="{{ profile_form.instance.avatar.url }}" alt=""
+               style="width: 40px; height: 40px;">
+        {% else %}
+          <img class="rounded-circle me-lg-2" src="{% static 'img/default_avatar.png' %}" alt=""
+               style="width: 40px; height: 40px;">
+        {% endif %}
+
+        <span class="d-none d-lg-inline-flex">{{ user.username }}</span>
+      </a>
+      <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+        <a href="{% url 's3_storage:profile' %}" class="dropdown-item">My Profile</a>
+        <a href="{% url 's3_storage:profile_settings' %}" class="dropdown-item">Settings</a>
+        <a href="{% url 'account_logout' %}" class="dropdown-item">Go Out</a>
+      </div>
+    </div>
+  </div>
 </nav>
 <!-- Navbar End -->

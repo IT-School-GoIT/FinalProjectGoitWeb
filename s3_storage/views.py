@@ -130,15 +130,17 @@ def profile(request):
 
 @login_required
 def profile_settings(request):
-    # try:
-    #     profile = request.user.profile
-    # except Profile.DoesNotExist:
-    #     profile = Profile.objects.create(user=request.user)
+    try:
+        profile = request.user.profile
+    except Profile.DoesNotExist:
+        profile = Profile(user=request.user)
 
     if request.method == 'POST':
         profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
         if profile_form.is_valid():
-            profile_form.save()
+            profile = profile_form.save(commit=False)
+            profile.user = request.user
+            profile.save()
             messages.success(request, 'Your profile is updated successfully')
             return redirect('s3_storage:profile_settings')
 
