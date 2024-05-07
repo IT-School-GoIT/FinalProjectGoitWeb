@@ -10,24 +10,17 @@
     <div class="col-sm-12 col-xl-6 mx-auto">
       <div class="bg-light rounded h-100 p-4">
         <h6 class="mb-4">New Category</h6>
-
         <form method="post">
           {% csrf_token %}
-
           <div class="mb-3">
-
             <label for="formFile" class="form-label">Add a new category</label>
             <input class="form-control" type="text" name="name" required>
-
           </div>
-
           <div class="d-flex justify-content-between">
             <button type="submit" class="btn btn-sm btn-primary px-5 me-2">Create Category</button>
             <a href="{% url 's3_storage:category_list' %}" class="btn btn-sm btn-primary px-5">Cancel</a>
           </div>
-
         </form>
-
       </div>
     </div>
   </div>

@@ -5,4 +5,5 @@ app_parsing = "exchange"
 
 urlpatterns = [
     path("currency/", views.list_currency, name="currency"),
-    path("add_currency/", views.add_currency, name="add_currency"),]
+    path("add_currency/", views.add_currency, name="add_currency"),
+]

@@ -3,15 +3,8 @@
 {% block content %}
 {% load static %}
 
+{% include '_fragments/command_navbar.html' %}
 
-      <!-- Navbar Start -->
-      {% include '_fragments/command_navbar.html' %}
-      <!-- Navbar End -->
-
-
-      <!-- Table Start -->
-      {% include '_fragments/command_all_notes.html' %}
-      <!-- Table End -->
-
+{% include '_fragments/command_all_notes.html' %}
 
 {% endblock content %}

@@ -7,177 +7,168 @@
 
 <div class="container-fluid pt-4 px-4">
     <div class="row g-4">
-
-        <!-- Navbar Start -->
         {% include '_fragments/command_navbar.html' %}
-        <!-- Navbar End -->        
-
     </div>
 </div>
-
 <div class="content-wrapper">
-    <!-- Row start -->    
-        <div class="col-xl-12">
-        <!-- Card start -->
+    <div class="col-xl-12">
         <div class="card">
             <div class="card-header">
                 <div class="card-title">Account Settings</div>
             </div>
             <div class="card-body">
-            <!-- Row start -->
-            <div class="row gx-3">
-                <div class="col-xxl-8 col-xl-7 col-lg-7 col-md-6 col-sm-12 col-12">
                 <div class="row gx-3">
-                    <div class="col-sm-6 col-12">
-                    <div class="d-flex flex-row">
-                        <img src="{% static 'img/team-9.jpg' %}" class="img-fluid change-img-avatar"
-                        alt="Free Dashboards">
-                        <div id="dropzone-sm" class="mb-4 dropzone-dark">
-                        <form action="/upload" class="dropzone needsclick dz-clickable" id="demo-upload">
-                            <div class="dz-message needsclick">
-                            <button type="button" class="dz-button">Change Image.</button>
+                    <div class="col-xxl-8 col-xl-7 col-lg-7 col-md-6 col-sm-12 col-12">
+                        <div class="row gx-3">
+                            <div class="col-sm-6 col-12">
+                                <div class="d-flex flex-row">
+                                    <img src="{% static 'img/team-9.jpg' %}" class="img-fluid change-img-avatar"
+                                        alt="Free Dashboards">
+                                    <div id="dropzone-sm" class="mb-4 dropzone-dark">
+                                        <form action="/upload" class="dropzone needsclick dz-clickable"
+                                            id="demo-upload">
+                                            <div class="dz-message needsclick">
+                                                <button type="button" class="dz-button">Change Image.</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                        </form>
+                        </div>
+                        <div class="row gx-3">
+                            <div class="col-xxl-4 col-sm-6 col-12">
+                                <div class="mb-3">
+                                    <label for="fullName" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="fullName" placeholder="Full Name"
+                                        readonly>
+                                </div>
+                            </div>
+                            <div class="col-xxl-4 col-sm-6 col-12">
+                                <div class="mb-3">
+                                    <label for="emailID" class="form-label">Email ID</label>
+                                    <input type="email" class="form-control" id="emailID" placeholder="reese@meail.com"
+                                        readonly>
+                                </div>
+                            </div>
+                            <div class="col-xxl-4 col-sm-6 col-12">
+                                <div class="mb-3">
+                                    <label for="phoneNo" class="form-label">Phone</label>
+                                    <input type="number" class="form-control" id="phoneNo" placeholder="123-456-7890">
+                                </div>
+                            </div>
+                            <div class="col-xxl-4 col-sm-6 col-12">
+                                <div class="mb-3">
+                                    <label for="address" class="form-label">Address</label>
+                                    <input type="text" class="form-control" id="address" placeholder="Address">
+                                </div>
+                            </div>
+                            <div class="col-xxl-4 col-sm-6 col-12">
+                                <div class="mb-3">
+                                    <label for="country" class="form-label">Country</label>
+                                    <select class="form-control" id="country">
+                                        <option>United States</option>
+                                        <option>Australia</option>
+                                        <option>Canada</option>
+                                        <option>Gremany</option>
+                                        <option>India</option>
+                                        <option>Japan</option>
+                                        <option>England</option>
+                                        <option>Ukraine</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xxl-4 col-sm-6 col-12">
+                                <div class="mb-3">
+                                    <label for="enterPassword" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="enterPassword"
+                                        placeholder="Enter Password">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    </div>
-                </div>
-                <div class="row gx-3">
-                    <div class="col-xxl-4 col-sm-6 col-12">
-                    <!-- Form Field Start -->
-                    <div class="mb-3">
-                        <label for="fullName" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="fullName" placeholder="Full Name" readonly>
-                        </div>
-                    </div>
-                    <div class="col-xxl-4 col-sm-6 col-12">
-                    <!-- Form Field Start -->
-                    <div class="mb-3">
-                        <label for="emailID" class="form-label">Email ID</label>
-                        <input type="email" class="form-control" id="emailID" placeholder="reese@meail.com" readonly>
-                    </div>
-                    </div>
-                    <div class="col-xxl-4 col-sm-6 col-12">
-                    <!-- Form Field Start -->
-                    <div class="mb-3">
-                        <label for="phoneNo" class="form-label">Phone</label>
-                        <input type="number" class="form-control" id="phoneNo" placeholder="123-456-7890">
-                    </div>
-                    </div>
-                    <div class="col-xxl-4 col-sm-6 col-12">
-                    <!-- Form Field Start -->
-                    <div class="mb-3">
-                        <label for="address" class="form-label">Address</label>
-                        <input type="text" class="form-control" id="address" placeholder="Address">
-                    </div>
-                    </div>
-                    <div class="col-xxl-4 col-sm-6 col-12">
-                    <!-- Form Field Start -->
-                    <div class="mb-3">
-                        <label for="country" class="form-label">Country</label>
-                        <select class="form-control" id="country">
-                        <option>United States</option>
-                        <option>Australia</option>
-                        <option>Canada</option>
-                        <option>Gremany</option>
-                        <option>India</option>
-                        <option>Japan</option>
-                        <option>England</option>
-                        <option>Ukraine</option>
-                        </select>
-                    </div>
-                    </div>
-                    <div class="col-xxl-4 col-sm-6 col-12">
-                    <!-- Form Field Start -->
-                    <div class="mb-3">
-                        <label for="enterPassword" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="enterPassword"
-                        placeholder="Enter Password">
-                    </div>
-                    </div>
-                </div>
-                </div>
-                <div class="col-xxl-4 col-lg-5 col-md-6 col-sm-12 col-12">
-                <div class="account-settings-block">                    
-                    <div class="settings-block">
-                    <div class="settings-block-title">Settings for news</div>
-                    <div class="settings-block-body">
-                        <div class="list-group">
-                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                <div>Show Sports news#1</div>
-                                <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="showNotifications">
-                                <label class="form-check-label" for="showNotifications"></label>
-                                </div>
-                            </div>
-                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                <div>Show Technology news#2</div>
-                                <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="showEmailNotifications" checked>
-                                <label class="form-check-label" for="showEmailNotifications"></label>
-                                </div>
-                            </div>
-                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                <div>Show Business news#3</div>
-                                <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="showChatNotifications">
-                                <label class="form-check-label" for="showChatNotifications"></label>
-                                </div>
-                            </div>
-                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                <div>Show Entertainment news#4</div>
-                                <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="showPurchaseNotifications">
-                                <label class="form-check-label" for="showPurchaseNotifications"></label>
-                                </div>
-                            </div>
-                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                <div>Show Sports news#5</div>
-                                <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="showNotifications">
-                                <label class="form-check-label" for="showNotifications"></label>
-                                </div>
-                            </div>
-                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                <div>Show Technology news#6</div>
-                                <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="showEmailNotifications" checked>
-                                <label class="form-check-label" for="showEmailNotifications"></label>
-                                </div>
-                            </div>
-                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                <div>Show Business news#7</div>
-                                <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="showChatNotifications">
-                                <label class="form-check-label" for="showChatNotifications"></label>
-                                </div>
-                            </div>
-                            <div class="list-group-item d-flex justify-content-between align-items-center">
-                                <div>Show Entertainment news#8</div>
-                                <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="showPurchaseNotifications">
-                                <label class="form-check-label" for="showPurchaseNotifications"></label>
-                                </div>
-                            </div>
+                    <div class="col-xxl-4 col-lg-5 col-md-6 col-sm-12 col-12">
+                        <div class="account-settings-block">
+                            <div class="settings-block">
+                                <div class="settings-block-title">Settings for news</div>
+                                <div class="settings-block-body">
+                                    <div class="list-group">
+                                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div>Show Sports news#1</div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="showNotifications">
+                                                <label class="form-check-label" for="showNotifications"></label>
+                                            </div>
+                                        </div>
+                                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div>Show Technology news#2</div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="showEmailNotifications" checked>
+                                                <label class="form-check-label" for="showEmailNotifications"></label>
+                                            </div>
+                                        </div>
+                                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div>Show Business news#3</div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="showChatNotifications">
+                                                <label class="form-check-label" for="showChatNotifications"></label>
+                                            </div>
+                                        </div>
+                                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div>Show Entertainment news#4</div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="showPurchaseNotifications">
+                                                <label class="form-check-label" for="showPurchaseNotifications"></label>
+                                            </div>
+                                        </div>
+                                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div>Show Sports news#5</div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="showNotifications">
+                                                <label class="form-check-label" for="showNotifications"></label>
+                                            </div>
+                                        </div>
+                                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div>Show Technology news#6</div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="showEmailNotifications" checked>
+                                                <label class="form-check-label" for="showEmailNotifications"></label>
+                                            </div>
+                                        </div>
+                                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div>Show Business news#7</div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="showChatNotifications">
+                                                <label class="form-check-label" for="showChatNotifications"></label>
+                                            </div>
+                                        </div>
+                                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div>Show Entertainment news#8</div>
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox"
+                                                    id="showPurchaseNotifications">
+                                                <label class="form-check-label" for="showPurchaseNotifications"></label>
+                                            </div>
+                                        </div>
 
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div class="col-sm-12 col-12">
+                        <hr>
+                        <button class="btn btn-info">Save Settings</button>
                     </div>
                 </div>
-                </div>
-                <div class="col-sm-12 col-12">
-                <hr>
-                <button class="btn btn-info">Save Settings</button>
-                </div>
-            </div>
-            <!-- Row end -->
             </div>
         </div>
-        <!-- Card end -->
-        </div>    
-    <!-- Row end -->
+    </div>
 </div>
-    <!-- Content wrapper end -->      
 
 
 {% endblock content %}

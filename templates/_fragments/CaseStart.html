@@ -1,98 +1,119 @@
 {% load static %}
-    
+
 
 
 
 <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="mx-auto text-center wow fadeIn mx-auto" data-wow-delay="0.1s" style="max-width: 800px;">
-                <h1 class="mb-4 responsive-heading">Доступні команди Assistant</h1>
+    <div class="container py-5">
+        <div class="mx-auto text-center wow fadeIn mx-auto" data-wow-delay="0.1s" style="max-width: 800px;">
+            <h1 class="mb-4 responsive-heading">Доступні команди Assistant</h1>
+        </div>
+        <div class="row g-3">
+
+            <div class="col-lg-3 col-6  wow fadeIn mx-auto" data-wow-delay="0.3s" style="width: 3%;">
+                <div class="case-item position-relative overflow-hidden rounded mb-2">
+                    <!-- Посилання на велике зображення, яке відкривається у FancyBox -->
+                    <a href="{% static 'img/comand/contact.png' %}" data-fancybox="gallery1">
+                        <!-- Мініатюра зображення -->
+                        <img class="img-fluid" src="{% static 'img/project-1.jpg' %}" alt=""
+                            style="width: 100%; height: 300px; object-fit: cover;">
+                        <!-- Накладний текст, який з'являється при наведенні миші -->
+                        <div class="case-overlay text-decoration-none">
+                            <small style="font-size: 1.4em;">Contacts</small>
+                            <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Name
+                            </h5>
+                            <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Phone
+                            </h5>
+                            <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Email
+                            </h5>
+                            <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Address
+                            </h5>
+                            <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Birthday
+                            </h5>
+                            <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Notes
+                            </h5>
+                        </div>
+                    </a>
+                </div>
             </div>
-            <div class="row g-3" >
 
-                <div class="col-lg-3 col-6  wow fadeIn mx-auto" data-wow-delay="0.3s" style="width: 3%;">
-                    <div class="case-item position-relative overflow-hidden rounded mb-2">
-                        <!-- Посилання на велике зображення, яке відкривається у FancyBox -->
-                        <a href="{% static 'img/comand/contact.png' %}" data-fancybox="gallery1">
-                            <!-- Мініатюра зображення -->
-                            <img class="img-fluid" src="{% static 'img/project-1.jpg' %}" alt="" style="width: 100%; height: 300px; object-fit: cover;">
-                            <!-- Накладний текст, який з'являється при наведенні миші -->
-                            <div class="case-overlay text-decoration-none">
-                                <small style="font-size: 1.4em;">Contacts</small>
-                                <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Name</h5>
-                                <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Phone</h5>
-                                <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Email</h5>
-                                <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Address</h5>
-                                <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Birthday</h5>
-                                <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Notes</h5>
-                            </div>
-                        </a>
-                    </div>
+            <div class="col-lg-3 col-6  wow fadeIn mx-auto" data-wow-delay="0.5s" style="width: 22%;">
+                <div class="case-item position-relative overflow-hidden rounded mb-2">
+                    <!-- Посилання на велике зображення, яке відкривається у FancyBox -->
+                    <a href="{% static 'img/comand/note.png' %}" data-fancybox="gallery2">
+                        <!-- Мініатюра зображення -->
+                        <img class="img-fluid" src="{% static 'img/project-7.jpg' %}" alt=""
+                            style="width: 100%; height: 300px; object-fit: cover;">
+                        <!-- Накладний текст, який з'являється при наведенні миші -->
+                        <div class="case-overlay text-decoration-none">
+                            <small style="font-size: 1.4em;">Notes</small>
+                            <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Name
+                            </h5>
+                            <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">.
+                                Description</h5>
+                            <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Date
+                            </h5>
+                            <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Actions
+                            </h5>
+                            <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. </h5>
+                            <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. </h5>
+                        </div>
+                    </a>
                 </div>
-
-                <div class="col-lg-3 col-6  wow fadeIn mx-auto" data-wow-delay="0.5s" style="width: 22%;">
-                    <div class="case-item position-relative overflow-hidden rounded mb-2">
-                        <!-- Посилання на велике зображення, яке відкривається у FancyBox -->
-                        <a href="{% static 'img/comand/note.png' %}" data-fancybox="gallery2">
-                            <!-- Мініатюра зображення -->
-                            <img class="img-fluid" src="{% static 'img/project-7.jpg' %}" alt="" style="width: 100%; height: 300px; object-fit: cover;">
-                            <!-- Накладний текст, який з'являється при наведенні миші -->
-                            <div class="case-overlay text-decoration-none">
-                                <small style="font-size: 1.4em;">Notes</small>
-                                <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Name</h5>
-                                <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Description</h5>
-                                <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Date</h5>
-                                <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Actions</h5>
-                                <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. </h5>
-                                <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. </h5>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-6 wow fadeIn mx-auto" data-wow-delay="0.5s" style="width: 22%;">
-                    <div class="case-item position-relative overflow-hidden rounded mb-2">
-                        <!-- Посилання на велике зображення, яке відкривається у FancyBox -->
-                        <a href="{% static 'img/comand/contact.png' %}" data-fancybox="gallery3">
-                            <!-- Мініатюра зображення -->
-                            <img class="img-fluid" src="{% static 'img/project-8.jpg' %}" alt="" style="width: 100%; height: 300px; object-fit: cover;">
-                            <!-- Накладний текст, який з'являється при наведенні миші -->
-                            <div class="case-overlay text-decoration-none">
-                                <small style="font-size: 1.4em;">Files</small>
-                                <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Name</h5>
-                                <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Expansion</h5>
-                                <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Description</h5>
-                                <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Date</h5>
-                                <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Actions</h5>
-                                <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. </h5>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-6  wow fadeIn mx-auto" data-wow-delay="0.5s" style="width: 22%;">
-                    <div class="case-item position-relative overflow-hidden rounded mb-2">
-                        <!-- Посилання на велике зображення, яке відкривається у FancyBox -->
-                        <a href="{% static 'img/comand/news1.png' %}" data-fancybox="gallery4">
-                            <!-- Мініатюра зображення -->
-                            <img class="img-fluid" src="{% static 'img/project-2.jpg' %}" alt="" style="width: 100%; height: 300px; object-fit: cover;">
-                            <!-- Накладний текст, який з'являється при наведенні миші -->
-                            <div class="case-overlay text-decoration-none">
-                                <small style="font-size: 1.4em;">News</small>
-                                <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Choice</h5>
-                                <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. 8 topics</h5>
-                                <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. </h5>
-                                <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. </h5>
-                                <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. </h5>
-                                <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. </h5>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                
             </div>
+
+            <div class="col-lg-3 col-6 wow fadeIn mx-auto" data-wow-delay="0.5s" style="width: 22%;">
+                <div class="case-item position-relative overflow-hidden rounded mb-2">
+                    <!-- Посилання на велике зображення, яке відкривається у FancyBox -->
+                    <a href="{% static 'img/comand/contact.png' %}" data-fancybox="gallery3">
+                        <!-- Мініатюра зображення -->
+                        <img class="img-fluid" src="{% static 'img/project-8.jpg' %}" alt=""
+                            style="width: 100%; height: 300px; object-fit: cover;">
+                        <!-- Накладний текст, який з'являється при наведенні миші -->
+                        <div class="case-overlay text-decoration-none">
+                            <small style="font-size: 1.4em;">Files</small>
+                            <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Name
+                            </h5>
+                            <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">.
+                                Expansion</h5>
+                            <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">.
+                                Description</h5>
+                            <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Date
+                            </h5>
+                            <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Actions
+                            </h5>
+                            <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. </h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-6  wow fadeIn mx-auto" data-wow-delay="0.5s" style="width: 22%;">
+                <div class="case-item position-relative overflow-hidden rounded mb-2">
+                    <!-- Посилання на велике зображення, яке відкривається у FancyBox -->
+                    <a href="{% static 'img/comand/news1.png' %}" data-fancybox="gallery4">
+                        <!-- Мініатюра зображення -->
+                        <img class="img-fluid" src="{% static 'img/project-2.jpg' %}" alt=""
+                            style="width: 100%; height: 300px; object-fit: cover;">
+                        <!-- Накладний текст, який з'являється при наведенні миші -->
+                        <div class="case-overlay text-decoration-none">
+                            <small style="font-size: 1.4em;">News</small>
+                            <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. Choice
+                            </h5>
+                            <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. 8 topics
+                            </h5>
+                            <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. </h5>
+                            <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. </h5>
+                            <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. </h5>
+                            <h5 class="lh-base text-white mb-1" style="margin-bottom: 2px; font-size: 0.8em;">. </h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
         </div>
     </div>
+</div>
 
 
 

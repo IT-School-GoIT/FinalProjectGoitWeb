@@ -3,17 +3,12 @@
 {% block content %}
 {% load static %} 
 
-<!-- Navbar Start -->
 {% include '_fragments/command_navbar.html' %}
-<!-- Navbar End -->
-<div class="content-wrapper">
 
-    <!-- Row start -->
+<div class="content-wrapper">
     <div class="row gx-3">
         <div class="col-sm-12 col-12">     
-
             <div class="card">    
-            <!-- Пошук -->
                 <form method="GET" action="{% url 'notes:note_list' %}">
                     <div class="row">
                         <div class="col-md-6">
@@ -34,8 +29,6 @@
                     <button type="submit" class="btn btn-primary">Знайти</button>
                 </form>       
             </div>              
-
-                <!-- Card start -->
                 <div class="card">            
                     <div class="card-header">                            
                         <div class="card-title">Data Notes</div>                
@@ -73,7 +66,6 @@
                                                     <span>{{ tag.name }}</span>
                                                 {% endfor %}
                                             </td>
-                                            <!-- Форматування дати та часу -->
                                             <td>{{ note.created|date:"d-m-Y H:i" }}</td>
                                             <td>
                                                 <div class="d-flex justify-content-between align-items-center">
@@ -122,9 +114,7 @@
         
     <script>
         document.getElementById('editButton').addEventListener('click', function() {
-          // Тут ви можете задати URL для сторінки редагування
           var editUrl = 'edit_page.html';
-          // Перенаправлення на сторінку редагування
           window.location.href = editUrl;
         });
 
@@ -134,37 +124,29 @@
 
     <script>
         document.getElementById('addButton').addEventListener('click', function() {
-        // Тут ви можете задати URL для сторінки додавання контакту
         var addUrl = '{% url "notes:note_create" %}';
-        // Перенаправлення на сторінку додавання контакту
         window.location.href = addUrl;
         });
 
-        // Додавання ефекту ховеру
         document.getElementById('addButton').addEventListener('mouseenter', function() {
             this.style.backgroundColor = 'lightblue';
         });
 
         document.getElementById('addButton').addEventListener('mouseleave', function() {
-            this.style.backgroundColor = ''; // Повертаємо колір фону до звичайного
+            this.style.backgroundColor = ''; 
         });
 
-
-
         document.getElementById('listtag').addEventListener('click', function() {
-        // Тут ви можете задати URL для сторінки додавання контакту
         var addUrl = '{% url "notes:tag_list" %}';
-        // Перенаправлення на сторінку додавання контакту
         window.location.href = addUrl;
         });
 
-        // Додавання ефекту ховеру
         document.getElementById('listtag').addEventListener('mouseenter', function() {
             this.style.backgroundColor = 'lightblue';
         });
 
         document.getElementById('listtag').addEventListener('mouseleave', function() {
-            this.style.backgroundColor = ''; // Повертаємо колір фону до звичайного
+            this.style.backgroundColor = '';
         });
 
 
@@ -172,9 +154,4 @@
     </script>
 
 
-
-
-
-
-    
 {% endblock content %}

@@ -1,388 +1,367 @@
 {% load static %}
 
-        <!-- Google Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+<link href="{% static 'lib/slick/slick.css' %}" rel="stylesheet">
+<link href="{% static 'lib/slick/slick-theme.css' %}" rel="stylesheet">
+<link href="{% static 'css/style_news.css' %}" rel="stylesheet">
+</head>
 
-        <!-- CSS Libraries -->
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-        <link href="{% static 'lib/slick/slick.css' %}" rel="stylesheet">
-        <link href="{% static 'lib/slick/slick-theme.css' %}" rel="stylesheet">
+<body>
+    <div class="top-news">
+        <div class="container">
+            <div class="row">
 
-        <!-- Template Stylesheet -->
-        <link href="{% static 'css/style_news.css' %}" rel="stylesheet">
-    </head>
-
-    <body>
-        
-        <!-- Top News Start-->
-        <div class="top-news">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-md-6 tn-left">
-                        <div class="row tn-slider">
-                            {% for element in other %}
-                            {% if forloop.first %}
-                            <div class="col-md-6">
-                                <div class="tn-img">
-                                    <img src="{{ element.photo_link }}" />
-                                    <div class="tn-title">
-                                        <a href="{{ element.news_link }}">{{ element.short_description }}</a>
-                                    </div>
+                <div class="col-md-6 tn-left">
+                    <div class="row tn-slider">
+                        {% for element in other %}
+                        {% if forloop.first %}
+                        <div class="col-md-6">
+                            <div class="tn-img">
+                                <img src="{{ element.photo_link }}" />
+                                <div class="tn-title">
+                                    <a href="{{ element.news_link }}">{{ element.short_description }}</a>
                                 </div>
                             </div>
-                            {% endif %}
-                            {% endfor %}
-                            {% for element in politika %}
-                            {% if forloop.first %}
-                            <div class="col-md-6">
-                                <div class="tn-img">
-                                    <img src="{{ element.photo_link }}" />
-                                    <div class="tn-title">
-                                        <a href="{{ element.news_link }}">{{ element.short_description }}</a>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                            {% endfor %}
-                            {% for element in cars %}
-                            {% if forloop.first %}
-                            <div class="col-md-6">
-                                <div class="tn-img">
-                                    <img src="{{ element.photo_link }}" />
-                                    <div class="tn-title">
-                                        <a href="{{ element.news_link }}">{{ element.short_description }}</a>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                            {% endfor %}
-                            {% for element in health %}
-                            {% if forloop.first %}
-                            <div class="col-md-6">
-                                <div class="tn-img">
-                                    <img src="{{ element.photo_link }}" />
-                                    <div class="tn-title">
-                                        <a href="{{ element.news_link }}">{{ element.short_description }}</a>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                            {% endfor %}
                         </div>
-                    </div>
-
-                    <div class="col-md-6 tn-left">
-                        <div class="row tn-slider">
-                            {% for element in economy %}
-                            {% if forloop.first %}
-                            <div class="col-md-6">
-                                <div class="tn-img">
-                                    <img src="{{ element.photo_link }}" />
-                                    <div class="tn-title">
-                                        <a href="{{ element.news_link }}">{{ element.short_description }}</a>
-                                    </div>
+                        {% endif %}
+                        {% endfor %}
+                        {% for element in politika %}
+                        {% if forloop.first %}
+                        <div class="col-md-6">
+                            <div class="tn-img">
+                                <img src="{{ element.photo_link }}" />
+                                <div class="tn-title">
+                                    <a href="{{ element.news_link }}">{{ element.short_description }}</a>
                                 </div>
                             </div>
-                            {% endif %}
-                            {% endfor %}
-                            {% for element in sport %}
-                            {% if forloop.first %}
-                            <div class="col-md-6">
-                                <div class="tn-img">
-                                    <img src="{{ element.photo_link }}" />
-                                    <div class="tn-title">
-                                        <a href="{{ element.news_link }}">{{ element.short_description }}</a>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                            {% endfor %}
-                            {% for element in tourism %}
-                            {% if forloop.first %}
-                            <div class="col-md-6">
-                                <div class="tn-img">
-                                    <img src="{{ element.photo_link }}" />
-                                    <div class="tn-title">
-                                        <a href="{{ element.news_link }}">{{ element.short_description }}</a>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                            {% endfor %}
-                            {% for element in science %}
-                            {% if forloop.first %}
-                            <div class="col-md-6">
-                                <div class="tn-img">
-                                    <img src="{{ element.photo_link }}" />
-                                    <div class="tn-title">
-                                        <a href="{{ element.news_link }}">{{ element.short_description }}</a>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                            {% endfor %}
                         </div>
-                    </div>
-                    
-                    <div class="col-md-6 tn-right">
-                        <div class="row">
-                            {% for element in other %}
-                            {% if forloop.first %}
-                            <div class="col-md-6">
-                                <div class="tn-img">
-                                    <img src="{{ element.photo_link }}" />
-                                    <div class="tn-title">
-                                        <a href="{{ element.news_link }}">{{ element.short_description }}</a>
-                                    </div>
+                        {% endif %}
+                        {% endfor %}
+                        {% for element in cars %}
+                        {% if forloop.first %}
+                        <div class="col-md-6">
+                            <div class="tn-img">
+                                <img src="{{ element.photo_link }}" />
+                                <div class="tn-title">
+                                    <a href="{{ element.news_link }}">{{ element.short_description }}</a>
                                 </div>
                             </div>
-                            {% endif %}
-                            {% endfor %}
-
-                            {% for element in politika %}
-                            {% if forloop.first %}
-                            <div class="col-md-6">
-                                <div class="tn-img">
-                                    <img src="{{ element.photo_link }}" />
-                                    <div class="tn-title">
-                                        <a href="{{ element.news_link }}">{{ element.short_description }}</a>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                            {% endfor %}
-
-                            {% for element in cars %}
-                            {% if forloop.first %}
-                            <div class="col-md-6">
-                                <div class="tn-img">
-                                    <img src="{{ element.photo_link }}" />
-                                    <div class="tn-title">
-                                        <a href="{{ element.news_link }}">{{ element.short_description }}</a>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                            {% endfor %}
-
-                            {% for element in health %}
-                            {% if forloop.first %}
-                            <div class="col-md-6">
-                                <div class="tn-img">
-                                    <img src="{{ element.photo_link }}" />
-                                    <div class="tn-title">
-                                        <a href="{{ element.news_link }}">{{ element.short_description }}</a>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                            {% endfor %}
                         </div>
-                    </div>
-                    
-                    <div class="col-md-6 tn-right">
-                        <div class="row">
-                            {% for element in economy %}
-                            {% if forloop.first %}
-                            <div class="col-md-6">
-                                <div class="tn-img">
-                                    <img src="{{ element.photo_link }}" />
-                                    <div class="tn-title">
-                                        <a href="{{ element.news_link }}">{{ element.short_description }}</a>
-                                    </div>
+                        {% endif %}
+                        {% endfor %}
+                        {% for element in health %}
+                        {% if forloop.first %}
+                        <div class="col-md-6">
+                            <div class="tn-img">
+                                <img src="{{ element.photo_link }}" />
+                                <div class="tn-title">
+                                    <a href="{{ element.news_link }}">{{ element.short_description }}</a>
                                 </div>
                             </div>
-                            {% endif %}
-                            {% endfor %}
-
-                            {% for element in sport %}
-                            {% if forloop.first %}
-                            <div class="col-md-6">
-                                <div class="tn-img">
-                                    <img src="{{ element.photo_link }}" />
-                                    <div class="tn-title">
-                                        <a href="{{ element.news_link }}">{{ element.short_description }}</a>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                            {% endfor %}
-
-                            {% for element in tourism %}
-                            {% if forloop.first %}
-                            <div class="col-md-6">
-                                <div class="tn-img">
-                                    <img src="{{ element.photo_link }}" />
-                                    <div class="tn-title">
-                                        <a href="{{ element.news_link }}">{{ element.short_description }}</a>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                            {% endfor %}
-
-                            {% for element in science %}
-                            {% if forloop.first %}
-                            <div class="col-md-6">
-                                <div class="tn-img">
-                                    <img src="{{ element.photo_link }}" />
-                                    <div class="tn-title">
-                                        <a href="{{ element.news_link }}">{{ element.short_description }}</a>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                            {% endfor %}
                         </div>
+                        {% endif %}
+                        {% endfor %}
                     </div>
-
                 </div>
+
+                <div class="col-md-6 tn-left">
+                    <div class="row tn-slider">
+                        {% for element in economy %}
+                        {% if forloop.first %}
+                        <div class="col-md-6">
+                            <div class="tn-img">
+                                <img src="{{ element.photo_link }}" />
+                                <div class="tn-title">
+                                    <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        {% for element in sport %}
+                        {% if forloop.first %}
+                        <div class="col-md-6">
+                            <div class="tn-img">
+                                <img src="{{ element.photo_link }}" />
+                                <div class="tn-title">
+                                    <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        {% for element in tourism %}
+                        {% if forloop.first %}
+                        <div class="col-md-6">
+                            <div class="tn-img">
+                                <img src="{{ element.photo_link }}" />
+                                <div class="tn-title">
+                                    <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        {% for element in science %}
+                        {% if forloop.first %}
+                        <div class="col-md-6">
+                            <div class="tn-img">
+                                <img src="{{ element.photo_link }}" />
+                                <div class="tn-title">
+                                    <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="col-md-6 tn-right">
+                    <div class="row">
+                        {% for element in other %}
+                        {% if forloop.first %}
+                        <div class="col-md-6">
+                            <div class="tn-img">
+                                <img src="{{ element.photo_link }}" />
+                                <div class="tn-title">
+                                    <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+
+                        {% for element in politika %}
+                        {% if forloop.first %}
+                        <div class="col-md-6">
+                            <div class="tn-img">
+                                <img src="{{ element.photo_link }}" />
+                                <div class="tn-title">
+                                    <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+
+                        {% for element in cars %}
+                        {% if forloop.first %}
+                        <div class="col-md-6">
+                            <div class="tn-img">
+                                <img src="{{ element.photo_link }}" />
+                                <div class="tn-title">
+                                    <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+
+                        {% for element in health %}
+                        {% if forloop.first %}
+                        <div class="col-md-6">
+                            <div class="tn-img">
+                                <img src="{{ element.photo_link }}" />
+                                <div class="tn-title">
+                                    <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="col-md-6 tn-right">
+                    <div class="row">
+                        {% for element in economy %}
+                        {% if forloop.first %}
+                        <div class="col-md-6">
+                            <div class="tn-img">
+                                <img src="{{ element.photo_link }}" />
+                                <div class="tn-title">
+                                    <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+
+                        {% for element in sport %}
+                        {% if forloop.first %}
+                        <div class="col-md-6">
+                            <div class="tn-img">
+                                <img src="{{ element.photo_link }}" />
+                                <div class="tn-title">
+                                    <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+
+                        {% for element in tourism %}
+                        {% if forloop.first %}
+                        <div class="col-md-6">
+                            <div class="tn-img">
+                                <img src="{{ element.photo_link }}" />
+                                <div class="tn-title">
+                                    <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+
+                        {% for element in science %}
+                        {% if forloop.first %}
+                        <div class="col-md-6">
+                            <div class="tn-img">
+                                <img src="{{ element.photo_link }}" />
+                                <div class="tn-title">
+                                    <a href="{{ element.news_link }}">{{ element.short_description }}</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+
             </div>
         </div>
-        <!-- Top News End-->
-
-
-        <!-- Category News Start-->
-        <div class="cat-news">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h2>Various</h2>
-                        <div class="row cn-slider">
-                            {% for element in other %}
-                            <div class="col-md-6">
-                                <div class="cn-img">
-                                    <img src="{{ element.photo_link }}" />
-                                    <div class="cn-title">
-                                        <a href="{{ element.news_link }}">{{ element.short_description }}</a>
-                                    </div>
+    </div>
+    <div class="cat-news">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Various</h2>
+                    <div class="row cn-slider">
+                        {% for element in other %}
+                        <div class="col-md-6">
+                            <div class="cn-img">
+                                <img src="{{ element.photo_link }}" />
+                                <div class="cn-title">
+                                    <a href="{{ element.news_link }}">{{ element.short_description }}</a>
                                 </div>
                             </div>
-                            {% endfor %}
                         </div>
+                        {% endfor %}
                     </div>
-                    <div class="col-md-6">
-                        <h2>Politics</h2>
-                        <div class="row cn-slider">
-                            {% for element in politika %}
-                            <div class="col-md-6">
-                                <div class="cn-img">
-                                    <img src="{{ element.photo_link }}" />
-                                    <div class="cn-title">
-                                        <a href="{{ element.news_link }}">{{ element.short_description }}</a>
-                                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2>Politics</h2>
+                    <div class="row cn-slider">
+                        {% for element in politika %}
+                        <div class="col-md-6">
+                            <div class="cn-img">
+                                <img src="{{ element.photo_link }}" />
+                                <div class="cn-title">
+                                    <a href="{{ element.news_link }}">{{ element.short_description }}</a>
                                 </div>
                             </div>
-                            {% endfor %}
                         </div>
+                        {% endfor %}
                     </div>
-                    <div class="col-md-6">
-                        <h2>Авто</h2>
-                        <div class="row cn-slider">
-                            {% for element in cars %}
-                            <div class="col-md-6">
-                                <div class="cn-img">
-                                    <img src="{{ element.photo_link }}" />
-                                    <div class="cn-title">
-                                        <a href="{{ element.news_link }}">{{ element.short_description }}</a>
-                                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2>Авто</h2>
+                    <div class="row cn-slider">
+                        {% for element in cars %}
+                        <div class="col-md-6">
+                            <div class="cn-img">
+                                <img src="{{ element.photo_link }}" />
+                                <div class="cn-title">
+                                    <a href="{{ element.news_link }}">{{ element.short_description }}</a>
                                 </div>
                             </div>
-                            {% endfor %}
                         </div>
+                        {% endfor %}
                     </div>
-                    <div class="col-md-6">
-                        <h2>Health</h2>
-                        <div class="row cn-slider">
-                            {% for element in health %}
-                            <div class="col-md-6">
-                                <div class="cn-img">
-                                    <img src="{{ element.photo_link }}" />
-                                    <div class="cn-title">
-                                        <a href="{{ element.news_link }}">{{ element.short_description }}</a>
-                                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2>Health</h2>
+                    <div class="row cn-slider">
+                        {% for element in health %}
+                        <div class="col-md-6">
+                            <div class="cn-img">
+                                <img src="{{ element.photo_link }}" />
+                                <div class="cn-title">
+                                    <a href="{{ element.news_link }}">{{ element.short_description }}</a>
                                 </div>
                             </div>
-                            {% endfor %}
                         </div>
+                        {% endfor %}
                     </div>
-                    <div class="col-md-6">
-                        <h2>Economy</h2>
-                        <div class="row cn-slider">
-                            {% for element in economy %}
-                            <div class="col-md-6">
-                                <div class="cn-img">
-                                    <img src="{{ element.photo_link }}" />
-                                    <div class="cn-title">
-                                        <a href="{{ element.news_link }}">{{ element.short_description }}</a>
-                                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2>Economy</h2>
+                    <div class="row cn-slider">
+                        {% for element in economy %}
+                        <div class="col-md-6">
+                            <div class="cn-img">
+                                <img src="{{ element.photo_link }}" />
+                                <div class="cn-title">
+                                    <a href="{{ element.news_link }}">{{ element.short_description }}</a>
                                 </div>
                             </div>
-                            {% endfor %}
                         </div>
+                        {% endfor %}
                     </div>
-                    <div class="col-md-6">
-                        <h2>Sport</h2>
-                        <div class="row cn-slider">
-                            {% for element in sport %}
-                            <div class="col-md-6">
-                                <div class="cn-img">
-                                    <img src="{{ element.photo_link }}" />
-                                    <div class="cn-title">
-                                        <a href="{{ element.news_link }}">{{ element.short_description }}</a>
-                                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2>Sport</h2>
+                    <div class="row cn-slider">
+                        {% for element in sport %}
+                        <div class="col-md-6">
+                            <div class="cn-img">
+                                <img src="{{ element.photo_link }}" />
+                                <div class="cn-title">
+                                    <a href="{{ element.news_link }}">{{ element.short_description }}</a>
                                 </div>
                             </div>
-                            {% endfor %}
                         </div>
+                        {% endfor %}
                     </div>
-                    <div class="col-md-6">
-                        <h2>Tourism</h2>
-                        <div class="row cn-slider">
-                            {% for element in tourism %}
-                            <div class="col-md-6">
-                                <div class="cn-img">
-                                    <img src="{{ element.photo_link }}" />
-                                    <div class="cn-title">
-                                        <a href="{{ element.news_link }}">{{ element.short_description }}</a>
-                                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2>Tourism</h2>
+                    <div class="row cn-slider">
+                        {% for element in tourism %}
+                        <div class="col-md-6">
+                            <div class="cn-img">
+                                <img src="{{ element.photo_link }}" />
+                                <div class="cn-title">
+                                    <a href="{{ element.news_link }}">{{ element.short_description }}</a>
                                 </div>
                             </div>
-                            {% endfor %}
                         </div>
+                        {% endfor %}
                     </div>
-                    <div class="col-md-6">
-                        <h2>Science and IT</h2>
-                        <div class="row cn-slider">
-                            {% for element in science %}
-                            <div class="col-md-6">
-                                <div class="cn-img">
-                                    <img src="{{ element.photo_link }}" />
-                                    <div class="cn-title">
-                                        <a href="{{ element.news_link }}">{{ element.short_description }}</a>
-                                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2>Science and IT</h2>
+                    <div class="row cn-slider">
+                        {% for element in science %}
+                        <div class="col-md-6">
+                            <div class="cn-img">
+                                <img src="{{ element.photo_link }}" />
+                                <div class="cn-title">
+                                    <a href="{{ element.news_link }}">{{ element.short_description }}</a>
                                 </div>
                             </div>
-                            {% endfor %}
                         </div>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Category News End-->
+    </div>
 
-
-
-
-        <!-- JavaScript Libraries -->
-        <script src="{% static 'lib/jquery-3.4.1.min.js' %}"></script>
-
-        <script src="{% static 'lib/easing/easing.min.js' %}"></script>
-        <script src="{% static 'lib/slick/slick.min.js' %}"></script>
-
-        <!-- Template Javascript -->
-        <script src="{% static 'js/main_news.js' %}"></script>
-
- 
+    <script src="{% static 'lib/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/slick/slick.min.js' %}"></script>
+    <script src="{% static 'js/main_news.js' %}"></script>

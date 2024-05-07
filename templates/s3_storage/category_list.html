@@ -1,152 +1,146 @@
 {% extends '_layouts/base.html' %}
 
 {% block content %}
-  {% load static %}
+{% load static %}
 
-  {% include '_fragments/command_navbar.html' %}
+{% include '_fragments/command_navbar.html' %}
 
-
-  <div class="content-wrapper">
-    <!-- Row start -->
-    <div class="row gx-3">
-      <div class="col-sm-12 col-12">
-        <!-- Card start -->
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title">Category List</div>
-            <div class="d-flex">
-              <button id="addButton" class="btn btn-sm nav-link ms-2" style="width: 150px;">Add File</button>
-              <button id="addCategory" class="btn btn-sm nav-link ms-2" style="width: 150px;">Add Category</button>
-              <button id="editCategory" class="btn btn-sm nav-link ms-2" style="width: 150px;">Edit Category</button>
-            </div>
+<div class="content-wrapper">
+  <div class="row gx-3">
+    <div class="col-sm-12 col-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Category List</div>
+          <div class="d-flex">
+            <button id="addButton" class="btn btn-sm nav-link ms-2" style="width: 150px;">Add File</button>
+            <button id="addCategory" class="btn btn-sm nav-link ms-2" style="width: 150px;">Add Category</button>
+            <button id="editCategory" class="btn btn-sm nav-link ms-2" style="width: 150px;">Edit Category</button>
           </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table id="highlightRowColumn" class="table custom-table">
-                <thead>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table id="highlightRowColumn" class="table custom-table">
+              <thead>
                 <tr>
                   <th>Name</th>
                   <th>Actions</th>
                 </tr>
-                </thead>
-                <tbody>
+              </thead>
+              <tbody>
                 {% for category in categories %}
-                  <tr>
-                    <td>{{ category.name }}</td>
-                    <td>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <a href="{% url 's3_storage:edit_category' category.id %}"
-                           class="btn btn-icon btn-sm btn-unstyled"
-                           data-bs-toggle="tooltip"
-                           data-bs-placement="top" data-bs-custom-class="custom-tooltip-primary" data-bs-title="Edit">
-                          <i class="bi bi-pencil text-success"></i>
-                        </a>
-                        <a href="{% url 's3_storage:delete_category' category.id %}"
-                           class="btn btn-icon btn-sm btn-unstyled btn-delete-category"
-                           data-bs-toggle="tooltip"
-                           data-bs-placement="top" data-bs-custom-class="custom-tooltip-success" data-bs-title="Delete"
-                           data-has-files="{{ category.files.exists }}">
-                          <i class="bi bi-trash text-danger"></i>
-                        </a>
-                      </div>
-                    </td>
-                  </tr>
+                <tr>
+                  <td>{{ category.name }}</td>
+                  <td>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <a href="{% url 's3_storage:edit_category' category.id %}"
+                        class="btn btn-icon btn-sm btn-unstyled" data-bs-toggle="tooltip" data-bs-placement="top"
+                        data-bs-custom-class="custom-tooltip-primary" data-bs-title="Edit">
+                        <i class="bi bi-pencil text-success"></i>
+                      </a>
+                      <a href="{% url 's3_storage:delete_category' category.id %}"
+                        class="btn btn-icon btn-sm btn-unstyled btn-delete-category" data-bs-toggle="tooltip"
+                        data-bs-placement="top" data-bs-custom-class="custom-tooltip-success" data-bs-title="Delete"
+                        data-has-files="{{ category.files.exists }}">
+                        <i class="bi bi-trash text-danger"></i>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
                 {% endfor %}
-                </tbody>
-              </table>
-            </div>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- Card end -->
+</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-  <script>
-      document.querySelectorAll('.btn-delete-category').forEach(function (button) {
-          button.addEventListener('click', function (event) {
-              event.preventDefault();
-              var url = this.getAttribute('href');
-              var hasFiles = this.getAttribute('data-has-files');
+<script>
+  document.querySelectorAll('.btn-delete-category').forEach(function (button) {
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
+      var url = this.getAttribute('href');
+      var hasFiles = this.getAttribute('data-has-files');
 
-              Swal.fire({
-                  title: 'Are you sure?',
-                  text: "You won't be able to revert this!",
-                  icon: 'warning',
-                  showCancelButton: true,
-                  confirmButtonColor: '#d33',
-                  cancelButtonColor: '#3085d6',
-                  confirmButtonText: 'Yes, delete it!',
-                  cancelButtonText: 'Cancel'
-              }).then((result) => {
-                  if (result.isConfirmed) {
-                      if (hasFiles === 'True') {
-                          Swal.fire({
-                              title: 'Error',
-                              text: 'Category contains files. Please delete the files before deleting the category.',
-                              icon: 'error'
-                          });
-                      } else {
-                          deleteCategory(url);
-                      }
-                  }
-              });
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'Cancel'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          if (hasFiles === 'True') {
+            Swal.fire({
+              title: 'Error',
+              text: 'Category contains files. Please delete the files before deleting the category.',
+              icon: 'error'
+            });
+          } else {
+            deleteCategory(url);
+          }
+        }
+      });
+    });
+  });
+
+  function deleteCategory(url) {
+    fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'X-CSRFToken': '{{ csrf_token }}',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({})
+    })
+      .then(response => {
+        if (response.ok) {
+          Swal.fire({
+            title: 'Deleted!',
+            text: 'Category has been deleted.',
+            icon: 'success'
+          }).then(() => {
+            window.location.reload();
           });
+        } else if (response.status === 409) {
+          response.json().then(data => {
+            Swal.fire({
+              title: 'Error',
+              text: data.message,
+              icon: 'error'
+            });
+          });
+        } else {
+          throw new Error('Network response was not ok.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
       });
+  }
+</script>
 
-      function deleteCategory(url) {
-          fetch(url, {
-              method: 'DELETE',
-              headers: {
-                  'X-CSRFToken': '{{ csrf_token }}',
-                  'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({})
-          })
-              .then(response => {
-                  if (response.ok) {
-                      Swal.fire({
-                          title: 'Deleted!',
-                          text: 'Category has been deleted.',
-                          icon: 'success'
-                      }).then(() => {
-                          window.location.reload();
-                      });
-                  } else if (response.status === 409) {
-                      response.json().then(data => {
-                          Swal.fire({
-                              title: 'Error',
-                              text: data.message,
-                              icon: 'error'
-                          });
-                      });
-                  } else {
-                      throw new Error('Network response was not ok.');
-                  }
-              })
-              .catch(error => {
-                  console.error('Error:', error);
-              });
-      }
-  </script>
+<script>
+  document.getElementById('addButton').addEventListener('click', function () {
+    var addUrl = '{% url "s3_storage:upload" %}';
+    window.location.href = addUrl;
+  });
 
-  <script>
-      document.getElementById('addButton').addEventListener('click', function () {
-          var addUrl = '{% url "s3_storage:upload" %}';
-          window.location.href = addUrl;
-      });
+  document.getElementById('addCategory').addEventListener('click', function () {
+    var addCategory = '{% url "s3_storage:create_category" %}';
+    window.location.href = addCategory;
+  });
 
-      document.getElementById('addCategory').addEventListener('click', function () {
-          var addCategory = '{% url "s3_storage:create_category" %}';
-          window.location.href = addCategory;
-      });
-
-      document.getElementById('editCategory').addEventListener('click', function () {
-          var editCategory = '{% url "s3_storage:category_list" %}';
-          window.location.href = editCategory;
-      });
-  </script>
+  document.getElementById('editCategory').addEventListener('click', function () {
+    var editCategory = '{% url "s3_storage:category_list" %}';
+    window.location.href = editCategory;
+  });
+</script>
 
 {% endblock content %}

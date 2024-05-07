@@ -3,8 +3,9 @@ from django.db import models
 
 
 class Contact(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE,
-                             related_name='contacts', default=1)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="contacts", default=1
+    )
     name = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=15)
@@ -16,4 +17,4 @@ class Contact(models.Model):
         return self.name
 
     class Meta:
-        ordering = ['name']
+        ordering = ["name"]

@@ -5,7 +5,9 @@ from django.utils import timezone
 
 
 class FileCategory(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='file_categories')
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="file_categories"
+    )
     name = models.CharField(max_length=50)
 
     def __str__(self):
@@ -13,14 +15,16 @@ class FileCategory(models.Model):
 
 
 def upload_to_s3(instance, filename):
-    ext = filename.split('.')[-1]
+    ext = filename.split(".")[-1]
     filename = f"{uuid.uuid4().hex}.{ext}"
-    return f'uploads/{filename}'
+    return f"uploads/{filename}"
 
 
 class File(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='files')
-    category = models.ForeignKey(FileCategory, on_delete=models.CASCADE, null=True, related_name='files')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="files")
+    category = models.ForeignKey(
+        FileCategory, on_delete=models.CASCADE, null=True, related_name="files"
+    )
     file = models.FileField(upload_to=upload_to_s3)
     original_filename = models.CharField(max_length=255, blank=True, null=True)
     description = models.TextField(blank=True, null=True)

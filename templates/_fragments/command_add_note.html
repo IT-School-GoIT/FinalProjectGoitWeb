@@ -26,16 +26,15 @@
                             <label>
                                 <select name="tags" multiple>
                                     {% for tag in user_tags %}
-                                        <option value="{{ tag.id }}">{{ tag.name }}</option>
+                                    <option value="{{ tag.id }}">{{ tag.name }}</option>
                                     {% endfor %}
                                 </select>
                             </label>
                         </div>
                     </div>
-    
                     <div class="d-flex justify-content-between">
-                        <button type="submit" class="btn btn-sm btn-primary px-5 me-2">Save</button> <!-- Зменшуємо ширину кнопки -->
-                        <button type="reset" class="btn btn-sm btn-primary px-5">Cancel</button> <!-- Зменшуємо ширину кнопки -->
+                        <button type="submit" class="btn btn-sm btn-primary px-5 me-2">Save</button>
+                        <button type="reset" class="btn btn-sm btn-primary px-5">Cancel</button>
                     </div>
                 </form>
             </div>

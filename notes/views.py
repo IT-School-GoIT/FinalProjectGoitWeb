@@ -14,7 +14,6 @@ from .forms import NoteForm, TagForm
 from .models import Note, Tag
 
 
-# Відображення списку нотаток
 class NoteListView(LoginRequiredMixin, ListView):
     model = Note
     template_name = "notes/note_list.html"
@@ -39,7 +38,6 @@ class NoteListView(LoginRequiredMixin, ListView):
         return context
 
 
-# Статус нотатки
 @require_POST
 def toggle_note_done(request, pk):
     note = get_object_or_404(Note, pk=pk)
@@ -48,7 +46,6 @@ def toggle_note_done(request, pk):
     return redirect("notes:note_list")
 
 
-# Відображення списку нотаток
 class NoteDetailView(LoginRequiredMixin, DetailView):
     model = Note
     template_name = "notes/note_detail.html"
@@ -60,11 +57,9 @@ class NoteDetailView(LoginRequiredMixin, DetailView):
         return context
 
 
-# Створення нотатки
 class NoteCreateView(LoginRequiredMixin, CreateView):
     model = Note
     template_name = "notes/note_form.html"
-    # template_name = "_fragments/command_add_note.html"
     form_class = NoteForm
 
     def form_valid(self, form):
@@ -80,7 +75,6 @@ class NoteCreateView(LoginRequiredMixin, CreateView):
         return context
 
 
-# Редагування нотатки
 class NoteEditView(LoginRequiredMixin, UpdateView):
     model = Note
     template_name = "notes/note_form.html"
@@ -95,7 +89,6 @@ class NoteEditView(LoginRequiredMixin, UpdateView):
         return context
 
 
-# Видалення нотатки
 class NoteDeleteView(LoginRequiredMixin, DeleteView):
     model = Note
     template_name = "notes/note_confirm_delete.html"
@@ -104,7 +97,6 @@ class NoteDeleteView(LoginRequiredMixin, DeleteView):
         return reverse("notes:note_list")
 
 
-# Відображення списку нотаток
 class TagListView(LoginRequiredMixin, ListView):
     model = Tag
     template_name = "notes/tag_list.html"
@@ -119,7 +111,6 @@ class TagListView(LoginRequiredMixin, ListView):
         return queryset
 
 
-# Створення тега
 class TagCreateView(LoginRequiredMixin, CreateView):
     model = Tag
     template_name = "notes/tag_form.html"
@@ -133,7 +124,6 @@ class TagCreateView(LoginRequiredMixin, CreateView):
         return reverse("notes:tag_list")
 
 
-# Редагування тега
 class TagEditView(LoginRequiredMixin, UpdateView):
     model = Tag
     template_name = "notes/tag_form.html"
@@ -143,10 +133,8 @@ class TagEditView(LoginRequiredMixin, UpdateView):
         return reverse("notes:tag_list")
 
 
-# Видалення тега
 class TagDeleteView(LoginRequiredMixin, DeleteView):
     model = Tag
-    # template_name = "notes/tag_confirm_delete.html"
     success_url = reverse_lazy("notes:tag_list")
 
     def get_success_url(self):

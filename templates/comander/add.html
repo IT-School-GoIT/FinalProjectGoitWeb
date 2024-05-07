@@ -7,44 +7,50 @@
                     {% csrf_token %}
                     <div class="mb-3">
                         <label for="formGroupExampleInput" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Name" name="name">
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Name"
+                            name="name">
                         {% if form.errors.name %}
-                            <p class="error-message">{{ form.errors.name }}</p>
+                        <p class="error-message">{{ form.errors.name }}</p>
                         {% endif %}
                     </div>
                     <div class="mb-3">
                         <label for="formGroupExampleInput2" class="form-label">Phone</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Phone" name="phone_number">
+                        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Phone"
+                            name="phone_number">
                         {% if form.errors.phone_number %}
-                            <p class="error-message">{{ form.errors.phone_number }}</p>
+                        <p class="error-message">{{ form.errors.phone_number }}</p>
                         {% endif %}
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" name="email">
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            placeholder="Email" name="email">
                         {% if form.errors.email %}
-                            <p class="error-message">{{ form.errors.email }}</p>
+                        <p class="error-message">{{ form.errors.email }}</p>
                         {% endif %}
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Address</label>
-                        <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Address" name="address">
+                        <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="3"
+                            placeholder="Address" name="address">
                         {% if form.errors.address %}
-                            <p class="error-message">{{ form.errors.address }}</p>
+                        <p class="error-message">{{ form.errors.address }}</p>
                         {% endif %}
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Birthday</label>
-                        <input type="date" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Birthday" name="birthday">
+                        <input type="date" class="form-control" id="exampleFormControlTextarea1" rows="3"
+                            placeholder="Birthday" name="birthday">
                         {% if form.errors.birthday %}
-                            <p class="error-message">{{ form.errors.birthday }}</p>
+                        <p class="error-message">{{ form.errors.birthday }}</p>
                         {% endif %}
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Notes</label>
-                        <input class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Note" name="note">
+                        <input class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Note"
+                            name="note">
                         {% if form.errors.note %}
-                            <p class="error-message">{{ form.errors.note }}</p>
+                        <p class="error-message">{{ form.errors.note }}</p>
                         {% endif %}
                     </div>
                     <div class="d-flex justify-content-between">
@@ -58,11 +64,11 @@
 </div>
 
 <style>
-.error-message {
-    color: red;
-    font-weight: bold;
-    font-size: 40px;
-    font-style: italic;
-    text-align: center;
-}
+    .error-message {
+        color: red;
+        font-weight: bold;
+        font-size: 40px;
+        font-style: italic;
+        text-align: center;
+    }
 </style>

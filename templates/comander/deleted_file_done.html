@@ -3,17 +3,17 @@
 {% block content %}
 {% load static %}
 
-
-<!-- Hero Start -->
 <div class="container-fluid pt-5 bg-primary hero-header">
     <div class="container pt-5">
         <div class="row g-5 pt-5">
             <div class="col-lg-6 align-self-center text-center text-lg-start mb-lg-5">
                 <h1 class="display-4 text-white mb-4 animated slideInRight">Delete command executed</h1>
                 <nav aria-label="breadcrumb">
-                        <li class="custom-breadcrumb-item me-3 mb-3">
-                            <a href="{% url 'comander:files' %}" class="btn btn-outline-light py-sm-2 px-sm-4 rounded-pill custom-breadcrumb-link">Data File</a>
-                        </li>                  
+                    <li class="custom-breadcrumb-item me-3 mb-3">
+                        <a href="{% url 'comander:files' %}"
+                            class="btn btn-outline-light py-sm-2 px-sm-4 rounded-pill custom-breadcrumb-link">Data
+                            File</a>
+                    </li>
                 </nav>
             </div>
             <div class="col-lg-6 align-self-end text-center text-lg-end">
@@ -22,12 +22,8 @@
         </div>
     </div>
 </div>
-<!-- Hero End -->
 
-
-<!-- Navbar Start -->
 {% include '_fragments/command_navbar.html' %}
-<!-- Navbar End -->
 
 {% include '_fragments/command_deleted_file_done.html' %}
 

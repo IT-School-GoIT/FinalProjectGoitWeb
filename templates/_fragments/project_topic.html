@@ -1,81 +1,108 @@
 {% load static %}
 
 {% load static %}
-    <div class="container-xxl py-5">
-        <div class="container-xs py-5">
-            <div class="row g-5">
-                <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
-                    <h1 class="mb-4 text-center">Основний функціонал Web application виконаний на Django</h1>
-                    <h3 class="mb-4 text-center">Завдання:</h3>
-                    <p class="mb-4 text-center">Студентам пропонується виконати апдейт “персонального помічника”, реалізованого по завершенню курсу Python Core,  для чого необхідно створити web-інтерфейс та розширити можливості основного додатка.</p>
-                    <h3 class="mb-4 text-center">Вимоги до Аутентифікації</h3>
-                    <p class="mb-4 text-center">1. Реалізуйте механізм авторизації користувача для “Personal Assistant”. Web-інтерфейс повинен давати доступ до своїх функцій лише зареєстрованим користувачам.<br>2. Кожен зареєстрований користувач повинен мати доступ лише до своїх даних та файлів.<br>3. Реалізуйте механізми відновлення пароля для користувача за email </p>
-                    <h3 class="mb-4 text-center">Критерії прийому:</h3>
-                    <p class="mb-4 text-center">1. Web-інтерфейс може бути реалізований на фреймворку Django.<br>2. Проєкт має бути збережений в окремому репозиторії та бути загальнодоступним (GitHub, GitLab або BitBucket).<br>3. Проєкт містить докладну інструкцію щодо встановлення та використання.<br>4. “Personal Assistant” зберігає інформацію в базі даних і може бути перезапущений без втрати даних.<br>5. Для надійності та підвищення продуктивності всю інформацію зберігати у базі даних PostgreSQL.<br>6. Всі критичні дані до доступу до бази даних та налаштування програми зберігаються в змінних середовищах і не завантажуються в репозитарій.<br>7. Проєкт повністю реалізує всі пункти вимог, описані в завданні.</p>
-                    <h1 class="mb-4 text-center">P.S.</h1>
-                    <p class="mb-4 text-center">Ви можете розширити функціонал проєкту на свій розсуд, обов'язково проконсультувавшись з ментором перед цим. Розглядайте цей проєкт, як частину вашого портфоліо і корисний вам інструмент. З цієї причини ініціатива у розширенні та доповненні вимог до проєкту вітається. Наприклад, ви можете додати файл Dockerfile, щоб програма могла бути розміщена в контейнері Docker та образ завантажений на dockerhub.</p>
-                </div>
-                <div class="col-lg-7 wow fadeIn" data-wow-delay="0.5s">
-                    <div class=" testimonial-carousel border-start border-primary">
-                        <h2 class="mb-4 text-center">Основні вимоги до проєкту <br>“Personal Assistant”</h2>
-                        <div class="testimonial-item ps-5">
-                            <i class="fa fa-hashtag fa-2x text-primary mb-3">_1</i>
-                            <p class="fs-4">Зберігати контакти з іменами, адресами, номерами телефонів, email та днями народження до книги контактів</p>
-                        </div>
-                        <div class="testimonial-item ps-5">
-                            <i class="fa fa-hashtag fa-2x text-primary mb-3">_2</i>
-                            <p class="fs-4">Виводити список контактів, у яких день народження через задану кількість днів від поточної дати</p>
-                        </div>                        
-                        <div class="testimonial-item ps-5">
-                            <i class="fa fa-hashtag fa-2x text-primary mb-3">_3</i>
-                            <p class="fs-4">Перевіряти правильність введеного номера телефону та email під час створення або редагування запису та повідомляти користувача у разі некоректного введення</p>
-                        </div>                        
-                        <div class="testimonial-item ps-5">
-                            <i class="fa fa-hashtag fa-2x text-primary mb-3">_4</i>
-                            <p class="fs-4">Здійснювати пошук контактів серед контактів книги</p>
-                        </div>
-                        <div class="testimonial-item ps-5">
-                            <i class="fa fa-hashtag fa-2x text-primary mb-3">_5</i>
-                            <p class="fs-4">Редагувати та видаляти записи з книги контактів</p>
-                        </div>
-                        <div class="testimonial-item ps-5">
-                            <i class="fa fa-hashtag fa-2x text-primary mb-3">_6</i>
-                            <p class="fs-4">Зберігати нотатки з текстовою інформацією</p>
-                        </div>
-                        <div class="testimonial-item ps-5">
-                            <i class="fa fa-hashtag fa-2x text-primary mb-3">_7</i>
-                            <p class="fs-4">Зберігати контакти з іменами, адресами, номерами телефонів, email та днями народження до книги контактів</p>
-                        </div>
-                        <div class="testimonial-item ps-5">
-                            <i class="fa fa-hashtag fa-2x text-primary mb-3">_8</i>
-                            <p class="fs-4">Проводити пошук за нотатками</p>
-                        </div>
-                        <div class="testimonial-item ps-5">
-                            <i class="fa fa-hashtag fa-2x text-primary mb-3">_9</i>
-                            <p class="fs-4">Редагувати та видаляти нотатки</p>
-                        </div>
-                        <div class="testimonial-item ps-5">
-                            <i class="fa fa-hashtag fa-2x text-primary mb-3">_10</i>
-                            <p class="fs-4">Додавати в нотатки "теги", ключові слова, що описують тему та предмет запису</p>
-                        </div>
-                        <div class="testimonial-item ps-5">
-                            <i class="fa fa-hashtag fa-2x text-primary mb-3">_11</i>
-                            <p class="fs-4">Здійснювати пошук та сортування нотаток за ключовими словами (тегами)</p>
-                        </div>
-                        <div class="testimonial-item ps-5">
-                            <i class="fa fa-hashtag fa-2x text-primary mb-3">_12</i>
-                            <p class="fs-4">Виконувати завантаження файлів користувача на хмарний сервіс та мати доступ до них. Користувач повинен мати можливість через web-інтерфейс завантажити на сервер будь-який файл та завантажити його</p>
-                        </div>
-                        <div class="testimonial-item ps-5">
-                            <i class="fa fa-hashtag fa-2x text-primary mb-3">_13</i>
-                            <p class="fs-4">Сортувати файли користувача за категоріями (зображення, документи, відео та ін.) і відображати тільки обрану категорію (фільтр файлів за категорією)</p>
-                        </div>
-                        <div class="testimonial-item ps-5">
-                            <i class="fa fa-hashtag fa-2x text-primary mb-3">_14</i>
-                            <p class="fs-4">Надавати коротке зведення новин за день. Для цього ви повинні вибрати будь-яку цікаву вам область (фінанси, спорт, політика, погода) та кілька інформаційних ресурсів на задану тематику. З вибраних ресурсів збирати на запит користувача інформацію (заголовки новин, курси валют, результати спортивних подій тощо) і відображати на сторінці результатів. Що саме збирати та як можете визначити самостійно</p>
-                        </div>
+<div class="container-xxl py-5">
+    <div class="container-xs py-5">
+        <div class="row g-5">
+            <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
+                <h1 class="mb-4 text-center">Основний функціонал Web application виконаний на Django</h1>
+                <h3 class="mb-4 text-center">Завдання:</h3>
+                <p class="mb-4 text-center">Студентам пропонується виконати апдейт “персонального помічника”,
+                    реалізованого по завершенню курсу Python Core, для чого необхідно створити web-інтерфейс та
+                    розширити можливості основного додатка.</p>
+                <h3 class="mb-4 text-center">Вимоги до Аутентифікації</h3>
+                <p class="mb-4 text-center">1. Реалізуйте механізм авторизації користувача для “Personal Assistant”.
+                    Web-інтерфейс повинен давати доступ до своїх функцій лише зареєстрованим користувачам.<br>2. Кожен
+                    зареєстрований користувач повинен мати доступ лише до своїх даних та файлів.<br>3. Реалізуйте
+                    механізми відновлення пароля для користувача за email </p>
+                <h3 class="mb-4 text-center">Критерії прийому:</h3>
+                <p class="mb-4 text-center">1. Web-інтерфейс може бути реалізований на фреймворку Django.<br>2. Проєкт
+                    має бути збережений в окремому репозиторії та бути загальнодоступним (GitHub, GitLab або
+                    BitBucket).<br>3. Проєкт містить докладну інструкцію щодо встановлення та використання.<br>4.
+                    “Personal Assistant” зберігає інформацію в базі даних і може бути перезапущений без втрати
+                    даних.<br>5. Для надійності та підвищення продуктивності всю інформацію зберігати у базі даних
+                    PostgreSQL.<br>6. Всі критичні дані до доступу до бази даних та налаштування програми зберігаються в
+                    змінних середовищах і не завантажуються в репозитарій.<br>7. Проєкт повністю реалізує всі пункти
+                    вимог, описані в завданні.</p>
+                <h1 class="mb-4 text-center">P.S.</h1>
+                <p class="mb-4 text-center">Ви можете розширити функціонал проєкту на свій розсуд, обов'язково
+                    проконсультувавшись з ментором перед цим. Розглядайте цей проєкт, як частину вашого портфоліо і
+                    корисний вам інструмент. З цієї причини ініціатива у розширенні та доповненні вимог до проєкту
+                    вітається. Наприклад, ви можете додати файл Dockerfile, щоб програма могла бути розміщена в
+                    контейнері Docker та образ завантажений на dockerhub.</p>
+            </div>
+            <div class="col-lg-7 wow fadeIn" data-wow-delay="0.5s">
+                <div class=" testimonial-carousel border-start border-primary">
+                    <h2 class="mb-4 text-center">Основні вимоги до проєкту <br>“Personal Assistant”</h2>
+                    <div class="testimonial-item ps-5">
+                        <i class="fa fa-hashtag fa-2x text-primary mb-3">_1</i>
+                        <p class="fs-4">Зберігати контакти з іменами, адресами, номерами телефонів, email та днями
+                            народження до книги контактів</p>
+                    </div>
+                    <div class="testimonial-item ps-5">
+                        <i class="fa fa-hashtag fa-2x text-primary mb-3">_2</i>
+                        <p class="fs-4">Виводити список контактів, у яких день народження через задану кількість днів
+                            від поточної дати</p>
+                    </div>
+                    <div class="testimonial-item ps-5">
+                        <i class="fa fa-hashtag fa-2x text-primary mb-3">_3</i>
+                        <p class="fs-4">Перевіряти правильність введеного номера телефону та email під час створення або
+                            редагування запису та повідомляти користувача у разі некоректного введення</p>
+                    </div>
+                    <div class="testimonial-item ps-5">
+                        <i class="fa fa-hashtag fa-2x text-primary mb-3">_4</i>
+                        <p class="fs-4">Здійснювати пошук контактів серед контактів книги</p>
+                    </div>
+                    <div class="testimonial-item ps-5">
+                        <i class="fa fa-hashtag fa-2x text-primary mb-3">_5</i>
+                        <p class="fs-4">Редагувати та видаляти записи з книги контактів</p>
+                    </div>
+                    <div class="testimonial-item ps-5">
+                        <i class="fa fa-hashtag fa-2x text-primary mb-3">_6</i>
+                        <p class="fs-4">Зберігати нотатки з текстовою інформацією</p>
+                    </div>
+                    <div class="testimonial-item ps-5">
+                        <i class="fa fa-hashtag fa-2x text-primary mb-3">_7</i>
+                        <p class="fs-4">Зберігати контакти з іменами, адресами, номерами телефонів, email та днями
+                            народження до книги контактів</p>
+                    </div>
+                    <div class="testimonial-item ps-5">
+                        <i class="fa fa-hashtag fa-2x text-primary mb-3">_8</i>
+                        <p class="fs-4">Проводити пошук за нотатками</p>
+                    </div>
+                    <div class="testimonial-item ps-5">
+                        <i class="fa fa-hashtag fa-2x text-primary mb-3">_9</i>
+                        <p class="fs-4">Редагувати та видаляти нотатки</p>
+                    </div>
+                    <div class="testimonial-item ps-5">
+                        <i class="fa fa-hashtag fa-2x text-primary mb-3">_10</i>
+                        <p class="fs-4">Додавати в нотатки "теги", ключові слова, що описують тему та предмет запису</p>
+                    </div>
+                    <div class="testimonial-item ps-5">
+                        <i class="fa fa-hashtag fa-2x text-primary mb-3">_11</i>
+                        <p class="fs-4">Здійснювати пошук та сортування нотаток за ключовими словами (тегами)</p>
+                    </div>
+                    <div class="testimonial-item ps-5">
+                        <i class="fa fa-hashtag fa-2x text-primary mb-3">_12</i>
+                        <p class="fs-4">Виконувати завантаження файлів користувача на хмарний сервіс та мати доступ до
+                            них. Користувач повинен мати можливість через web-інтерфейс завантажити на сервер будь-який
+                            файл та завантажити його</p>
+                    </div>
+                    <div class="testimonial-item ps-5">
+                        <i class="fa fa-hashtag fa-2x text-primary mb-3">_13</i>
+                        <p class="fs-4">Сортувати файли користувача за категоріями (зображення, документи, відео та ін.)
+                            і відображати тільки обрану категорію (фільтр файлів за категорією)</p>
+                    </div>
+                    <div class="testimonial-item ps-5">
+                        <i class="fa fa-hashtag fa-2x text-primary mb-3">_14</i>
+                        <p class="fs-4">Надавати коротке зведення новин за день. Для цього ви повинні вибрати будь-яку
+                            цікаву вам область (фінанси, спорт, політика, погода) та кілька інформаційних ресурсів на
+                            задану тематику. З вибраних ресурсів збирати на запит користувача інформацію (заголовки
+                            новин, курси валют, результати спортивних подій тощо) і відображати на сторінці результатів.
+                            Що саме збирати та як можете визначити самостійно</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>

@@ -4,13 +4,8 @@
 {% load static %}
 {% include '_fragments/HeroStart_comand.html' %}
 
-
-
-<!-- Navbar Start -->
 {% include '_fragments/command_navbar.html' %}
-<!-- Navbar End -->
 
-<!-- Table Start -->
 <div class="container-fluid pt-4 px-4">
     <div class="row g-4">
         <div class="col-12">
@@ -29,8 +24,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- John's row -->
-                            <tr onclick="redirectToUrl('{% url 'comander:change' %}')" class="clickable-row">
+                            <tr onclick="redirectToUrl('{% url 'comander:change_note' %}')" class="clickable-row">
                                 <th scope="row">1</th>
                                 <td>John</td>
                                 <td>+3050-123-456</td>
@@ -46,13 +40,11 @@
         </div>
     </div>
 </div>
-<!-- Table End -->
 
 <script>
     function redirectToUrl(url) {
         window.location.href = url;
     }
 </script>
-
 
 {% endblock %}

@@ -2,9 +2,7 @@
 {% block content %}
 {% load static %}
 
-<!-- Navbar Start -->
 {% include '_fragments/command_navbar.html' %}
-<!-- Navbar End -->
 
 <div class="container-fluid pt-4 px-4">
     <div class="row g-4">
@@ -13,21 +11,20 @@
                 <h6 class="mb-4">You should enter a number if you want to search contacts by birthday</h6>
                 <div class="d-flex">
                     {% csrf_token %}
-                    <a href="{% url 'contacts:contact_list' %}"
-                       class="btn btn-secondary btn-block">Cancel</a>
+                    <a href="{% url 'contacts:contact_list' %}" class="btn btn-secondary btn-block">Cancel</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <style>
-.mb-4 {
-    color: red;
-    font-weight: bold;
-    font-size: 40px;
-    font-style: italic;
-    text-align: center;
-}
+    .mb-4 {
+        color: red;
+        font-weight: bold;
+        font-size: 40px;
+        font-style: italic;
+        text-align: center;
+    }
 </style>
 
 {% endblock content %}
