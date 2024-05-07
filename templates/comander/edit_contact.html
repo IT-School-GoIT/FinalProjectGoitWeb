@@ -16,26 +16,44 @@
                     <div class="mb-3">
                         <label for="formGroupExampleInput" class="form-label">Edit Name</label>
                         <input type="text" value="{{contact.name}}" class="form-control" maxlength="255" required id="id_name" placeholder="Name" name="name">
+                        {% if form.errors.name %}
+                            <p class="error-message">{{ form.errors.name }}</p>
+                        {% endif %}
                     </div>
                     <div class="mb-3">
                         <label for="formGroupExampleInput" class="form-label">Edit Phone</label>
                         <input type="text" value="{{contact.phone_number}}" class="form-control" required id="id_phone_number" placeholder="Phone" name="phone_number">
+                        {% if form.errors.phone_number %}
+                            <p class="error-message">{{ form.errors.phone_number }}</p>
+                        {% endif %}
                     </div>
                     <div class="mb-3">
                         <label for="formGroupExampleInput" class="form-label">Edit Email</label>
                         <input type="email" value="{{contact.email}}" class="form-control" maxlength="254" required id="id_email" placeholder="Email" name="email">
+                        {% if form.errors.email %}
+                            <p class="error-message">{{ form.errors.email }}</p>
+                        {% endif %}
                     </div>
                     <div class="mb-3">
                         <label for="formGroupExampleInput" class="form-label">Edit Address</label>
                          <input type="text" value="{{contact.address}}" class="form-control" required id="id_address" placeholder="Address" name="address">
+                        {% if form.errors.address %}
+                            <p class="error-message">{{ form.errors.address }}</p>
+                        {% endif %}
                     </div>
                     <div class="mb-3">
                         <label for="formGroupExampleInput" class="form-label">Edit Birthday</label>
                         <input type="date" value="{{contact.birthday|date:'Y-m-d'}}" class="form-control" required id="id_birthday" placeholder="Birthday" name="birthday">
+                        {% if form.errors.birthday %}
+                            <p class="error-message">{{ form.errors.birthday }}</p>
+                        {% endif %}
                     </div>
                     <div class="mb-3">
-                        <label for="formGroupExampleInput" class="form-label">Edit Notes</label>
+                        <label for="formGroupExampleInput1" class="form-label">Edit Notes</label>
                         <input type="text" name="note" id="id_note" value="{{contact.note}}" class="form-control" placeholder="Notes">
+                        {% if form.errors.note %}
+                            <p class="error-message">{{ form.errors.note }}</p>
+                        {% endif %}
                     </div>
                     <div class="d-flex justify-content-between">
                         <button type="submit" href="{% url 'contacts:edit_contact' contact.id %}" class="btn btn-sm btn-primary px-5 me-2">Save</button>
@@ -46,7 +64,13 @@
         </div>
     </div>
 </div>
-
-
-
+<style>
+.error-message {
+    color: red;
+    font-weight: bold;
+    font-size: 40px;
+    font-style: italic;
+    text-align: center;
+}
+</style>
 {% endblock content %}

@@ -18,7 +18,7 @@
                                         </div>
                                         <h5 class="mb-3">Функціональність книги контактів</h5>
                                         <p>Зберігання контактів <br>Виведення списку контактів<br>Перевірка введення даних<br>Пошук контактів<br>Редагування та видалення контактів</p>
-                                        <a class="btn px-3 mt-auto mx-auto" href="{% url 'comander:commands' %}">To cotacts</a>
+                                        <a class="btn px-3 mt-auto mx-auto" href="{% url 'contacts:contact_list' %}">To cotacts</a>
                                     </div>
                                 </div>
                                 <div class="col-12 wow fadeIn" data-wow-delay="0.5s">
@@ -26,9 +26,10 @@
                                         <div class="service-icon btn-square">
                                             <i class="fa fa-newspaper fa-2x"></i>
                                         </div>
-                                        <h5 class="mb-3">Функціональність новин</h5>
+                                        <h5 class="mb-3">Функціональність новин та курс новин</h5>
                                         <p>Зведення новин за темою</p>
-                                        <a class="btn px-3 mt-auto mx-auto" href="{% url 'home:news' %}">To the news</a>
+                                        <a class="btn px-3 mt-auto mx-auto" href="/parsing/news/">To the news</a>
+                                        <a class="btn px-3 mt-auto mx-auto" href="/exchange/currency/">To the exchange</a>
                                     </div>
                                 </div>
                             </div>

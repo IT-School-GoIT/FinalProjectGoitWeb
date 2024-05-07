@@ -987,3 +987,9 @@
         text-align: center; 
     } 
 }
+
+.error-message test {
+    color: red;
+    font-weight: bold;
+    font-size: 20px;
+}

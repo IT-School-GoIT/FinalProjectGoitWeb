@@ -705,5 +705,9 @@ h6,
     /* Add styles for the title */
 }
 
-
+.error-message {
+    color: red;
+    font-weight: bold;
+    font-size: 20px;
+}
 
