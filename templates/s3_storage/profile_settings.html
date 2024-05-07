@@ -1,9 +1,8 @@
 {% extends '_layouts/base.html' %}
 
+
 {% block content %}
 {% load static %}
-
-
 
 <div class="container-fluid pt-4 px-4">
     <div class="row g-4">
@@ -22,13 +21,21 @@
                         <div class="row gx-3">
                             <div class="col-sm-6 col-12">
                                 <div class="d-flex flex-row">
-                                    <img src="{% static 'img/team-9.jpg' %}" class="img-fluid change-img-avatar"
-                                        alt="Free Dashboards">
+                                    {% if profile_form.instance.avatar.url %}
+                                    <img class="img-fluid change-img-avatar"
+                                        src="{{ profile_form.instance.avatar.url }}" alt=""
+                                        style="width: 150px; height: 150px;">
+                                    {% else %}
+                                    <img class="img-fluid change-img-avatar" src="{% static 'img/feature.png' %}"
+                                        alt="" style="width: 150px; height: 150px;">
+                                    {% endif %}
                                     <div id="dropzone-sm" class="mb-4 dropzone-dark">
-                                        <form action="/upload" class="dropzone needsclick dz-clickable"
-                                            id="demo-upload">
-                                            <div class="dz-message needsclick">
-                                                <button type="button" class="dz-button">Change Image.</button>
+                                        <form action="{% url 's3_storage:profile_settings' %}" method="POST"
+                                            enctype="multipart/form-data" class="needs-validation" novalidate>
+                                            {% csrf_token %}
+                                            <div class="input-group">
+                                                <input type="file" name="avatar" accept="image/*" class="form-control">
+                                                <button type="submit" class="btn btn-primary">Change Image</button>
                                             </div>
                                         </form>
                                     </div>
@@ -39,14 +46,14 @@
                             <div class="col-xxl-4 col-sm-6 col-12">
                                 <div class="mb-3">
                                     <label for="fullName" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="fullName" placeholder="Full Name"
+                                    <input type="text" class="form-control" id="fullName" placeholder="{{ user.username }}"
                                         readonly>
                                 </div>
                             </div>
                             <div class="col-xxl-4 col-sm-6 col-12">
                                 <div class="mb-3">
                                     <label for="emailID" class="form-label">Email ID</label>
-                                    <input type="email" class="form-control" id="emailID" placeholder="reese@meail.com"
+                                    <input type="email" class="form-control" id="emailID" placeholder="{{ user.email }}"
                                         readonly>
                                 </div>
                             </div>

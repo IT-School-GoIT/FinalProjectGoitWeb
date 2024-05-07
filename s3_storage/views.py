@@ -1,11 +1,12 @@
+from django.contrib import messages
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_http_methods
 
-from .models import File, FileCategory
+from .models import File, FileCategory, Profile
 from .utils import delete_from_s3
-from .forms import FileForm
+from .forms import FileForm, ProfileForm
 from .custom_http_responses import HttpResponseConflict
 
 
@@ -128,3 +129,36 @@ def delete_category(request, category_id):
     else:
         category.delete()
         return JsonResponse({"message": "Category has been deleted."}, status=200)
+
+
+@login_required
+def profile(request):
+    return render(
+        request,
+        "s3_storage/profile.html",
+        {"title": "profile", "page": "profile", "app": "profile"},
+    )
+
+
+@login_required
+def profile_settings(request):
+    try:
+        profile = request.user.profile
+    except Profile.DoesNotExist:
+        profile = Profile(user=request.user)
+
+    if request.method == "POST":
+        profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if profile_form.is_valid():
+            profile = profile_form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            messages.success(request, "Your profile is updated successfully")
+            return redirect("s3_storage:profile_settings")
+
+    else:
+        profile_form = ProfileForm(instance=profile)
+
+    return render(
+        request, "s3_storage/profile_settings.html", {"profile_form": profile_form}
+    )

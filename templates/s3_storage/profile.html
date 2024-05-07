@@ -1,0 +1,35 @@
+{% extends '_layouts/base.html' %}
+
+{% block content %}
+{% load static %}
+
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        {% include '_fragments/command_navbar.html' %}
+    </div>
+</div>
+<div class="col-sm-12 col-xl-6  mx-auto">
+    <div class="bg-light rounded h-100 p-4">
+        <h6 class="mb-4">My information</h6>
+        <div class="table-responsive">
+            <table class="table table-borderless">
+                <thead>
+                    <tr>
+                        <th scope="col">Login Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">How many contacts</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>221</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

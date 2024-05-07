@@ -17,4 +17,6 @@ urlpatterns = [
         name="delete_category",
     ),
     path("categories/", views.category_list, name="category_list"),
+    path("profile/", views.profile, name="profile"),
+    path("profile_settings/", views.profile_settings, name="profile_settings"),
 ]
