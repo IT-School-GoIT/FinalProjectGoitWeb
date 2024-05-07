@@ -9,8 +9,8 @@
 - docker-compose up
 
 ## Вхід но наповненної бази
-Username:  admin123
-Password:  admin123
+- Username:  admin123
+- Password:  admin123
 
 
 # Технічне завдання на створення застосунку “Personal Assistant” (Web application)
