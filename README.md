@@ -1,8 +1,8 @@
-##  Варіант_1 для завантаження тестового варіанту
+##  Варіант_1 для завантаження тестового варіанту rel_1.1
 - docker pull antonbabenko1983/finalprojectgoitweb:web
 - docker run -d -p 8000:8000 --name my_web_app antonbabenko1983/finalprojectgoitweb:web
 
-##  Варіант_2 для завантаження тестового варіанту
+##  Варіант_2 для завантаження тестового варіанту  the latest version
 - [Архів](https://github.com/IT-School-GoIT/FinalProjectGoitWeb/archive/refs/heads/main.zip)
 - або
 - [Clone](https://github.com/IT-School-GoIT/FinalProjectGoitWeb.git) 
