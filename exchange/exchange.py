@@ -56,26 +56,29 @@ def pumb_currency(url="https://about.pumb.ua/info/currency_converter"):
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "lxml")
 
-    eur_buy = soup.find("td", {"data-currency-eurbuy": True}).text
-    eur_sell = soup.find("td", {"data-currency-eursell": True}).text
-    usd_buy = soup.find("td", {"data-currency-usdbuy": True}).text
-    usd_sell = soup.find("td", {"data-currency-usdsell": True}).text
-    pln_buy = soup.find("td", {"data-currency-plnbuy": True}).text
-    pln_sell = soup.find("td", {"data-currency-plnshell": True}).text
+    eur_buy = soup.find("td", {"data-currency-eurbuy": True})
+    eur_sell = soup.find("td", {"data-currency-eursell": True})
+    usd_buy = soup.find("td", {"data-currency-usdbuy": True})
+    usd_sell = soup.find("td", {"data-currency-usdsell": True})
+    pln_buy = soup.find("td", {"data-currency-plnbuy": True})
+    pln_sell = soup.find("td", {"data-currency-plnshell": True})
 
-    return [
-        {
-            "bank_name": "Pumb",
-            "eur_buy": eur_buy,
-            "eur_sell": eur_sell,
-            "usd_buy": usd_buy,
-            "usd_sell": usd_sell,
-            "pln_buy": pln_buy,
-            "pln_sell": pln_sell,
-            "url_link": "https://about.pumb.ua/info/currency_converter",
-        }
-    ]
+    if eur_buy and eur_sell and usd_buy and usd_sell and pln_buy and pln_sell:
 
+        return [
+            {
+                "bank_name": "Pumb",
+                "eur_buy": eur_buy.text,
+                "eur_sell": eur_sell.text,
+                "usd_buy": usd_buy.text,
+                "usd_sell": usd_sell.text,
+                "pln_buy": pln_buy.text,
+                "pln_sell": pln_sell.text,
+                "url_link": "https://about.pumb.ua/info/currency_converter",
+            }
+        ]
+    else:
+        return []
 
 def minfin_currency(url="https://minfin.com.ua/currency/"):
     response = requests.get(url)
