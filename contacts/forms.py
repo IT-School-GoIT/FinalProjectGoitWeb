@@ -13,41 +13,41 @@ def validate_birth_date(value):
     """
     max_birth_date = timezone.now().date() - timedelta(days=365.25 * 120)
     if value >= timezone.now().date() or value <= max_birth_date:
-        raise ValidationError('Birth date must be in the past and not exceed 120 years')
+        raise ValidationError("Birth date must be in the past and not exceed 120 years")
     return value
 
 
 class ContactForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop("user", None)
+        self.request = kwargs.pop("request", None)
+        super(ContactForm, self).__init__(*args, **kwargs)
+
     class Meta:
         model = Contact
-        fields = ['name', 'address', 'phone_number', 'email', 'birthday',
-                  'note']
+        fields = ["name", "address", "phone_number", "email", "birthday", "note"]
 
     def clean_phone_number(self):
-        data = self.cleaned_data['phone_number']
-        if not re.match(r'^\+?\d{1,5}?\d{7,15}$', data):
+        data = self.cleaned_data["phone_number"]
+        if not re.match(r"^\+?\d{1,5}?\d{7,15}$", data):
             raise forms.ValidationError("Invalid phone number")
         return data
 
     def clean_email(self):
-        data = self.cleaned_data['email']
-        if not re.match(r'^\S+@\S+\.\S+$', data):
+        email = self.cleaned_data.get("email")
+        if not re.match(r"^\S+@\S+\.\S+$", email):
             raise forms.ValidationError("Invalid email address")
-
-        existing_contacts = Contact.objects.exclude(id=self.instance.id).filter(
-            email=data)
-        if existing_contacts.exists():
-            raise forms.ValidationError("Email address must be unique")
-
-        return data
+        return email
 
     def clean_birthday(self):
-        birthday = self.cleaned_data['birthday']
+        birthday = self.cleaned_data["birthday"]
         validate_birth_date(birthday)
         return birthday
 
-    def save(self, commit=True):
+    def save(self, user=None, commit=True):
         instance = super(ContactForm, self).save(commit=False)
+        if user:
+            instance.user = user
         if commit:
             instance.save()
         return instance
