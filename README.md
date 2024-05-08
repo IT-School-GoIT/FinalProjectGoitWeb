@@ -1,4 +1,4 @@
-##  Варіант_1 для завантаження тестового варіанту rel_1.1
+##  Варіант_1 для завантаження тестового варіанту rel_2.0.
 - docker pull antonbabenko1983/finalprojectgoitweb:web
 - docker run -d -p 8000:8000 --name my_web_app antonbabenko1983/finalprojectgoitweb:web
 

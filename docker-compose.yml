@@ -6,7 +6,7 @@ services:
     environment:
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: mydatabase
+      POSTGRES_DB: ${POSTGRES_DB:-mydatabase_$(date +%Y%m%d)}  # Генерація нового імені бази даних з поточною датою
     ports:
       - "5433:5432"
     volumes:
@@ -14,19 +14,18 @@ services:
     networks:
       - mynetwork
 
-
   web:
     build: .
     command: >
-      sh -c "wait-for-it postgres:5432 -- python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+      sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
-      - .:/code
+      - .:/app
     ports:
       - "8000:8000"
     depends_on:
       - postgres
     environment:
-      - DATABASE_URL=postgres://myuser:mypassword@postgres:5432/mydatabase
+      - DATABASE_URL=postgres://myuser:mypassword@postgres:5432/${POSTGRES_DB:-mydatabase_$(date +%Y%m%d)}  # Підставляємо те саме ім'я бази даних для Django
       - DEBUG=True
       - ALLOWED_HOSTS=*
     networks:
@@ -34,6 +33,53 @@ services:
 
 networks:
   mynetwork:
+
+
+
+
+
+
+
+
+
+
+
+# version: '3.8'
+
+# services:
+#   postgres:
+#     image: postgres
+#     environment:
+#       POSTGRES_USER: myuser
+#       POSTGRES_PASSWORD: mypassword
+#       POSTGRES_DB: mydatabase
+#     ports:
+#       - "5433:5432"
+#     volumes:
+#       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+#     networks:
+#       - mynetwork
+
+
+#   web:
+#     build: .
+#     command: >
+#       sh -c "wait-for-it postgres:5432 -- python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+#     volumes:
+#       - .:/code
+#     ports:
+#       - "8000:8000"
+#     depends_on:
+#       - postgres
+#     environment:
+#       - DATABASE_URL=postgres://myuser:mypassword@postgres:5432/mydatabase
+#       - DEBUG=True
+#       - ALLOWED_HOSTS=*
+#     networks:
+#       - mynetwork
+
+# networks:
+#   mynetwork:
 
 # services:
 #   postgres:
