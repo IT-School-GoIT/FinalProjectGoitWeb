@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>exchange.views &mdash; Fox.Web.Assistant Це розробка програмного забезпечення, яке включає в себе книгу контактів з можливістю збереження контактних даних, нотатки для запису текстової інформації та функцію завантаження та категоризації файлів користувача, а також зведення новин з різних джерел за обраною тематикою. documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=3ca8220d"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Fox.Web.Assistant
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Fox.Web.Assistant</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">exchange.views</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for exchange.views</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">redirect</span>
+
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Currencies</span>
+<span class="kn">from</span> <span class="nn">.exchange</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">privat_currency</span><span class="p">,</span>
+    <span class="n">save_currencies_to_database</span><span class="p">,</span>
+    <span class="n">clear_currency_database</span><span class="p">,</span>
+    <span class="n">pumb_currency</span><span class="p">,</span>
+    <span class="n">minfin_currency</span><span class="p">,</span>
+    <span class="n">finance_currency</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="list_currency">
+<a class="viewcode-back" href="../../index.html#exchange.views.list_currency">[docs]</a>
+<span class="k">def</span> <span class="nf">list_currency</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The list_currency function is used to display the exchange rate of different banks.</span>
+<span class="sd">    It takes a request as an argument and returns a render function with the following arguments:</span>
+<span class="sd">    - request, which is passed from the view;</span>
+<span class="sd">    - &amp;quot;home/exchange_rate.html&amp;quot;, which is a template for displaying data;</span>
+<span class="sd">    - {&amp;quot;privat&amp;quot;</span>
+
+<span class="sd">    : privat, &amp;quot; pumb&amp;quot;: pumb, &amp;quot;minfin&amp;quot;: minfin, &amp;quot;finance&amp;quot;: finance},</span>
+<span class="sd">                where privat = Currencies.objects.filter(bank_name=&amp;quot;PrivatBank&amp;quot;), </span>
+<span class="sd">                pumb = Currencies.objects.filter(bank</span>
+<span class="sd">    </span>
+<span class="sd">    :param request: Pass the request object to the view</span>
+<span class="sd">    :return: The exchange rate for each bank</span>
+<span class="sd">    :doc-author: Trelent</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">privat</span> <span class="o">=</span> <span class="n">Currencies</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">bank_name</span><span class="o">=</span><span class="s2">&quot;PrivatBank&quot;</span><span class="p">)</span>
+    <span class="n">pumb</span> <span class="o">=</span> <span class="n">Currencies</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">bank_name</span><span class="o">=</span><span class="s2">&quot;Pumb&quot;</span><span class="p">)</span>
+    <span class="n">minfin</span> <span class="o">=</span> <span class="n">Currencies</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">bank_name</span><span class="o">=</span><span class="s2">&quot;Minfin&quot;</span><span class="p">)</span>
+    <span class="n">finance</span> <span class="o">=</span> <span class="n">Currencies</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">bank_name</span><span class="o">=</span><span class="s2">&quot;Finance.ua&quot;</span><span class="p">)</span>
+    <span class="c1"># return render(request, &#39;_fragments/TestimonialStart.html&#39;, {&#39;privat&#39;: privat, &#39;pumb&#39;: pumb, &#39;minfin&#39;: minfin, &quot;finance&quot;: finance})exchange_rate.html</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span>
+        <span class="n">request</span><span class="p">,</span>
+        <span class="s2">&quot;home/exchange_rate.html&quot;</span><span class="p">,</span>
+        <span class="p">{</span><span class="s2">&quot;privat&quot;</span><span class="p">:</span> <span class="n">privat</span><span class="p">,</span> <span class="s2">&quot;pumb&quot;</span><span class="p">:</span> <span class="n">pumb</span><span class="p">,</span> <span class="s2">&quot;minfin&quot;</span><span class="p">:</span> <span class="n">minfin</span><span class="p">,</span> <span class="s2">&quot;finance&quot;</span><span class="p">:</span> <span class="n">finance</span><span class="p">},</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="add_currency">
+<a class="viewcode-back" href="../../index.html#exchange.views.add_currency">[docs]</a>
+<span class="k">def</span> <span class="nf">add_currency</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The add_currency function is used to add currency data from four different sources</span>
+<span class="sd">    to the database. The function takes in a request object and returns an HttpResponseRedirect</span>
+<span class="sd">    object that redirects the user to the currency page.</span>
+<span class="sd">    </span>
+<span class="sd">    :param request: Get the data from the form</span>
+<span class="sd">    :return: The redirect function, which is used to return an http response with a url to the client</span>
+<span class="sd">    :doc-author: Trelent</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">clear_currency_database</span><span class="p">()</span>
+    <span class="n">privat</span> <span class="o">=</span> <span class="n">privat_currency</span><span class="p">(</span><span class="s2">&quot;https://privatbank.ua&quot;</span><span class="p">)</span>
+    <span class="n">pumb</span> <span class="o">=</span> <span class="n">pumb_currency</span><span class="p">(</span><span class="s2">&quot;https://about.pumb.ua/info/currency_converter&quot;</span><span class="p">)</span>
+    <span class="n">minfin</span> <span class="o">=</span> <span class="n">minfin_currency</span><span class="p">(</span><span class="s2">&quot;https://minfin.com.ua/currency/&quot;</span><span class="p">)</span>
+    <span class="n">finance</span> <span class="o">=</span> <span class="n">finance_currency</span><span class="p">(</span><span class="s2">&quot;https://finance.ua/ru/currency&quot;</span><span class="p">)</span>
+    <span class="n">save_currencies_to_database</span><span class="p">(</span><span class="n">privat</span><span class="p">)</span>
+    <span class="n">save_currencies_to_database</span><span class="p">(</span><span class="n">pumb</span><span class="p">)</span>
+    <span class="n">save_currencies_to_database</span><span class="p">(</span><span class="n">minfin</span><span class="p">)</span>
+    <span class="n">save_currencies_to_database</span><span class="p">(</span><span class="n">finance</span><span class="p">)</span>
+    <span class="c1"># return render(request, &#39;_fragments/exc.html&#39; )</span>
+    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;currency&quot;</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Babenko Anton - Danil Kazakov - Vitalii Bielimov -  Daryna Mirzagholi - Valerii Yermak.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

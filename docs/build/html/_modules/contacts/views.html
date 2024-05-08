@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>contacts.views &mdash; Fox.Web.Assistant Це розробка програмного забезпечення, яке включає в себе книгу контактів з можливістю збереження контактних даних, нотатки для запису текстової інформації та функцію завантаження та категоризації файлів користувача, а також зведення новин з різних джерел за обраною тематикою. documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=3ca8220d"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Fox.Web.Assistant
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Fox.Web.Assistant</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">contacts.views</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for contacts.views</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">django.contrib.auth.decorators</span> <span class="kn">import</span> <span class="n">login_required</span>
+<span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">messages</span>
+<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">IntegrityError</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span><span class="p">,</span> <span class="n">redirect</span><span class="p">,</span> <span class="n">get_object_or_404</span>
+<span class="kn">from</span> <span class="nn">contacts.models</span> <span class="kn">import</span> <span class="n">Contact</span>
+<span class="kn">from</span> <span class="nn">contacts.forms</span> <span class="kn">import</span> <span class="n">ContactForm</span>
+<span class="kn">from</span> <span class="nn">django.utils</span> <span class="kn">import</span> <span class="n">timezone</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">Q</span>
+
+
+<div class="viewcode-block" id="contact_list">
+<a class="viewcode-back" href="../../index.html#contacts.views.contact_list">[docs]</a>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">contact_list</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The contact_list function is a view that displays all contacts in the database.</span>
+<span class="sd">    It takes an HTTP request as its first argument and returns an HTTP response.</span>
+<span class="sd">    The contact_list function uses the render() shortcut to generate a template response, which means it will return an HttpResponse object with the rendered template content filled in.</span>
+<span class="sd">    </span>
+<span class="sd">    :param request: Get the user&#39;s contacts</span>
+<span class="sd">    :return: A rendered template, which is the html for the contacts page</span>
+<span class="sd">    :doc-author: Trelent</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">contacts</span> <span class="o">=</span> <span class="n">Contact</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;comander/contacts.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;contacts&#39;</span><span class="p">:</span> <span class="n">contacts</span><span class="p">})</span></div>
+
+
+
+<div class="viewcode-block" id="create_contact">
+<a class="viewcode-back" href="../../index.html#contacts.views.create_contact">[docs]</a>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">create_contact</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The create_contact function is used to create a new contact.</span>
+<span class="sd">    The function first checks if the request method is POST, which means that the user has submitted data via a form.</span>
+<span class="sd">    If so, it creates an instance of ContactForm and passes in the POST data from the request object as an argument.</span>
+<span class="sd">    It then sets form&#39;s request attribute equal to request (this will be explained later).  Next, it checks if form is valid by calling its is_valid() method.  If so, it saves contact without committing changes to database yet by calling save(commit=False) on form and assigning result to variable named contact;</span>
+<span class="sd">    </span>
+<span class="sd">    :param request: Get the request object</span>
+<span class="sd">    :return: A redirect to the contact_list view</span>
+<span class="sd">    :doc-author: Trelent</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">ContactForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">)</span>
+        <span class="n">form</span><span class="o">.</span><span class="n">request</span> <span class="o">=</span> <span class="n">request</span>
+        <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+            <span class="n">contact</span> <span class="o">=</span> <span class="n">form</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">commit</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">contact</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span>
+            <span class="n">contact</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;Contact saved successfully&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;contacts:contact_list&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;Form is not valid&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">ContactForm</span><span class="p">()</span>
+        <span class="n">form</span><span class="o">.</span><span class="n">request</span> <span class="o">=</span> <span class="n">request</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;comander/create_contact.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;form&#39;</span><span class="p">:</span> <span class="n">form</span><span class="p">})</span></div>
+
+
+
+<div class="viewcode-block" id="edit_contact">
+<a class="viewcode-back" href="../../index.html#contacts.views.edit_contact">[docs]</a>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">edit_contact</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">contact_id</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The edit_contact function is used to edit a contact.</span>
+<span class="sd">    It takes the request and contact_id as parameters,</span>
+<span class="sd">    gets the object or 404 error if it doesn&#39;t exist,</span>
+<span class="sd">    checks if the method is POST and then saves it.</span>
+<span class="sd">    </span>
+<span class="sd">    :param request: Get the current request</span>
+<span class="sd">    :param contact_id: Retrieve the contact from the database</span>
+<span class="sd">    :return: An httpresponseredirect object</span>
+<span class="sd">    :doc-author: Trelent</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">contact</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Contact</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">contact_id</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="n">form</span><span class="p">:</span> <span class="n">ContactForm</span> <span class="o">=</span> <span class="n">ContactForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">instance</span><span class="o">=</span><span class="n">contact</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+            <span class="n">form</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">success</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;Contact edited successfully&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;contacts:contact_list&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">messages</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;Form is not valid&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">ContactForm</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="n">contact</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;comander/edit_contact.html&#39;</span><span class="p">,</span>
+                  <span class="p">{</span><span class="s1">&#39;form&#39;</span><span class="p">:</span> <span class="n">form</span><span class="p">,</span> <span class="s1">&#39;contact&#39;</span><span class="p">:</span> <span class="n">contact</span><span class="p">,</span> <span class="p">})</span></div>
+
+
+
+<div class="viewcode-block" id="delete_contact">
+<a class="viewcode-back" href="../../index.html#contacts.views.delete_contact">[docs]</a>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">delete_contact</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">contact_id</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The delete_contact function is a view that allows the user to delete a contact.</span>
+<span class="sd">    The function takes two arguments: request and contact_id. The request argument is an HTTP Request object, which contains information about the current web request that has triggered this view. The contact_id argument is an integer representing the primary key of the Contact instance we want to delete.</span>
+<span class="sd">    </span>
+<span class="sd">    :param request: Get the current request</span>
+<span class="sd">    :param contact_id: Identify the contact to be deleted</span>
+<span class="sd">    :return: A render function</span>
+<span class="sd">    :doc-author: Trelent</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">contact</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Contact</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">contact_id</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+        <span class="n">contact</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;contacts:contact_list&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;comander/delete_contact.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;contact&#39;</span><span class="p">:</span> <span class="n">contact</span><span class="p">})</span></div>
+
+
+
+<div class="viewcode-block" id="search_contacts">
+<a class="viewcode-back" href="../../index.html#contacts.views.search_contacts">[docs]</a>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">search_contacts</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The search_contacts function takes a request and returns a rendered template.</span>
+<span class="sd">    The request is expected to be an HTTP GET with the query parameter &#39;q&#39; set to</span>
+<span class="sd">    the search term. The function will return all contacts whose name contains the</span>
+<span class="sd">    search term in any case.</span>
+<span class="sd">    </span>
+<span class="sd">    :param request: Pass the request object to the view</span>
+<span class="sd">    :return: A list of contacts that match the query</span>
+<span class="sd">    :doc-author: Trelent</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;q&#39;</span><span class="p">)</span>
+    <span class="n">contacts</span> <span class="o">=</span> <span class="n">Contact</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">name__icontains</span><span class="o">=</span><span class="n">query</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;comander/search_all.html&#39;</span><span class="p">,</span>
+                  <span class="p">{</span><span class="s1">&#39;contacts&#39;</span><span class="p">:</span> <span class="n">contacts</span><span class="p">,</span> <span class="s1">&#39;query&#39;</span><span class="p">:</span> <span class="n">query</span><span class="p">})</span></div>
+
+
+
+<div class="viewcode-block" id="get_contacts_with_birthday_in">
+<a class="viewcode-back" href="../../index.html#contacts.views.get_contacts_with_birthday_in">[docs]</a>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">get_contacts_with_birthday_in</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The get_contacts_with_birthday_in function takes a request object as its only argument.</span>
+<span class="sd">    It then extracts the days_until_birthday parameter from the GET data of that request, and attempts to convert it into an integer.</span>
+<span class="sd">    If this conversion fails, or if the resulting number is not positive, we render a search error page and return immediately.</span>
+<span class="sd">    Otherwise we calculate target date end by adding days until birthday to current date (which is calculated using timezone now).</span>
+<span class="sd">    We then use Q objects to filter our contacts with birthdays in that range.</span>
+<span class="sd">    </span>
+<span class="sd">    :param request: Get the user&#39;s input from the search box</span>
+<span class="sd">    :return: A rendered template with the contacts that have a birthday within</span>
+<span class="sd">    :doc-author: Trelent</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">days_until_birthday_str</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;days_until_birthday&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">days_until_birthday</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">days_until_birthday_str</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">days_until_birthday</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Days until birthday must be a positive integer&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;comander/search_error_contact.html&#39;</span><span class="p">)</span>
+
+    <span class="n">current_date</span> <span class="o">=</span> <span class="n">timezone</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+    <span class="n">target_date_end</span> <span class="o">=</span> <span class="n">current_date</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">days_until_birthday</span><span class="p">)</span>
+
+    <span class="n">contacts_with_birthday</span> <span class="o">=</span> <span class="n">Contact</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span>
+        <span class="n">Q</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span> <span class="o">&amp;</span>
+        <span class="n">Q</span><span class="p">(</span><span class="n">birthday__day__gte</span><span class="o">=</span><span class="n">current_date</span><span class="o">.</span><span class="n">day</span><span class="p">)</span> <span class="o">&amp;</span>
+        <span class="n">Q</span><span class="p">(</span><span class="n">birthday__month</span><span class="o">=</span><span class="n">current_date</span><span class="o">.</span><span class="n">month</span><span class="p">)</span> <span class="o">&amp;</span>
+        <span class="n">Q</span><span class="p">(</span><span class="n">birthday__day__lte</span><span class="o">=</span><span class="n">target_date_end</span><span class="o">.</span><span class="n">day</span><span class="p">)</span> <span class="o">&amp;</span>
+        <span class="n">Q</span><span class="p">(</span><span class="n">birthday__month</span><span class="o">=</span><span class="n">target_date_end</span><span class="o">.</span><span class="n">month</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;comander/contacts.html&#39;</span><span class="p">,</span>
+                  <span class="p">{</span><span class="s1">&#39;contacts&#39;</span><span class="p">:</span> <span class="n">contacts_with_birthday</span><span class="p">})</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Babenko Anton - Danil Kazakov - Vitalii Bielimov -  Daryna Mirzagholi - Valerii Yermak.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>notes.views &mdash; Fox.Web.Assistant Це розробка програмного забезпечення, яке включає в себе книгу контактів з можливістю збереження контактних даних, нотатки для запису текстової інформації та функцію завантаження та категоризації файлів користувача, а також зведення новин з різних джерел за обраною тематикою. documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=3ca8220d"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Fox.Web.Assistant
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Fox.Web.Assistant</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">notes.views</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for notes.views</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">django.contrib.auth.mixins</span> <span class="kn">import</span> <span class="n">LoginRequiredMixin</span>
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">get_object_or_404</span><span class="p">,</span> <span class="n">redirect</span><span class="p">,</span> <span class="n">render</span>
+<span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">reverse</span><span class="p">,</span> <span class="n">reverse_lazy</span>
+<span class="kn">from</span> <span class="nn">django.views.decorators.http</span> <span class="kn">import</span> <span class="n">require_POST</span>
+<span class="kn">from</span> <span class="nn">django.views.generic</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ListView</span><span class="p">,</span>
+    <span class="n">CreateView</span><span class="p">,</span>
+    <span class="n">DetailView</span><span class="p">,</span>
+    <span class="n">UpdateView</span><span class="p">,</span>
+    <span class="n">DeleteView</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">.forms</span> <span class="kn">import</span> <span class="n">NoteForm</span><span class="p">,</span> <span class="n">TagForm</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Note</span><span class="p">,</span> <span class="n">Tag</span>
+
+
+<div class="viewcode-block" id="NoteListView">
+<a class="viewcode-back" href="../../index.html#notes.views.NoteListView">[docs]</a>
+<span class="k">class</span> <span class="nc">NoteListView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">ListView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Note</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;notes/note_list.html&quot;</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="s2">&quot;notes&quot;</span>
+
+<div class="viewcode-block" id="NoteListView.get_queryset">
+<a class="viewcode-back" href="../../index.html#notes.views.NoteListView.get_queryset">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The get_queryset function is a method that returns the queryset of objects to be displayed in the view.</span>
+<span class="sd">        The default implementation simply returns self.model._default_manager.all(), but it may be overridden to customize the behavior of all list views.</span>
+<span class="sd">        </span>
+<span class="sd">        :param self: Refer to the current object</span>
+<span class="sd">        :return: A queryset that is filtered by the current user</span>
+<span class="sd">        :doc-author: Trelent</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">note_query</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;note_query&quot;</span><span class="p">)</span>
+        <span class="n">tag_query</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">GET</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tag_query&quot;</span><span class="p">)</span>
+        <span class="n">queryset</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">()</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">owner</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">note_query</span><span class="p">:</span>
+            <span class="n">queryset</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">name__icontains</span><span class="o">=</span><span class="n">note_query</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">tag_query</span><span class="p">:</span>
+            <span class="n">queryset</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">tags__name__icontains</span><span class="o">=</span><span class="n">tag_query</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">queryset</span></div>
+
+
+<div class="viewcode-block" id="NoteListView.get_context_data">
+<a class="viewcode-back" href="../../index.html#notes.views.NoteListView.get_context_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The get_context_data function is a method that Django calls when rendering the template.</span>
+<span class="sd">        It allows us to add extra context variables to the template, which we can then use in our templates.</span>
+<span class="sd">        </span>
+<span class="sd">        :param self: Refer to the current instance of the class</span>
+<span class="sd">        :param **kwargs: Pass keyword arguments to the function</span>
+<span class="sd">        :return: A dictionary with the key &amp;quot;all_tags&amp;quot; and value of all tags for the current user</span>
+<span class="sd">        :doc-author: Trelent</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">context</span><span class="p">[</span><span class="s2">&quot;all_tags&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tag</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">owner</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">context</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="toggle_note_done">
+<a class="viewcode-back" href="../../index.html#notes.views.toggle_note_done">[docs]</a>
+<span class="nd">@require_POST</span>
+<span class="k">def</span> <span class="nf">toggle_note_done</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">pk</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The toggle_note_done function is a view that toggles the done status of a note.</span>
+<span class="sd">    It takes an HTTP request and the primary key of a note as arguments, gets the</span>
+<span class="sd">    note with get_object_or_404, toggles its done attribute, saves it back into</span>
+<span class="sd">    the database and redirects back to the list view.</span>
+<span class="sd">    </span>
+<span class="sd">    :param request: Pass the request object to the view</span>
+<span class="sd">    :param pk: Retrieve the note object from the database</span>
+<span class="sd">    :return: A redirect to the note_list view</span>
+<span class="sd">    :doc-author: Trelent</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">note</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Note</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">pk</span><span class="p">)</span>
+    <span class="n">note</span><span class="o">.</span><span class="n">done</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">note</span><span class="o">.</span><span class="n">done</span>
+    <span class="n">note</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s2">&quot;notes:note_list&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="NoteDetailView">
+<a class="viewcode-back" href="../../index.html#notes.views.NoteDetailView">[docs]</a>
+<span class="k">class</span> <span class="nc">NoteDetailView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">DetailView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Note</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;notes/note_detail.html&quot;</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="s2">&quot;note&quot;</span>
+
+<div class="viewcode-block" id="NoteDetailView.get_context_data">
+<a class="viewcode-back" href="../../index.html#notes.views.NoteDetailView.get_context_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The get_context_data function is a method that Django calls when rendering the template.</span>
+<span class="sd">        It allows us to add extra context data to the template, which we can then use in our templates.</span>
+<span class="sd">        In this case, we&#39;re adding a list of all tags owned by the current user.</span>
+<span class="sd">        </span>
+<span class="sd">        :param self: Refer to the current object</span>
+<span class="sd">        :param **kwargs: Pass keyworded, variable-length argument list to a function</span>
+<span class="sd">        :return: A dictionary</span>
+<span class="sd">        :doc-author: Trelent</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">context</span><span class="p">[</span><span class="s2">&quot;user_tags&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tag</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">owner</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">context</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="NoteCreateView">
+<a class="viewcode-back" href="../../index.html#notes.views.NoteCreateView">[docs]</a>
+<span class="k">class</span> <span class="nc">NoteCreateView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">CreateView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Note</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;notes/note_form.html&quot;</span>
+    <span class="n">form_class</span> <span class="o">=</span> <span class="n">NoteForm</span>
+
+<div class="viewcode-block" id="NoteCreateView.form_valid">
+<a class="viewcode-back" href="../../index.html#notes.views.NoteCreateView.form_valid">[docs]</a>
+    <span class="k">def</span> <span class="nf">form_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The form_valid function is called when a form is submitted and valid.</span>
+<span class="sd">        It&#39;s passed the form object, which contains all of the data entered by</span>
+<span class="sd">        the user. The function should return an HttpResponseRedirect to redirect</span>
+<span class="sd">        to another page or render_to_response() to display a template.</span>
+<span class="sd">        </span>
+<span class="sd">        :param self: Refer to the current instance of a class</span>
+<span class="sd">        :param form: Pass the form to the view</span>
+<span class="sd">        :return: The superclass form_valid function</span>
+<span class="sd">        :doc-author: Trelent</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">form</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="n">owner</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">form_valid</span><span class="p">(</span><span class="n">form</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NoteCreateView.get_success_url">
+<a class="viewcode-back" href="../../index.html#notes.views.NoteCreateView.get_success_url">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_success_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The get_success_url function is a helper function that returns the URL to redirect to after processing a form.</span>
+<span class="sd">        The default implementation will return the value of success_url, if it&#39;s set. Otherwise, it&#39;ll try and determine</span>
+<span class="sd">        the correct URL by looking at the object&#39;s get_absolute_url method.</span>
+<span class="sd">        </span>
+<span class="sd">        :param self: Refer to the object that is calling the function</span>
+<span class="sd">        :return: The url of the page that we want to go to after a successful form submission</span>
+<span class="sd">        :doc-author: Trelent</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;notes:note_list&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NoteCreateView.get_context_data">
+<a class="viewcode-back" href="../../index.html#notes.views.NoteCreateView.get_context_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The get_context_data function is a method that Django calls when rendering the template.</span>
+<span class="sd">        It allows us to add extra context data to the template, which we can then use in our templates.</span>
+<span class="sd">        In this case, we&#39;re adding a list of all tags owned by the current user.</span>
+<span class="sd">        </span>
+<span class="sd">        :param self: Refer to the current object</span>
+<span class="sd">        :param **kwargs: Pass keyword arguments to the view</span>
+<span class="sd">        :return: A dictionary of data that is passed to the template</span>
+<span class="sd">        :doc-author: Trelent</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">context</span><span class="p">[</span><span class="s2">&quot;user_tags&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tag</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">owner</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">context</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="NoteEditView">
+<a class="viewcode-back" href="../../index.html#notes.views.NoteEditView">[docs]</a>
+<span class="k">class</span> <span class="nc">NoteEditView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">UpdateView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Note</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;notes/note_form.html&quot;</span>
+    <span class="n">form_class</span> <span class="o">=</span> <span class="n">NoteForm</span>
+
+<div class="viewcode-block" id="NoteEditView.get_success_url">
+<a class="viewcode-back" href="../../index.html#notes.views.NoteEditView.get_success_url">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_success_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The get_success_url function is a helper function that returns the URL to redirect to after processing a form.</span>
+<span class="sd">        The default implementation will return the value of success_url, if it&#39;s set. Otherwise, it&#39;ll try and determine</span>
+<span class="sd">        the correct URL by looking at the object&#39;s get_absolute_url method.</span>
+<span class="sd">        </span>
+<span class="sd">        :param self: Refer to the current instance of the class</span>
+<span class="sd">        :return: The url of the note list page</span>
+<span class="sd">        :doc-author: Trelent</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;notes:note_list&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NoteEditView.get_context_data">
+<a class="viewcode-back" href="../../index.html#notes.views.NoteEditView.get_context_data">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_context_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The get_context_data function is a method that Django calls when rendering the template.</span>
+<span class="sd">        It allows us to add extra context data to the template, which we can then use in our templates.</span>
+<span class="sd">        In this case, we&#39;re adding a list of all tags owned by the current user.</span>
+<span class="sd">        </span>
+<span class="sd">        :param self: Refer to the current object</span>
+<span class="sd">        :param **kwargs: Pass keyworded, variable-length argument list to a function</span>
+<span class="sd">        :return: A dictionary of context data</span>
+<span class="sd">        :doc-author: Trelent</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_context_data</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">context</span><span class="p">[</span><span class="s2">&quot;user_tags&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tag</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">owner</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">context</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="NoteDeleteView">
+<a class="viewcode-back" href="../../index.html#notes.views.NoteDeleteView">[docs]</a>
+<span class="k">class</span> <span class="nc">NoteDeleteView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">DeleteView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Note</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;notes/note_confirm_delete.html&quot;</span>
+
+<div class="viewcode-block" id="NoteDeleteView.get_success_url">
+<a class="viewcode-back" href="../../index.html#notes.views.NoteDeleteView.get_success_url">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_success_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The get_success_url function is a helper function that returns the URL to redirect to after processing a form.</span>
+<span class="sd">        The default implementation will return the value of success_url, if it&#39;s set. Otherwise, it&#39;ll try and determine</span>
+<span class="sd">        the correct URL by looking at the object&#39;s get_absolute_url method.</span>
+<span class="sd">        </span>
+<span class="sd">        :param self: Refer to the current object</span>
+<span class="sd">        :return: The url of the note list view</span>
+<span class="sd">        :doc-author: Trelent</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;notes:note_list&quot;</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="TagListView">
+<a class="viewcode-back" href="../../index.html#notes.views.TagListView">[docs]</a>
+<span class="k">class</span> <span class="nc">TagListView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">ListView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Tag</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;notes/tag_list.html&quot;</span>
+    <span class="n">context_object_name</span> <span class="o">=</span> <span class="s2">&quot;tags&quot;</span>
+
+<div class="viewcode-block" id="TagListView.get_queryset">
+<a class="viewcode-back" href="../../index.html#notes.views.TagListView.get_queryset">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_queryset</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The get_queryset function is a method that returns the queryset of objects</span>
+<span class="sd">        that will be used to create this view. By default, it returns model._default_manager.all(),</span>
+<span class="sd">        but we override it here to return only the notes owned by the current user.</span>
+<span class="sd">        </span>
+<span class="sd">        :param self: Refer to the current object</span>
+<span class="sd">        :return: A queryset that filters the objects by owner</span>
+<span class="sd">        :doc-author: Trelent</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">queryset</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">super</span><span class="p">(</span><span class="n">TagListView</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_queryset</span><span class="p">()</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">owner</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_authenticated</span><span class="p">:</span>
+            <span class="n">queryset</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">owner</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">queryset</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="TagCreateView">
+<a class="viewcode-back" href="../../index.html#notes.views.TagCreateView">[docs]</a>
+<span class="k">class</span> <span class="nc">TagCreateView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">CreateView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Tag</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;notes/tag_form.html&quot;</span>
+    <span class="n">form_class</span> <span class="o">=</span> <span class="n">TagForm</span>
+
+<div class="viewcode-block" id="TagCreateView.form_valid">
+<a class="viewcode-back" href="../../index.html#notes.views.TagCreateView.form_valid">[docs]</a>
+    <span class="k">def</span> <span class="nf">form_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The form_valid function is called when a form is submitted and valid.</span>
+<span class="sd">        It&#39;s passed the form object, which contains all of the data entered by</span>
+<span class="sd">        the user. The function should return an HttpResponseRedirect to redirect</span>
+<span class="sd">        to another page or render_to_response() to display a template.</span>
+<span class="sd">        </span>
+<span class="sd">        :param self: Refer to the current instance of a class</span>
+<span class="sd">        :param form: Access the form that was submitted</span>
+<span class="sd">        :return: The super() of the form_valid function</span>
+<span class="sd">        :doc-author: Trelent</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">form</span><span class="o">.</span><span class="n">instance</span><span class="o">.</span><span class="n">owner</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">user</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">form_valid</span><span class="p">(</span><span class="n">form</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="TagCreateView.get_success_url">
+<a class="viewcode-back" href="../../index.html#notes.views.TagCreateView.get_success_url">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_success_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The get_success_url function is a helper function that returns the URL to redirect to after successful form submission.</span>
+<span class="sd">        </span>
+<span class="sd">        :param self: Refer to the current object</span>
+<span class="sd">        :return: The url of the tag_list view</span>
+<span class="sd">        :doc-author: Trelent</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;notes:tag_list&quot;</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="TagEditView">
+<a class="viewcode-back" href="../../index.html#notes.views.TagEditView">[docs]</a>
+<span class="k">class</span> <span class="nc">TagEditView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">UpdateView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Tag</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s2">&quot;notes/tag_form.html&quot;</span>
+    <span class="n">form_class</span> <span class="o">=</span> <span class="n">TagForm</span>
+
+<div class="viewcode-block" id="TagEditView.get_success_url">
+<a class="viewcode-back" href="../../index.html#notes.views.TagEditView.get_success_url">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_success_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The get_success_url function is a helper function that returns the URL to redirect to after successful form submission.</span>
+<span class="sd">        </span>
+<span class="sd">        :param self: Refer to the current object</span>
+<span class="sd">        :return: The url of the tag_list view</span>
+<span class="sd">        :doc-author: Trelent</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">reverse</span><span class="p">(</span><span class="s2">&quot;notes:tag_list&quot;</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="TagDeleteView">
+<a class="viewcode-back" href="../../index.html#notes.views.TagDeleteView">[docs]</a>
+<span class="k">class</span> <span class="nc">TagDeleteView</span><span class="p">(</span><span class="n">LoginRequiredMixin</span><span class="p">,</span> <span class="n">DeleteView</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Tag</span>
+    <span class="n">success_url</span> <span class="o">=</span> <span class="n">reverse_lazy</span><span class="p">(</span><span class="s2">&quot;notes:tag_list&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="TagDeleteView.get_success_url">
+<a class="viewcode-back" href="../../index.html#notes.views.TagDeleteView.get_success_url">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_success_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The get_success_url function is a helper function that returns the URL to redirect to after processing a valid form.</span>
+<span class="sd">        It&#39;s used by both CreateView and UpdateView, but it can be overridden if you need custom logic.</span>
+<span class="sd">        </span>
+<span class="sd">        :param self: Represent the instance of the object</span>
+<span class="sd">        :return: The success_url variable</span>
+<span class="sd">        :doc-author: Trelent</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">success_url</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Babenko Anton - Danil Kazakov - Vitalii Bielimov -  Daryna Mirzagholi - Valerii Yermak.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
