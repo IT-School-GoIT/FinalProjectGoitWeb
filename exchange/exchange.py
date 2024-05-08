@@ -4,10 +4,26 @@ from .models import Currencies
 
 
 def clear_currency_database():
+    """
+    The clear_currency_database function deletes all the objects in the Currencies database.
+    This is useful for when you want to update your currency database with new data.
+    
+    :return: Nothing
+    :doc-author: Trelent
+    """
     Currencies.objects.all().delete()
 
 
 def save_currencies_to_database(currencies_list):
+    """
+    The save_currencies_to_database function takes a list of dictionaries as an argument.
+    Each dictionary in the list contains information about one bank's currency exchange rates.
+    The function creates Currencies objects from each dictionary and saves them to the database.
+    
+    :param currencies_list: Pass the list of dictionaries to the function
+    :return: The number of created objects
+    :doc-author: Trelent
+    """
     currencies_objects = [
         Currencies(
             bank_name=currencies["bank_name"],
@@ -26,7 +42,15 @@ def save_currencies_to_database(currencies_list):
 
 #
 def privat_currency(url="https://privatbank.ua"):
-
+    """
+    The privat_currency function scrapes the PrivatBank website for currency exchange rates.
+    It returns a list of dictionaries containing the following keys:
+    bank_name, eur_buy, eur_sell, usd_buy, usd_sell, pln_buy and pln sell.
+    
+    :param url: Pass the url to the function
+    :return: A list of dictionaries
+    :doc-author: Trelent
+    """
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "lxml")
 
@@ -52,7 +76,19 @@ def privat_currency(url="https://privatbank.ua"):
 
 
 def pumb_currency(url="https://about.pumb.ua/info/currency_converter"):
-
+    """
+    The pumb_currency function scrapes the Pumb bank's website for currency exchange rates.
+    It returns a list of dictionaries with the following keys:
+    - bank_name (str)
+    - eur_buy (float)
+    - eur_sell (float)
+    - usd_buy (float)
+    - usd_sell(float)
+    
+    :param url: Specify the url of the page to be scraped
+    :return: A list of dictionaries
+    :doc-author: Trelent
+    """
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "lxml")
 
@@ -81,6 +117,15 @@ def pumb_currency(url="https://about.pumb.ua/info/currency_converter"):
         return []
 
 def minfin_currency(url="https://minfin.com.ua/currency/"):
+    """
+    The minfin_currency function scrapes the Minfin website for currency exchange rates.
+    It returns a list of dictionaries with the following keys: bank_name, eur_buy, eur_sell, usd_buy, usd_sell and pln buy.
+    The values are strings representing the current exchange rate.
+    
+    :param url: Specify the url of the page to scrape
+    :return: A list of dictionaries
+    :doc-author: Trelent
+    """
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "lxml")
 
@@ -119,6 +164,19 @@ def minfin_currency(url="https://minfin.com.ua/currency/"):
 
 
 def finance_currency(url="https://finance.ua/ru/currency"):
+    """
+    The finance_currency function scrapes the Finance.ua website for currency exchange rates and returns a list of dictionaries containing the following keys:
+    bank_name - name of the bank (Finance.ua)
+    eur_buy - Euro buy rate
+    eur_sell - Euro sell rate
+    usd_buy - US Dollar buy rate
+    usd_sell - US Dollar sell rate
+    
+    
+    :param url: Specify the url of the page that we want to scrape
+    :return: A list with one dictionary
+    :doc-author: Trelent
+    """
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "lxml")
 

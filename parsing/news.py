@@ -8,6 +8,15 @@ def clear_database():
 
 
 def save_news_to_database(news_list):
+    """
+    The save_news_to_database function takes a list of dictionaries as an argument.
+    Each dictionary in the list represents a news article, and has keys for category, short_description, news_link and photo_link.
+    The function creates News objects from each dictionary in the list (using bulk create), then saves them to the database.
+    
+    :param news_list: Pass the list of dictionaries to the function
+    :return: Nothing
+    :doc-author: Trelent
+    """
     news_objects = [
         News(
             category=news["category"],
@@ -21,6 +30,14 @@ def save_news_to_database(news_list):
 
 
 def other_news(url="https://tsn.ua/other"):
+    """
+    The other_news function scrapes the TSN.ua website for news articles in the 'Other' category,
+    and returns a list of dictionaries containing information about each article.
+    
+    :param url: Specify the url of the page from which we want to get information
+    :return: A list of dictionaries
+    :doc-author: Trelent
+    """
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "lxml")
 
@@ -95,6 +112,18 @@ def other_news(url="https://tsn.ua/other"):
 
 
 def politika_news(url="https://tsn.ua/politika"):
+    """
+    The politika_news function scrapes the TSN website for news articles in the 'Politika' category.
+    It returns a list of dictionaries, each dictionary containing information about one article:
+    - category (string)
+    - short_description (string)
+    - news_link (string)
+    - photo_link (string or NoneType if no photo is available for that article).
+    
+    :param url: Specify the url of the website we want to scrape
+    :return: A list of dictionaries
+    :doc-author: Trelent
+    """
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "lxml")
 
@@ -169,6 +198,17 @@ def politika_news(url="https://tsn.ua/politika"):
 
 
 def auto_news(url="https://tsn.ua/auto"):
+    """
+    The auto_news function scrapes the TSN.ua website for news articles about cars and returns a list of dictionaries, each dictionary containing information about one article:
+    - category (string)
+    - short_description (string)
+    - news_link (string)
+    - photo_link (string or None if no photo is available for that article).
+    
+    :param url: Specify the url of the page from which we want to get news
+    :return: A list of dictionaries
+    :doc-author: Trelent
+    """
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "lxml")
 
@@ -243,6 +283,18 @@ def auto_news(url="https://tsn.ua/auto"):
 
 
 def health_news(url="https://tsn.ua/zdorovya"):
+    """
+    The health_news function scrapes the TSN website for health news articles.
+    It returns a list of dictionaries, each dictionary containing information about one article:
+    - category (string)
+    - short_description (string)
+    - news_link (string)  # link to the full article on tsn.ua website
+    - photo_link (string or NoneType if no photo is available for this particular article).
+    
+    :param url: Pass the url of the page from which we want to get news
+    :return: A list of dictionaries
+    :doc-author: Trelent
+    """
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "lxml")
 
@@ -317,6 +369,18 @@ def health_news(url="https://tsn.ua/zdorovya"):
 
 
 def economy_news(url="https://tsn.ua/groshi"):
+    """
+    The economy_news function scrapes the TSN website for economy news.
+    It returns a list of dictionaries, each dictionary containing information about one article:
+    - category (Economy)
+    - short_description (the first 35 characters of the article's text)
+    - news_link (a link to the full article on TSN's website)
+    - photo_link (a link to an image associated with that particular article).
+    
+    :param url: Specify the url of the page from which we will take news
+    :return: A list of dictionaries
+    :doc-author: Trelent
+    """
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "lxml")
 
@@ -391,6 +455,18 @@ def economy_news(url="https://tsn.ua/groshi"):
 
 
 def sport_news(url="https://tsn.ua/prosport"):
+    """
+    The sport_news function scrapes the TSN website for the latest sport news.
+    It returns a list of dictionaries, each dictionary containing information about one article:
+    - category (Sport)
+    - short_description (the first 35 characters of the article's title)
+    - news_link (a link to the full article on TSN's website)
+    - photo_link (a link to an image associated with that particular article).
+    
+    :param url: Pass the url of the page from which we want to get news
+    :return: A list of dictionaries
+    :doc-author: Trelent
+    """
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "lxml")
 
@@ -465,6 +541,17 @@ def sport_news(url="https://tsn.ua/prosport"):
 
 
 def tourism_news(url="https://tsn.ua/tourism"):
+    """
+    The tourism_news function scrapes the TSN.ua website for tourism news and returns a list of dictionaries, each dictionary containing information about one article:
+    - category (str)
+    - short_description (str)
+    - news_link (str)
+    - photo_link (str or NoneType if no photo is available for that article).
+    
+    :param url: Specify the url of the page to be scraped
+    :return: A list of dictionaries
+    :doc-author: Trelent
+    """
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "lxml")
 
@@ -539,6 +626,15 @@ def tourism_news(url="https://tsn.ua/tourism"):
 
 
 def science_and_it_news(url="https://tsn.ua/nauka_it"):
+    """
+    The science_and_it_news function scrapes the TSN website for science and IT news.
+    It returns a list of dictionaries, each dictionary containing information about one article:
+    category, short_description, news_link and photo_link.
+    
+    :param url: Get the url of the page from which we will scrape data
+    :return: A list of dictionaries
+    :doc-author: Trelent
+    """
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "lxml")
 

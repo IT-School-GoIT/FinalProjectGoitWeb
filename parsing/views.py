@@ -17,6 +17,13 @@ from .news import (
 
 
 def list_news(request):
+    """
+    The list_news function is responsible for displaying all news articles.
+    
+    :param request: Get the request object
+    :return: A template with the name '_fragments/news
+    :doc-author: Trelent
+    """
     other = News.objects.filter(category="Other")
     politika = News.objects.filter(category="Politika")
     cars = News.objects.filter(category="Cars")
@@ -43,6 +50,14 @@ def list_news(request):
 
 
 def add_news(request):
+    """
+    The add_news function is used to add news from the TSN website.
+    It takes no arguments and returns a redirect to the main page.
+    
+    :param request: Get information about the current request
+    :return: A redirect to the news page
+    :doc-author: Trelent
+    """
     clear_database()
     context = other_news("https://tsn.ua/other")
     politika = politika_news("https://tsn.ua/politika")
