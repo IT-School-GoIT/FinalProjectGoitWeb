@@ -161,7 +161,6 @@ cython_debug/
 htmlcov
 postgres-data
 test.db
-docs
 # __pycache__/
 # __init__/
 # __init__.py
