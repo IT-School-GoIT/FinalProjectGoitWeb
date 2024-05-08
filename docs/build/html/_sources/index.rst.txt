@@ -5,7 +5,8 @@
 
 Welcome to Fox.Web.Assistant's documentation!
 =============================================
-Це програмне забезпечення, яке включає в себе книгу контактів з можливістю збереження контактних даних, нотатки для запису текстової інформації та функцію завантаження та категоризації файлів користувача, а також зведення новин з різних джерел за обраною тематикою.
+
+This software includes a contact book with the ability to save contact information, notes for recording textual information, and a function for uploading and categorizing user files, as well as aggregating news from various sources on selected topics.
 
 CONTACTS
 =========
