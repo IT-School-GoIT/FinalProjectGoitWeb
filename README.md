@@ -1,5 +1,6 @@
 ##  Варіант_1 перейти за посиланням
-- <img src="static/img/newsletter.png" alt="Назва зображення" width="40" height="40">[Site "Fox.Web.Assistant"](https://final-project-goit-web-antonbabenko.koyeb.app/)  
+
+- <a href="https://final-project-goit-web-antonbabenko.koyeb.app/"><img src="static/img/newsletter.png" alt="Назва зображення" width="40" height="40"></a>  [Site "Fox.Web.Assistant"](https://final-project-goit-web-antonbabenko.koyeb.app/)  
 
 ##  Варіант_2 для завантаження тестового варіанту rel_2.0.
 - docker pull antonbabenko1983/finalprojectgoitweb:web
