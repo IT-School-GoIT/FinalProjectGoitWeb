@@ -1,15 +1,15 @@
-##  Варіант_1 для завантаження тестового варіанту rel_2.0.
+##  Варіант_1 перейти за посиланням
+- <img src="static/img/newsletter.png" alt="Назва зображення" width="40" height="40">[Site "Fox.Web.Assistant"](https://final-project-goit-web-antonbabenko.koyeb.app/)  
+
+##  Варіант_2 для завантаження тестового варіанту rel_2.0.
 - docker pull antonbabenko1983/finalprojectgoitweb:web
 - docker run -d -p 8000:8000 --name my_web_app antonbabenko1983/finalprojectgoitweb:web
 
-##  Варіант_2 для завантаження тестового варіанту  the latest version
+##  Варіант_3 для завантаження тестового варіанту  the latest version
 - [Архів](https://github.com/IT-School-GoIT/FinalProjectGoitWeb/archive/refs/heads/main.zip)
 - або
 - [Clone](https://github.com/IT-School-GoIT/FinalProjectGoitWeb.git) 
 - docker-compose up
-
-##  Варіант_3 перейтиза посиланням
-- [Site "Fox.Web.Assistant"](https://final-project-goit-web-antonbabenko.koyeb.app/)  <img src="static/img/newsletter.png" alt="Назва зображення" width="20" height="20">
 
 ## Вхід но наповненної бази
 - Username:  admin123
