@@ -9,7 +9,7 @@
 - docker-compose up
 
 ##  Варіант_3 перейтиза посиланням
-- [Site "Fox.Web.Assistant"](https://final-project-goit-web-antonbabenko.koyeb.app/)
+- [Site "Fox.Web.Assistant"](https://final-project-goit-web-antonbabenko.koyeb.app/)  <img src="static/img/newsletter.png" alt="Назва зображення" width="20" height="20">
 
 ## Вхід но наповненної бази
 - Username:  admin123
