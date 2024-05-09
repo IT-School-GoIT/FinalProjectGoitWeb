@@ -9,7 +9,7 @@
 - docker-compose up
 
 ##  Варіант_3 перейтиза посиланням
-- [Site](https://final-project-goit-web-antonbabenko.koyeb.app/)
+- [Site "Fox.Web.Assistant"](https://final-project-goit-web-antonbabenko.koyeb.app/)
 
 ## Вхід но наповненної бази
 - Username:  admin123
