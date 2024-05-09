@@ -1,11 +1,11 @@
 {% load static %}
 
 {% if user.is_authenticated %}
-<div class="navigation-button">
+<div class="navigation-button  responsive-heading">
     <a href="/exchange/add_currency" class="btn btn-primary">Update Exchange rate</a>
 </div>
 {% endif %}
-<div class="container-xxl py-5">
+<div class="container-xxl py-5  responsive-heading">
     <div class="container py-5">
         <div class="row g-5">
             {% for el in privat %}
