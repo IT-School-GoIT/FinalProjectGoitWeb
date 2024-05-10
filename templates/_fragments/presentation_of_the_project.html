@@ -1,0 +1,52 @@
+{% load static %}
+
+
+<style>
+    .video-container {
+        width: 100%; /* Фіксована ширина відео */
+        max-width: 760px; /* Максимальна ширина відео */
+        height: 515px; /* Фіксована висота відео */
+        overflow: hidden;
+        margin: 30px auto; /* Центрування відео на сторінці */
+    }
+
+    .video-container iframe {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Стилі для інших блоків */
+    .other-block {
+        /* Додайте ваші стилі для інших блоків тут */
+        margin-bottom: 20px; /* Простір між блоками */
+    }
+
+        /* Стилі для інших блоків */
+        .other-block {
+        /* Додайте ваші стилі для інших блоків тут */
+        margin-bottom: 80px; /* Відступ між іншими блоками */
+    }
+</style>
+
+{% include '_fragments/HeroStart_2.html' %}
+
+
+<div class="video-container">
+    <iframe id="videoFrame" width="560" height="315"
+        src="https://www.youtube.com/embed/vDUqqKTqdAU?si=WE_e4jUfqGxn0tWt&amp;start=3618" title="YouTube video player"
+        frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+
+</div>
+
+
+<div class="other-block"></div>
+{% include '_fragments/NewsletterStart.html' %}
+</div>
+
+<script>
+    window.onload = function () {
+        var videoFrame = document.getElementById('videoFrame');
+        videoFrame.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+    };
+</script>

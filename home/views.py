@@ -52,3 +52,10 @@ def privacy_policy(request):
         "home/privacy_policy.html",
         {"title": "Політика конфіденційності", "page": "privacy_policy", "app": "home"},
     )
+
+def presentation_of_the_project(request):
+    return render(
+        request,
+        "home/presentation_of_the_project.html",
+        {"title": "Презентація проєкту Fox.Web.", "page": "presentation_of_the_project", "app": "home"},
+    )
